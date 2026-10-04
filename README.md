@@ -1,0 +1,78 @@
+<h1 align="center">3DX Profile Studio</h1>
+
+<p align="center">
+  <b>Write your 3DXChat profile like a document.</b><br>
+  Bold, colours, sizes, gradients, symbols and flags, with an AI writer that works with any AI provider.<br>
+  Copy the code and paste it into the game.
+</p>
+
+<p align="center">
+  <a href="https://deaeath.github.io/3dx-profile-studio/"><img src="https://img.shields.io/badge/open-in%20your%20browser-ff3d8b" alt="Open in your browser"></a>
+  <a href="https://github.com/Deaeath/3dx-profile-studio/releases/latest"><img src="https://img.shields.io/github/v/release/Deaeath/3dx-profile-studio?label=download&color=8b5cf6" alt="Download"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license"></a>
+</p>
+
+<p align="center"><img src="docs/screenshot.png" width="900" alt="The editor: a toolbar on top, the profile card in the middle and the generated code on the right"></p>
+
+---
+
+## Use it
+
+| | |
+|---|---|
+| 🌐 **Online** | Open **[deaeath.github.io/3dx-profile-studio](https://deaeath.github.io/3dx-profile-studio/)**. Nothing to install. |
+| 💾 **Offline** | Download `3DX-Profile-Studio-x.y.z.html` from the **[latest release](https://github.com/Deaeath/3dx-profile-studio/releases/latest)** and double-click it. |
+| 🧩 **From 3DXModKit** | The [3DXModKit](https://github.com/Deaeath/3DXModKit) control panel has an **Open Profile Studio** button on its Mods tab. It installs the latest release for you, checked against its checksum. |
+
+Your drafts stay in your browser. Nothing is uploaded anywhere unless you use the AI features.
+
+## What it does
+
+- **Type on the card, not in code.** The page looks like your profile in the game: white Arial text on the dark panel, about 480 pixels wide. Select text and press **B**, **I**, a colour or a size, like in Word.
+- **Gradients** per letter or per word, with a live count of what they cost. Colours blend in OKLab, so the middle doesn't go muddy.
+- **Symbols** (about 790, sorted into categories), **flags** made of coloured blocks, **dividers** and **fancy letters** (circled, small caps, superscript, upside down and more).
+- **Profile and Gift modes**, each with its own draft and templates. Gifts get `%username%` and a **Mass gift** maker that writes one copy per name and checks each one.
+- **The shortest code it can find.** Tags are nested so the longest-lasting style sits outermost, red/white/blue/yellow/black are written as names, and spaces join the colour next to them. The 1000-character limit goes further.
+- **Counts like the game does.** Profiles allow 1000 characters, gifts 240 characters and 255 bytes, and every line break counts twice. Symbols that don't show inside gifts are flagged.
+- **Import** your current profile code and keep editing it. Pasting code into the card turns it into formatting.
+
+## AI writer
+
+<p align="center"><img src="docs/ai-writer.png" width="720" alt="The AI writer showing a finished profile and its character count"></p>
+
+On the **AI** tab:
+
+- **Write it for me.** Describe yourself in a few words, pick a tone and a look, and get a finished, formatted text.
+- **Shorten to fit**, **Fix spelling**, **Change tone** and **Translate** the selection, or everything.
+- **Style it.** Adds colours, sizes and symbols in a theme without changing your words.
+
+Every result appears in a preview with its character count first. **Use this** puts it in, and **Ctrl+Z** takes it back.
+
+Bring a key from any of these providers. Open **AI settings**, pick the provider, paste the key and press **Load models**:
+
+| Provider | Notes |
+|---|---|
+| Anthropic (Claude) | Default model Claude Opus 5.5 |
+| OpenAI (ChatGPT) | |
+| Google (Gemini) | |
+| OpenRouter | One key for hundreds of models from many vendors |
+| Mistral · DeepSeek · xAI (Grok) · Together AI · Perplexity · Cohere | |
+| Local or custom | Ollama, LM Studio or any OpenAI-compatible server. Ollama needs `OLLAMA_ORIGINS=*` |
+
+Your key and text go **straight from the page to the provider you picked**, with no server in between. The key is kept in your browser only if you tick *Remember my key*. Usage is billed by that provider. Groq blocks requests from web pages, so use its models through OpenRouter.
+
+## Building
+
+The page is one HTML file built from `src/`:
+
+```
+python build.py              # dist/3DX-Profile-Studio.html and docs/index.html (GitHub Pages)
+python build.py --release    # also dist/3DX-Profile-Studio-<version>.html, the .zip and SHA256SUMS.txt
+node tests/test.js           # tests for the code generator, parser, gradients and AI helpers
+```
+
+`VERSION` holds the version number. `src/symbols.json` lists the symbols and which ones only work in profiles.
+
+## Legal
+
+3DX Profile Studio is a fan-made tool and isn't affiliated with or endorsed by the makers of 3DXChat. MIT License.
