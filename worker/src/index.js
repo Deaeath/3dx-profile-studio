@@ -1,0 +1,144 @@
+// Free built-in AI for 3DX Profile Studio (Cloudflare Worker).
+//
+// The page POSTs { system, prompt } to /v1/write. This Worker adds the Anthropic key (a Cloudflare
+// secret, never sent to browsers), applies limits, and streams the reply back as server-sent events:
+//   data: {"t":"<text so far>"}            text as it arrives (whole text, like the page expects)
+//   data: {"done":true,"stop":"end_turn"}  finished (stop = Anthropic stop_reason)
+//   data: {"error":{"code":"rate","message":"..."}}
+// Nothing is stored or logged (only a timestamp per visitor IP for the rate limit, kept one minute).
+
+import { DurableObject } from "cloudflare:workers";
+import Anthropic from "@anthropic-ai/sdk";
+
+const MAX_SYSTEM_CHARS = 30000;
+const MAX_PROMPT_CHARS = 30000;
+
+// One Limiter instance per key ("ip:1.2.3.4", "day:2026-10-07"); each counts its own hits exactly.
+export class Limiter extends DurableObject {
+  async take(limit, windowMs) {
+    const now = Date.now();
+    const hits = ((await this.ctx.storage.get("hits")) || []).filter((t) => now - t < windowMs);
+    if (hits.length >= limit) return false;
+    hits.push(now);
+    await this.ctx.storage.put("hits", hits);
+    await this.ctx.storage.setAlarm(now + windowMs);   // forget this visitor once the window has passed
+    return true;
+  }
+  async alarm() {
+    await this.ctx.storage.deleteAll();
+  }
+}
+
+async function take(env, key, limit, windowMs) {
+  if (!env.LIMITS) return true;
+  try {
+    return await env.LIMITS.get(env.LIMITS.idFromName(key)).take(limit, windowMs);
+  } catch (e) {
+    console.log("limiter error:", String(e));
+    return true;   // a limiter outage shouldn't take the AI down; the Anthropic spend limit is the backstop
+  }
+}
+
+function corsHeaders(origin, env) {
+  const allowed = (env.ALLOWED_ORIGINS || "").split(",").map((s) => s.trim()).filter(Boolean);
+  return allowed.includes(origin) ? { "Access-Control-Allow-Origin": origin, "Vary": "Origin" } : null;
+}
+
+function json(status, body, cors) {
+  return new Response(JSON.stringify(body), {
+    status, headers: { "Content-Type": "application/json", "Cache-Control": "no-store", ...(cors || {}) },
+  });
+}
+const fail = (status, code, message, cors) => json(status, { error: { code, message } }, cors);
+
+const BUSY = "The free AI is busy right now. Wait a minute and try again, or add your own key in AI settings.";
+
+// Plain messages for players; never pass account details through
+function describe(e) {
+  if (e instanceof Anthropic.APIUserAbortError) return { code: "cancelled", message: "Stopped." };
+  if (e instanceof Anthropic.RateLimitError) return { code: "rate", message: BUSY };
+  if (e instanceof Anthropic.BadRequestError) return { code: "api", message: "The AI couldn't use that request. Try different wording." };
+  if (e instanceof Anthropic.APIConnectionError) return { code: "network", message: "Couldn't reach the AI. Try again in a moment." };
+  if (e instanceof Anthropic.APIError && (e.status === 529 || e.status >= 500)) return { code: "rate", message: BUSY };
+  return { code: "unavailable", message: "The free AI isn't working right now. Try again later, or add your own key in AI settings." };
+}
+
+export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    const cors = corsHeaders(request.headers.get("Origin") || "", env);
+
+    if (request.method === "OPTIONS") {
+      if (!cors) return new Response(null, { status: 403 });
+      return new Response(null, {
+        status: 204,
+        headers: { ...cors, "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+                   "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Max-Age": "86400" },
+      });
+    }
+    if (request.method === "GET" && url.pathname === "/") {
+      return json(200, { ok: true, service: "3dx-profile-studio-ai", model: env.MODEL, ready: !!env.ANTHROPIC_API_KEY },
+                  { "Access-Control-Allow-Origin": "*" });
+    }
+    if (request.method !== "POST" || url.pathname !== "/v1/write") return fail(404, "api", "Not found.", cors);
+    if (!cors) return fail(403, "unavailable", "This free AI only works inside 3DX Profile Studio.", null);
+    if (!env.ANTHROPIC_API_KEY) return fail(503, "unavailable", "The free AI isn't set up yet.", cors);
+
+    // Exact limits (Durable Objects): per visitor per minute, and optionally for the whole site per day
+    const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+    if (!(await take(env, `ip:${ip}`, Number(env.PER_MINUTE) || 10, 60_000))) return fail(429, "rate", BUSY, cors);
+    const daily = Number(env.DAILY_LIMIT) || 0;
+    if (daily && !(await take(env, `day:${new Date().toISOString().slice(0, 10)}`, daily, 86_400_000))) {
+      return fail(429, "rate", "The free AI has used up today's allowance. Try again tomorrow, or add your own key in AI settings.", cors);
+    }
+
+    let body;
+    try { body = await request.json(); } catch { return fail(400, "api", "Bad request.", cors); }
+    const system = typeof body.system === "string" ? body.system : "";
+    const prompt = typeof body.prompt === "string" ? body.prompt : "";
+    if (!prompt.trim()) return fail(400, "api", "Nothing to write about yet.", cors);
+    if (system.length > MAX_SYSTEM_CHARS || prompt.length > MAX_PROMPT_CHARS) {
+      return fail(413, "api", "That's too much text for the free AI. Select less, or add your own key in AI settings.", cors);
+    }
+
+    const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
+    const model = env.MODEL || "claude-opus-5-5";
+    const params = { model, max_tokens: Number(env.MAX_TOKENS) || 16000, system,
+                     messages: [{ role: "user", content: prompt }] };
+    if (env.EFFORT) params.output_config = { effort: env.EFFORT };
+    // On a safety decline, re-run on Anthropic's recommended model instead of failing
+    const fallback = /^claude-(opus-5-5|opus-5|sonnet-5-5|fable-5-1)$/.test(model);
+    const opts = { signal: request.signal };   // the player pressing Stop cancels the request
+
+    const { readable, writable } = new TransformStream();
+    const writer = writable.getWriter();
+    const enc = new TextEncoder();
+    const send = (obj) => writer.write(enc.encode(`data: ${JSON.stringify(obj)}\n\n`));
+
+    const pump = (async () => {
+      try {
+        const stream = fallback
+          ? client.beta.messages.stream({ ...params, betas: ["server-side-fallback-2026-07-01"], fallbacks: "default" }, opts)
+          : client.messages.stream(params, opts);
+        let text = "";
+        for await (const ev of stream) {
+          if (ev.type === "content_block_delta" && ev.delta.type === "text_delta") {
+            text += ev.delta.text;
+            await send({ t: text });
+          }
+        }
+        const msg = await stream.finalMessage();
+        await send({ done: true, stop: msg.stop_reason });
+      } catch (e) {
+        try { await send({ error: describe(e) }); } catch { /* player already left */ }
+      } finally {
+        try { await writer.close(); } catch { /* already closed */ }
+      }
+    })();
+    ctx.waitUntil(pump);
+
+    return new Response(readable, {
+      status: 200, headers: { "Content-Type": "text/event-stream", "Cache-Control": "no-store", ...cors },
+    });
+  },
+};

@@ -48,7 +48,12 @@ On the **AI** tab:
 
 Every result appears in a preview with its character count first. **Use this** puts it in, and **Ctrl+Z** takes it back.
 
-Bring a key from any of these providers. Open **AI settings**, pick the provider, paste the key and press **Load models**:
+**It works right away, with no key or account.** The built-in **Free AI** runs on Claude and is
+provided by 3DX Profile Studio. Your text goes through the Studio's small AI server to Anthropic and
+nothing is stored. There's a fair-use limit (10 requests a minute per person).
+
+Prefer another AI, or using it a lot? Bring a key from any of these providers instead. Open
+**AI settings**, pick the provider, paste the key and press **Load models**:
 
 | Provider | Notes |
 |---|---|
@@ -59,7 +64,7 @@ Bring a key from any of these providers. Open **AI settings**, pick the provider
 | Mistral · DeepSeek · xAI (Grok) · Together AI · Perplexity · Cohere | |
 | Local or custom | Ollama, LM Studio or any OpenAI-compatible server. Ollama needs `OLLAMA_ORIGINS=*` |
 
-Your key and text go **straight from the page to the provider you picked**, with no server in between. The key is kept in your browser only if you tick *Remember my key*. Usage is billed by that provider. Groq blocks requests from web pages, so use its models through OpenRouter.
+With your own key, your key and text go **straight from the page to the provider you picked**, with no server in between. The key is kept in your browser only if you tick *Remember my key*. Usage is billed by that provider. Groq blocks requests from web pages, so use its models through OpenRouter.
 
 ## Building
 
@@ -72,6 +77,25 @@ node tests/test.js           # tests for the code generator, parser, gradients a
 ```
 
 `VERSION` holds the version number. `src/symbols.json` lists the symbols and which ones only work in profiles.
+
+### Free AI server (`worker/`)
+
+The Free AI is a Cloudflare Worker that keeps the Anthropic key as an encrypted secret, so the key is
+never in this repository or in the page. It only answers requests from the published page and the
+downloaded file, limits each visitor to 10 requests a minute (exact counting with a Durable Object),
+can cap requests per day (`DAILY_LIMIT`), and streams Claude's answer back.
+
+```
+cd worker
+npm install
+npx wrangler login
+npx wrangler secret put ANTHROPIC_API_KEY      # name is ANTHROPIC_API_KEY; paste the key as the value
+npx wrangler deploy
+```
+
+`AI_PROXY_URL` holds the Worker's address; `build.py` puts it into the release page. Delete that file
+to build a page without the Free AI. Model, effort and limits are set in `worker/wrangler.toml`.
+Set a monthly spend limit for the key's workspace in the Anthropic Console as a backstop.
 
 ## Legal
 

@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0 - 2026-10-07
+
+### Free AI, no key needed
+- The AI writer now works straight away: the new **Free AI (Claude)** option is the default, with no
+  key or account. It runs on Claude Opus 5.5 through the Studio's own AI server, which keeps the key
+  private, allows 10 requests a minute per person and stores nothing.
+- Players who had picked a provider but never added a key are moved to the Free AI automatically.
+  Anyone with their own key keeps using it, and every provider from 1.0.0 is still available.
+- Pressing **Stop** cancels the request on the server too.
+
 ## 1.0.0 - 2026-10-04
 
 The first public release.

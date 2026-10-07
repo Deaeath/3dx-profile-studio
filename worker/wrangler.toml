@@ -1,0 +1,39 @@
+# Free built-in AI for 3DX Profile Studio (Cloudflare Worker)
+#
+#   cd worker && npm install
+#   npx wrangler login
+#   npx wrangler secret put ANTHROPIC_API_KEY     <- paste the key when asked; Cloudflare stores it encrypted
+#   npx wrangler deploy
+#
+# The key is never in this repo or in the page. Set a monthly spend limit for the key's
+# workspace in the Anthropic Console as a backstop.
+
+name = "3dx-profile-studio-ai"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[vars]
+# Same model and effort as the page's own-key Anthropic option. For lower cost use "claude-haiku-4-5"
+# and remove EFFORT (Haiku 4.5 doesn't take an effort setting).
+MODEL = "claude-opus-5-5"
+EFFORT = "low"
+MAX_TOKENS = "16000"
+# The published page (GitHub Pages) and the downloaded file opened from disk ("null")
+ALLOWED_ORIGINS = "https://deaeath.github.io,null"
+# Exact limits, counted by the Limiter Durable Object: requests per minute per visitor, and
+# requests per day for the whole site (0 = no daily cap)
+PER_MINUTE = "10"
+DAILY_LIMIT = "0"
+
+[[durable_objects.bindings]]
+name = "LIMITS"
+class_name = "Limiter"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Limiter"]
+
+[observability]
+enabled = false

@@ -1841,11 +1841,14 @@ function toast(msg) {
 
 // ---------- AI ----------
 // "artifact": runs inside Claude (the viewer's own Claude account, no key).
-// "release": the standalone page; the player brings a key from any vendor below.
-const BUILD = "release", VERSION = "1.0.0";
+// "release": the standalone page; free built-in AI (when AI_PROXY is set), or a key from any vendor below.
+const BUILD = "release", VERSION = "1.1.0";
+// The Studio's own AI server (worker/). It holds the Anthropic key, so players need none.
+const AI_PROXY = "https://3dx-profile-studio-ai.pathmoor.workers.dev";
 const SDK_URL = "https://cdn.jsdelivr.net/npm/@anthropic-ai/sdk@0.131.0/+esm";
 const REPO_URL = "https://github.com/Deaeath/3dx-profile-studio";
 const PROVIDERS = [
+  ...(AI_PROXY ? [{ id: "free", name: "Free AI (Claude) · no key needed", short: "Free AI", kind: "proxy", keyOptional: true }] : []),
   { id: "anthropic", name: "Anthropic · Claude", short: "Anthropic", kind: "anthropic", keyUrl: "https://console.anthropic.com/settings/keys", hint: "sk-ant-..." },
   { id: "openai", name: "OpenAI · ChatGPT", short: "OpenAI", kind: "openai", base: "https://api.openai.com/v1", keyUrl: "https://platform.openai.com/api-keys", hint: "sk-..." },
   { id: "gemini", name: "Google · Gemini", short: "Google", kind: "gemini", keyUrl: "https://aistudio.google.com/apikey", hint: "AIza..." },
@@ -1858,11 +1861,13 @@ const PROVIDERS = [
   { id: "cohere", name: "Cohere", short: "Cohere", kind: "openai", base: "https://api.cohere.ai/compatibility/v1", keyUrl: "https://dashboard.cohere.com/api-keys" },
   { id: "custom", name: "Local or custom (Ollama, LM Studio, any OpenAI-compatible URL)", short: "your server", kind: "openai", base: "", custom: true, keyOptional: true }
 ];
-const aiCfg = Object.assign({ provider: "anthropic", models: {}, keys: {}, base: "http://localhost:11434/v1", remember: true }, store.get("ai") || {});
+const aiCfg = Object.assign({ provider: AI_PROXY ? "free" : "anthropic", models: {}, keys: {}, base: "http://localhost:11434/v1", remember: true }, store.get("ai") || {});
 const sessionKeys = {};
 const provider = () => PROVIDERS.find((p) => p.id === aiCfg.provider) || PROVIDERS[0];
 const keyFor = (id) => sessionKeys[id] ?? aiCfg.keys[id] ?? "";
-const modelFor = (id) => aiCfg.models[id] || (id === "anthropic" ? "claude-opus-5-5" : "");
+const modelFor = (id) => id === "free" ? "Claude" : aiCfg.models[id] || (id === "anthropic" ? "claude-opus-5-5" : "");
+// Players who picked a provider but never added its key get the free AI instead of "Add a key"
+if (AI_PROXY && !provider().keyOptional && !keyFor(provider().id)) aiCfg.provider = "free";
 function saveAiCfg() {
   const copy = { ...aiCfg, keys: aiCfg.remember ? { ...aiCfg.keys, ...sessionKeys } : {} };
   store.set("ai", copy);
@@ -2008,9 +2013,48 @@ async function callSample(system, prompt, onText, signal, fresh) {
     throw new AIError("api", "Claude couldn't answer just now. Try again.");
   }
 }
+async function callProxy(system, prompt, onText, signal) {
+  const vendor = "the free AI";
+  let res;
+  try {
+    res = await fetch(`${AI_PROXY}/v1/write`, { method: "POST", headers: { "Content-Type": "application/json" },
+                                               body: JSON.stringify({ system, prompt }), signal });
+  } catch (e) {
+    if (e.name === "AbortError") throw new AIError("cancelled", "Stopped.");
+    throw new AIError("network", "Couldn't reach the free AI. Check your internet connection.");
+  }
+  if (!res.ok) {
+    let err = {};
+    try { err = (await res.json()).error || {}; } catch { }
+    throw new AIError(err.code || "api", err.message || `The free AI isn't working right now (error ${res.status}).`);
+  }
+  let text = "", stop = "";
+  const split = sseSplitter(), dec = new TextDecoder(), reader = res.body.getReader();
+  try {
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      for (const d of split(dec.decode(value, { stream: true }))) {
+        let j;
+        try { j = JSON.parse(d); } catch { continue; }
+        if (j.error) throw new AIError(j.error.code || "api", j.error.message || "The free AI couldn't answer just now.");
+        if (typeof j.t === "string") { text = j.t; onText(text); }
+        if (j.done) stop = j.stop || "";
+      }
+    }
+  } catch (e) {
+    if (e instanceof AIError) throw e;
+    if (e.name === "AbortError") throw new AIError("cancelled", "Stopped.");
+    throw new AIError("network", `The connection to ${vendor} dropped. Try again.`);
+  }
+  if (stop === "refusal" && !text.trim()) throw new AIError("refused", "Claude declined this one. Try different wording.");
+  if (!stop) throw new AIError("network", `The connection to ${vendor} dropped. Try again.`);
+  return { text, truncated: stop === "max_tokens" };
+}
 function aiCall(system, prompt, onText, signal, fresh) {
   if (BUILD === "artifact") return callSample(system, prompt, onText, signal, fresh);
   const p = provider(), key = keyFor(p.id), model = modelFor(p.id);
+  if (p.kind === "proxy") return callProxy(system, prompt, onText, signal);
   if (p.kind === "anthropic") return callAnthropic(key, model, system, prompt, onText, signal);
   if (p.kind === "gemini") return callGemini(key, model, system, prompt, onText, signal);
   return callOpenAICompatible(p, key, model, system, prompt, onText, signal);
@@ -2045,6 +2089,14 @@ function drawAiSettings() {
     return;
   }
   const p = provider();
+  if (p.kind === "proxy") {
+    body.innerHTML = `<label class="field"><span>AI provider</span><select class="select" id="ais-provider">${PROVIDERS.map((x) => `<option value="${x.id}"${x.id === p.id ? " selected" : ""}>${escapeHtml(x.name)}</option>`).join("")}</select></label>
+      <p class="ai-note" style="font-size:14px;color:var(--text)">The free AI runs on <b>Claude</b> and is provided by 3DX Profile Studio. No key or account needed, just start writing.</p>
+      <p class="ai-note">Your text goes through the Studio's AI server to Anthropic to get an answer. Nothing is stored. There's a fair-use limit; if you hit it often, pick another provider above and add your own key.</p>`;
+    $("#ais-test").hidden = false;
+    $("#ais-provider").onchange = () => { aiCfg.provider = $("#ais-provider").value; saveAiCfg(); drawAiSettings(); updateAiStatus(); };
+    return;
+  }
   body.innerHTML = `
     <label class="field"><span>AI provider</span><select class="select" id="ais-provider">${PROVIDERS.map((x) => `<option value="${x.id}"${x.id === p.id ? " selected" : ""}>${escapeHtml(x.name)}</option>`).join("")}</select></label>
     ${p.custom ? `<label class="field"><span>Server address</span><input class="input" id="ais-base" value="${escapeHtml(aiCfg.base)}" spellcheck="false" placeholder="http://localhost:11434/v1"><small>Any OpenAI-compatible server. Ollama needs <b>OLLAMA_ORIGINS=*</b> set so a web page may call it; LM Studio needs CORS turned on.</small></label>` : ""}
