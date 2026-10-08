@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.2.0 - 2026-10-08
+
+### Word-style editing
+- Styles gallery (Title, Heading, Subheading, Normal, Quote, Small print). Enter after a heading goes back to Normal.
+- Bulleted and numbered lists that continue when you press Enter; Tab and Shift+Tab indent and outdent.
+- Center and right alignment, measured in the game font and done with spaces.
+- Change case, format painter, find and replace, line tools (move, duplicate, delete), select all and a word count.
+- Clipboard group and a right-click menu. Copy and paste keep formatting inside the Studio, and Ctrl+Shift+V pastes plain text.
+- File tab: named documents saved in your browser (New, Open, Save, Save as, Rename, Delete), plus download and open of `.txt` files.
+- View tab: hide the code panel, zoom presets and a keyboard shortcuts list.
+
+### Templates
+- 316 templates in 28 categories, with search, a gallery, your own saved templates, and AI-made templates
+  from a description. Every template is tested against the game's limits.
+
+### Deeper AI
+- An Assistant panel: say what to change and it edits the card (Ctrl+K). Ctrl+Z undoes it.
+- AI actions in the right-click menu, and one-click fixes in the checks: fit with AI, brighten dark text, proofread.
+
+### Feedback
+- A Feedback button for reporting a problem or suggesting an idea.
+
+### Fixes
+- Emptying the editor (select all, then delete) no longer leaves a hidden line break that cost 2 characters.
+- The built-in Hearts gift template used ❤, which doesn't show in gifts; it now uses ♥.
+- New checks flag symbols that don't show in gifts (with a one-click swap), symbols the game may not draw,
+  and text too dark to read.
+
 ## 1.1.0 - 2026-10-07
 
 ### Free AI, no key needed

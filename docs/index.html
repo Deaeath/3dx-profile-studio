@@ -409,6 +409,80 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
   .desk { padding: 18px 8px 28px; }
   .zoom input { width: 80px; }
 }
+/* word-processor tools */
+.styles { display: grid; grid-template-columns: repeat(3, 96px); gap: 4px; }
+.style-btn { height: 28px; padding: 0 8px; border: 1px solid var(--line); background: var(--game); border-radius: 7px; color: #fff;
+  font-family: var(--font-game); text-align: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; cursor: pointer; }
+.style-btn:hover { border-color: var(--pink); }
+.tb[aria-pressed="true"] { background: rgba(255, 61, 139, .18); border-color: var(--pink); }
+.case-glyph { font: 800 14px/1 var(--font-game); }
+body.painting .editor { cursor: copy; }
+body.no-code .workspace { grid-template-columns: minmax(0, 1fr); }
+body.no-code .side { display: none; }
+#dlg-find { margin: 70px 24px auto auto; width: min(420px, calc(100vw - 32px)); }
+#dlg-find .find-row { display: flex; gap: 6px; align-items: center; }
+#dlg-find .find-row .input { flex: 1; }
+.doc-list { display: grid; gap: 6px; max-height: 52vh; overflow: auto; }
+.doc-item { display: flex; gap: 10px; align-items: center; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--raised); }
+.doc-item.current { border-color: var(--pink); }
+.doc-item .doc-name { flex: 1; min-width: 0; }
+.doc-item .doc-name b { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.doc-item .doc-name small { color: var(--faint); }
+.kbd-list { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 13px; }
+.kbd-list kbd { font: 700 12px var(--font-code); background: var(--raised); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; white-space: nowrap; }
+
+/* template gallery */
+#dlg-gallery { width: min(1120px, calc(100vw - 32px)); }
+.gal-bar { display: flex; gap: 8px; padding: 12px 18px 0; flex-wrap: wrap; }
+.gal-bar .input { flex: 1; min-width: 200px; }
+.gal-cats { padding: 10px 18px 0; }
+.gal-body { max-height: min(62vh, 640px); overflow: auto; }
+#gal-grid .tpl-pv { height: 150px; }
+.tpl-wrap { position: relative; }
+.tpl-wrap .tpl { width: 100%; }
+.tpl-del { position: absolute; top: 6px; right: 6px; width: 26px; height: 26px; border-radius: 999px; border: 1px solid var(--line);
+  background: rgba(10, 8, 30, .8); color: #fff; display: grid; place-items: center; padding: 0; }
+.tpl-del:hover { border-color: var(--red); }
+.tpl-del .ic { width: 14px; height: 14px; }
+.tpl-tool { width: 150px; min-height: 86px; display: grid; place-items: center; text-align: center; gap: 2px; padding: 10px; font-weight: 800; }
+.tpl-tool .ic { width: 22px; height: 22px; color: var(--pink); }
+.tpl-tool span { font-weight: 600; font-size: 11.5px; color: var(--faint); }
+/* right-click AI menu */
+.ctx-menu { position: fixed; z-index: 120; min-width: 220px; padding: 6px; border-radius: 12px; background: var(--raised);
+  border: 1px solid var(--line); box-shadow: 0 18px 50px rgba(0, 0, 0, .55); display: grid; gap: 1px; }
+.ctx-menu button { all: unset; display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px; font-size: 13px; cursor: pointer; }
+.ctx-menu button:hover, .ctx-menu button:focus-visible { background: var(--hover); }
+.ctx-menu .ic { width: 15px; height: 15px; color: var(--pink); }
+.ctx-menu .ctx-head { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); padding: 4px 10px; }
+.ctx-menu hr { border: 0; border-top: 1px solid var(--line); margin: 4px 2px; }
+/* check actions */
+.warns li .act { margin-left: auto; flex: none; border: 1px solid var(--line); background: var(--raised); color: var(--text);
+  border-radius: 999px; padding: 3px 10px; font-weight: 800; font-size: 12px; cursor: pointer; white-space: nowrap; }
+.warns li .act:hover { border-color: var(--pink); }
+/* assistant */
+.assist-fab { position: fixed; right: 384px; bottom: 52px; z-index: 40; border-radius: 999px; padding: 10px 16px;
+  box-shadow: 0 12px 32px rgba(255, 61, 139, .35); }
+.assist { position: fixed; right: 384px; bottom: 52px; z-index: 41; width: min(400px, calc(100vw - 24px)); height: min(600px, calc(100vh - 160px));
+  display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .6); overflow: hidden; }
+.assist[hidden], .assist-fab[hidden] { display: none; }
+.assist-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.assist-head h2 { margin: 0; font: 700 15px/1.2 var(--font-display); display: flex; gap: 8px; align-items: center; }
+.assist-head h2 .ic { color: var(--pink); }
+.assist-log { flex: 1; overflow: auto; padding: 12px 14px; display: grid; align-content: start; gap: 10px; }
+.msg { max-width: 92%; padding: 9px 11px; border-radius: 12px; font-size: 13.5px; line-height: 1.45; }
+.msg.me { justify-self: end; background: rgba(255, 61, 139, .16); border: 1px solid rgba(255, 61, 139, .35); }
+.msg.ai { justify-self: start; background: var(--raised); border: 1px solid var(--line); width: 92%; }
+.msg.ai .ai-preview { max-height: 180px; margin: 6px 0 0; font-size: 12px; }
+.msg .msg-foot { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+.msg .msg-foot button { border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 999px; padding: 3px 10px; font-weight: 800; font-size: 12px; cursor: pointer; }
+.assist-sugg { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 14px 10px; }
+.assist-sugg button { border: 1px solid var(--line); background: var(--raised); color: var(--muted); border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.assist-sugg button:hover { color: var(--text); border-color: var(--pink); }
+.assist-in { display: flex; gap: 8px; padding: 10px 14px 14px; border-top: 1px solid var(--line); }
+.assist-in textarea { flex: 1; resize: none; height: 44px; font: 14px/1.4 var(--font-ui); }
+@media (max-width: 1080px) { .assist-fab, .assist { right: 12px; } }
+
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
@@ -434,6 +508,25 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
   <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2"/><circle cx="4.5" cy="12" r="1.2"/><circle cx="4.5" cy="18" r="1.2"/></symbol>
+  <symbol id="i-list-num" viewBox="0 0 24 24"><path d="M10 6h10M10 12h10M10 18h10"/><path d="M4 4.5h1.5V9M3.5 9h3M3.5 14.5c.4-.6 1-1 1.7-1 .9 0 1.5.6 1.5 1.3 0 1.2-3.2 1.7-3.2 3.7h3.2"/></symbol>
+  <symbol id="i-indent" viewBox="0 0 24 24"><path d="M10 6h10M10 12h10M10 18h10M3 9l3 3-3 3"/></symbol>
+  <symbol id="i-outdent" viewBox="0 0 24 24"><path d="M10 6h10M10 12h10M10 18h10M6 9l-3 3 3 3"/></symbol>
+  <symbol id="i-al-left" viewBox="0 0 24 24"><path d="M4 6h16M4 10h10M4 14h16M4 18h10"/></symbol>
+  <symbol id="i-al-center" viewBox="0 0 24 24"><path d="M4 6h16M7 10h10M4 14h16M7 18h10"/></symbol>
+  <symbol id="i-al-right" viewBox="0 0 24 24"><path d="M4 6h16M10 10h10M4 14h16M10 18h10"/></symbol>
+  <symbol id="i-brush" viewBox="0 0 24 24"><path d="M18 3l3 3-9 9-3-3z"/><path d="M9 12c-3 0-5 2-5 5 0 1.5-1 2.5-2 3 3 1 7 0 8.5-2.5.8-1.3.5-2.5-1.5-5.5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></symbol>
+  <symbol id="i-cut" viewBox="0 0 24 24"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M8.2 15L19 4M15.8 15L5 4"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 9h6M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l3 3v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M7 3v5h8V3M7 21v-7h10v7"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+  <symbol id="i-keys" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></symbol>
+  <symbol id="i-panel" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></symbol>
+  <symbol id="i-lines" viewBox="0 0 24 24"><path d="M4 7h11M4 12h11M4 17h11M19 5v6M17 9l2 2 2-2M19 19v-6M17 15l2-2 2 2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></symbol>
   <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></symbol>
 </svg>
 
@@ -448,6 +541,7 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
       <button type="button" id="mode-gift" aria-pressed="false"><svg class="ic"><use href="#i-gift"/></svg>Gift</button>
     </div>
     <div class="title-actions">
+      <button type="button" class="btn btn-glass" id="btn-feedback" title="Report a problem or suggest an idea"><svg class="ic"><use href="#i-chat"/></svg><span class="lbl">Feedback</span></button>
       <button type="button" class="btn btn-glass" id="btn-import" title="Load code you already have"><svg class="ic"><use href="#i-import"/></svg><span class="lbl">Import code</span></button>
       <button type="button" class="btn btn-white" id="btn-copy" title="Copy the code (Ctrl+Shift+C)"><svg class="ic"><use href="#i-copy"/></svg><span class="lbl">Copy code</span></button>
     </div>
@@ -455,15 +549,51 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
 
   <div class="ribbon">
     <div class="ribbon-tabs" role="tablist" aria-label="Toolbar">
+      <button type="button" role="tab" id="tab-file" aria-selected="false" aria-controls="panel-file">File</button>
       <button type="button" role="tab" id="tab-home" aria-selected="true" aria-controls="panel-home">Home</button>
       <button type="button" role="tab" id="tab-insert" aria-selected="false" aria-controls="panel-insert">Insert</button>
       <button type="button" role="tab" id="tab-templates" aria-selected="false" aria-controls="panel-templates">Templates</button>
       <button type="button" role="tab" id="tab-gifts" aria-selected="false" aria-controls="panel-gifts" class="gift-only">Gift tools</button>
+      <button type="button" role="tab" id="tab-view" aria-selected="false" aria-controls="panel-view">View</button>
       <button type="button" role="tab" id="tab-ai" aria-selected="false" aria-controls="panel-ai" class="tab-ai"><svg class="ic"><use href="#i-spark"/></svg>AI</button>
     </div>
     <div class="ribbon-body">
       <!-- HOME -->
+      <div class="ribbon-panel" id="panel-file" role="tabpanel" aria-labelledby="tab-file" hidden>
+        <div class="group">
+          <div class="group-body">
+            <button type="button" class="tb tb-big" id="f-new" title="Start a new, empty document"><svg class="ic"><use href="#i-file"/></svg>New</button>
+            <button type="button" class="tb tb-big" id="f-open" title="Open one of your saved documents"><svg class="ic"><use href="#i-folder"/></svg>Open</button>
+            <button type="button" class="tb tb-big" id="f-save" title="Save (Ctrl+S)"><svg class="ic"><use href="#i-save"/></svg>Save</button>
+            <button type="button" class="tb tb-big" id="f-saveas" title="Save a copy under a new name"><svg class="ic"><use href="#i-save"/></svg>Save as</button>
+          </div>
+          <div class="group-label">Documents</div>
+        </div>
+        <div class="group">
+          <div class="group-body">
+            <button type="button" class="tb tb-big" id="f-export" title="Download the code as a .txt file"><svg class="ic"><use href="#i-download"/></svg>Download</button>
+            <button type="button" class="tb tb-big" id="f-import" title="Open a .txt file with profile code"><svg class="ic"><use href="#i-import"/></svg>Open file</button>
+            <input type="file" id="f-file" accept=".txt,text/plain" hidden>
+          </div>
+          <div class="group-label">Files</div>
+        </div>
+        <div class="group">
+          <div class="group-body"><p class="hint" id="f-current" style="max-width:260px">Not saved as a document yet. Your draft is still kept in this browser.</p></div>
+          <div class="group-label">Current</div>
+        </div>
+      </div>
       <div class="ribbon-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
+        <div class="group">
+          <div class="group-body stack">
+            <button type="button" class="tb" id="b-paste" title="Paste (Ctrl+V)" aria-label="Paste"><svg class="ic"><use href="#i-clip"/></svg></button>
+            <div class="row">
+              <button type="button" class="tb" id="b-cut" title="Cut (Ctrl+X)" aria-label="Cut"><svg class="ic"><use href="#i-cut"/></svg></button>
+              <button type="button" class="tb" id="b-copysel" title="Copy (Ctrl+C)" aria-label="Copy"><svg class="ic"><use href="#i-copy"/></svg></button>
+              <button type="button" class="tb" id="b-painter" title="Format painter: copy the look of this text, then select where to paint it (double-click to keep painting)" aria-label="Format painter" aria-pressed="false"><svg class="ic"><use href="#i-brush"/></svg></button>
+            </div>
+          </div>
+          <div class="group-label">Clipboard</div>
+        </div>
         <div class="group">
           <div class="group-body stack">
             <button type="button" class="tb" id="b-undo" title="Undo (Ctrl+Z)" aria-label="Undo"><svg class="ic"><use href="#i-undo"/></svg></button>
@@ -489,6 +619,41 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
             </div>
           </div>
           <div class="group-label">Font</div>
+        </div>
+        <div class="group">
+          <div class="group-body stack">
+            <div class="row">
+              <div class="split">
+                <button type="button" class="tb" id="b-bullets" title="Bullet list" aria-label="Bullet list"><svg class="ic"><use href="#i-list"/></svg></button>
+                <button type="button" class="tb" id="b-bullets-menu" title="Bullet style" aria-label="Choose a bullet" data-pop=""><svg class="ic" style="width:14px;height:14px"><use href="#i-down"/></svg></button>
+              </div>
+              <div class="split">
+                <button type="button" class="tb" id="b-numbers" title="Numbered list" aria-label="Numbered list"><svg class="ic"><use href="#i-list-num"/></svg></button>
+                <button type="button" class="tb" id="b-numbers-menu" title="Numbering style" aria-label="Choose numbering" data-pop=""><svg class="ic" style="width:14px;height:14px"><use href="#i-down"/></svg></button>
+              </div>
+              <button type="button" class="tb" id="b-outdent" title="Decrease indent (Shift+Tab)" aria-label="Decrease indent"><svg class="ic"><use href="#i-outdent"/></svg></button>
+              <button type="button" class="tb" id="b-indent" title="Increase indent (Tab)" aria-label="Increase indent"><svg class="ic"><use href="#i-indent"/></svg></button>
+            </div>
+            <div class="row">
+              <button type="button" class="tb" id="b-al-left" title="Align left" aria-label="Align left"><svg class="ic"><use href="#i-al-left"/></svg></button>
+              <button type="button" class="tb" id="b-al-center" title="Center (with spaces - the game has no alignment, so it's close but not pixel-perfect)" aria-label="Center"><svg class="ic"><use href="#i-al-center"/></svg></button>
+              <button type="button" class="tb" id="b-al-right" title="Align right (with spaces)" aria-label="Align right"><svg class="ic"><use href="#i-al-right"/></svg></button>
+              <button type="button" class="tb" id="b-case" title="Change case" aria-label="Change case" data-pop=""><span class="case-glyph">Aa</span></button>
+              <button type="button" class="tb" id="b-lines" title="Line tools: move, duplicate, delete" aria-label="Line tools" data-pop=""><svg class="ic"><use href="#i-lines"/></svg></button>
+            </div>
+          </div>
+          <div class="group-label">Paragraph</div>
+        </div>
+        <div class="group">
+          <div class="group-body"><div class="styles" id="style-gallery"></div></div>
+          <div class="group-label">Styles</div>
+        </div>
+        <div class="group">
+          <div class="group-body stack">
+            <button type="button" class="tb" id="b-find" title="Find (Ctrl+F)" aria-label="Find"><svg class="ic"><use href="#i-search"/></svg></button>
+            <button type="button" class="tb" id="b-selall" title="Select all (Ctrl+A)" aria-label="Select all" style="font:800 11px var(--font-ui)">All</button>
+          </div>
+          <div class="group-label">Editing</div>
         </div>
         <div class="group">
           <div class="group-body">
@@ -548,6 +713,29 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
         </div>
       </div>
       <!-- AI -->
+      <div class="ribbon-panel" id="panel-view" role="tabpanel" aria-labelledby="tab-view" hidden>
+        <div class="group">
+          <div class="group-body">
+            <button type="button" class="tb tb-big" id="v-code" title="Show or hide the code and checks panel" aria-pressed="true"><svg class="ic"><use href="#i-panel"/></svg>Code panel</button>
+          </div>
+          <div class="group-label">Show</div>
+        </div>
+        <div class="group">
+          <div class="group-body">
+            <button type="button" class="tb tb-big" data-zoom="80">80%</button>
+            <button type="button" class="tb tb-big" data-zoom="100">100%</button>
+            <button type="button" class="tb tb-big" data-zoom="125">125%</button>
+            <button type="button" class="tb tb-big" data-zoom="150">150%</button>
+          </div>
+          <div class="group-label">Zoom</div>
+        </div>
+        <div class="group">
+          <div class="group-body">
+            <button type="button" class="tb tb-big" id="v-keys" title="Keyboard shortcuts"><svg class="ic"><use href="#i-keys"/></svg>Shortcuts</button>
+          </div>
+          <div class="group-label">Help</div>
+        </div>
+      </div>
       <div class="ribbon-panel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" hidden>
         <div class="group">
           <div class="group-body">
@@ -594,6 +782,7 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
 
   <main class="workspace">
     <section class="desk" id="desk" aria-label="Page">
+      <button type="button" class="btn btn-accent assist-fab" id="assist-open" title="Tell the AI what to change (Ctrl+K)"><svg class="ic"><use href="#i-spark"/></svg>Assistant</button>
       <div class="example-chip" id="example-chip"><svg class="ic" style="width:15px;height:15px"><use href="#i-spark"/></svg>Example text - type over it or pick a template</div>
       <div class="page-wrap" id="page-wrap">
         <article class="card" id="card">
@@ -647,6 +836,7 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
   <footer class="statusbar">
     <span class="status-meter"><span class="dot" id="st-dot"></span><span id="st-chars">0 / 1000</span><span class="bar" id="st-bar"><i></i></span></span>
     <span id="st-bytes" class="gift-only">0 / 255 bytes</span>
+    <span id="st-words">0 words</span>
     <span id="st-warn">No problems</span>
     <span id="st-save">Draft saved in this browser</span>
     <span class="zoom"><button type="button" id="z-out" aria-label="Zoom out">−</button><input type="range" id="zoom" min="60" max="160" step="10" value="100" aria-label="Zoom"><button type="button" id="z-in" aria-label="Zoom in">+</button><span id="z-val">100%</span></span>
@@ -667,6 +857,10 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
   <div class="pop-row" style="margin-top:10px"><button type="button" class="btn" id="color-none" style="width:100%;justify-content:center">Automatic (white, no tag)</button></div>
 </div>
 <!-- fancy text -->
+<div class="pop" id="pop-bullets" hidden><h3>Bullet style</h3><div class="menu" id="bullet-menu"></div></div>
+<div class="pop" id="pop-numbers" hidden><h3>Numbering</h3><div class="menu" id="number-menu"></div></div>
+<div class="pop" id="pop-case" hidden><h3>Change case</h3><div class="menu" id="case-menu"></div></div>
+<div class="pop" id="pop-lines" hidden><h3>Lines</h3><div class="menu" id="lines-menu"></div></div>
 <div class="pop" id="pop-fancy" hidden><h3>Restyle the selected letters</h3><div class="menu" id="fancy-menu"></div></div>
 <!-- dividers -->
 <div class="pop" id="pop-dividers" hidden><h3>Insert a line</h3><div class="menu" id="divider-menu"></div></div>
@@ -757,6 +951,7 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
     <button type="button" class="btn" id="air-stop">Stop</button>
     <button type="button" class="btn" id="air-retry">Try again</button>
     <button type="button" class="btn" id="air-shorter" hidden>Make it shorter</button>
+    <button type="button" class="btn" id="air-save" title="Keep it in My templates">Save as template</button>
     <button type="button" class="btn btn-accent" id="air-use">Use this</button>
   </div>
 </dialog>
@@ -766,6 +961,99 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
   <div class="dlg-body" id="ais-body"></div>
   <div class="dlg-foot"><span class="ai-note" id="ais-test-out" style="margin-right:auto"></span><button type="button" class="btn" id="ais-test">Test</button><button type="button" class="btn btn-accent" data-close>Done</button></div>
 </dialog>
+
+<dialog id="dlg-feedback" aria-labelledby="fb-title">
+  <div class="dlg-head"><h2 id="fb-title">Send feedback</h2><button type="button" class="x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="dlg-body" id="fb-form">
+    <div class="field"><span>What's it about?</span><div class="chips-pick" id="fb-kind"></div></div>
+    <label class="field"><span>Your message</span>
+      <textarea class="input" id="fb-msg" rows="6" maxlength="4000" style="font-family:var(--font-ui);font-size:14px" placeholder="What happened, or what would you like the Studio to do?"></textarea></label>
+    <label class="field"><span>How can we reach you? (optional)</span>
+      <input class="input" id="fb-contact" maxlength="100" autocomplete="off" placeholder="Discord or in-game name">
+      <small>Feedback is posted publicly on the Studio's GitHub page, so don't include anything private.</small></label>
+    <label class="toggle"><input type="checkbox" id="fb-sample"><span>Include my current text<small>Helps when something looks wrong. Posted publicly with your message.</small></span></label>
+    <input type="text" id="fb-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+  </div>
+  <div class="dlg-body" id="fb-done" hidden></div>
+  <div class="dlg-foot"><span class="ai-note" id="fb-out" style="margin-right:auto"></span><button type="button" class="btn" data-close id="fb-cancel">Cancel</button><button type="button" class="btn btn-accent" id="fb-send"><svg class="ic"><use href="#i-chat"/></svg>Send</button></div>
+</dialog>
+
+<dialog id="dlg-find" aria-labelledby="find-title">
+  <div class="dlg-head"><h2 id="find-title">Find and replace</h2><button type="button" class="x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="dlg-body">
+    <div class="find-row"><input class="input" id="find-q" placeholder="Find" autocomplete="off" spellcheck="false"><button type="button" class="btn" id="find-prev" title="Previous (Shift+Enter)">&#8593;</button><button type="button" class="btn" id="find-next" title="Next (Enter)">&#8595;</button></div>
+    <div class="find-row"><input class="input" id="find-r" placeholder="Replace with" autocomplete="off" spellcheck="false"><button type="button" class="btn" id="find-rep">Replace</button><button type="button" class="btn" id="find-all">All</button></div>
+    <label class="toggle" style="padding:0"><input type="checkbox" id="find-case"><span>Match case</span></label>
+  </div>
+  <div class="dlg-foot"><span class="ai-note" id="find-out" style="margin-right:auto"></span><button type="button" class="btn" data-close>Done</button></div>
+</dialog>
+
+<dialog id="dlg-docs" aria-labelledby="docs-title">
+  <div class="dlg-head"><h2 id="docs-title">Your documents</h2><button type="button" class="x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="dlg-body"><div class="doc-list" id="doc-list"></div><p class="ai-note" id="doc-empty" hidden>No saved documents yet. Use Save to keep what you're writing under a name.</p></div>
+  <div class="dlg-foot"><span class="ai-note" style="margin-right:auto">Saved in this browser only.</span><button type="button" class="btn" data-close>Close</button></div>
+</dialog>
+
+<dialog id="dlg-name" aria-labelledby="name-title" style="width:min(420px, calc(100vw - 32px))">
+  <div class="dlg-head"><h2 id="name-title">Save as</h2></div>
+  <div class="dlg-body"><label class="field"><span>Name</span><input class="input" id="name-input" maxlength="60" autocomplete="off"></label></div>
+  <div class="dlg-foot"><button type="button" class="btn" id="name-cancel">Cancel</button><button type="button" class="btn btn-accent" id="name-ok">Save</button></div>
+</dialog>
+
+<dialog id="dlg-keys" aria-labelledby="keys-title">
+  <div class="dlg-head"><h2 id="keys-title">Keyboard shortcuts</h2><button type="button" class="x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="dlg-body"><div class="kbd-list">
+    <kbd>Ctrl+B</kbd><span>Bold</span><kbd>Ctrl+I</kbd><span>Italic</span>
+    <kbd>Ctrl+Z</kbd><span>Undo</span><kbd>Ctrl+Y</kbd><span>Redo</span>
+    <kbd>Ctrl+X / C / V</kbd><span>Cut, copy, paste (keeps formatting inside the Studio)</span>
+    <kbd>Ctrl+Shift+V</kbd><span>Paste as plain text</span>
+    <kbd>Ctrl+A</kbd><span>Select all</span>
+    <kbd>Ctrl+F</kbd><span>Find</span><kbd>Ctrl+H</kbd><span>Find and replace</span>
+    <kbd>Ctrl+S</kbd><span>Save document</span>
+    <kbd>Tab / Shift+Tab</kbd><span>Indent / outdent lines</span>
+    <kbd>Enter</kbd><span>In a list: next item (Enter on an empty item ends the list)</span>
+    <kbd>Alt+&#8593; / Alt+&#8595;</kbd><span>Move line up / down</span>
+    <kbd>Ctrl+Shift+D</kbd><span>Duplicate line</span><kbd>Ctrl+Shift+K</kbd><span>Delete line</span>
+    <kbd>Ctrl+Shift+C</kbd><span>Copy the game code</span>
+    <kbd>Ctrl+K</kbd><span>AI assistant</span>
+    <kbd>Shift+right-click</kbd><span>The browser's own menu (spelling suggestions)</span>
+  </div></div>
+  <div class="dlg-foot"><button type="button" class="btn btn-accent" data-close>Done</button></div>
+</dialog>
+
+<dialog id="dlg-gallery" aria-labelledby="gal-title">
+  <div class="dlg-head"><h2 id="gal-title">Templates</h2><button type="button" class="x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="gal-bar">
+    <input class="input" id="gal-q" type="search" placeholder="Search templates: birthday, gamer, pastel..." autocomplete="off">
+    <button type="button" class="btn" id="gal-save" title="Keep what's on the card as a template">Save mine as template</button>
+    <button type="button" class="btn btn-accent" id="gal-ai"><svg class="ic"><use href="#i-spark"/></svg>Make one with AI</button>
+  </div>
+  <div class="chips-pick gal-cats" id="gal-cats"></div>
+  <div class="dlg-body gal-body"><div class="tpl-grid" id="gal-grid"></div><p class="ai-note" id="gal-empty" hidden>No templates match that. Try another word, or make one with AI.</p></div>
+</dialog>
+
+<dialog id="dlg-ai-tpl" aria-labelledby="ait-title">
+  <div class="dlg-head"><h2 id="ait-title">Make a template with AI</h2><button type="button" class="x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="dlg-body">
+    <label class="field"><span>Describe the style</span>
+      <textarea class="input" id="ait-vibe" rows="3" style="font-family:var(--font-ui);font-size:14px" placeholder="Cozy witchy cottage with candles and herbs"></textarea>
+      <small>A vibe, a theme or an occasion. You'll see it first, then use it or save it to My templates.</small></label>
+    <div class="field"><span>Ideas</span><div class="chips-pick" id="ait-ideas"></div></div>
+  </div>
+  <div class="dlg-foot"><button type="button" class="btn" data-close>Cancel</button><button type="button" class="btn btn-accent" id="ait-go"><svg class="ic"><use href="#i-spark"/></svg>Make it</button></div>
+</dialog>
+
+<div class="ctx-menu" id="ctx-menu" role="menu" hidden></div>
+
+<aside class="assist" id="assist" hidden aria-label="AI assistant">
+  <div class="assist-head"><h2><svg class="ic"><use href="#i-spark"/></svg>Assistant</h2><button type="button" class="x" id="assist-x" aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="assist-log" id="assist-log" aria-live="polite"></div>
+  <div class="assist-sugg" id="assist-sugg"></div>
+  <div class="assist-in">
+    <textarea class="input" id="assist-q" placeholder="Tell me what to change..." aria-label="Instruction for the assistant"></textarea>
+    <button type="button" class="btn btn-accent" id="assist-send" aria-label="Send"><svg class="ic"><use href="#i-spark"/></svg></button>
+  </div>
+</aside>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -1023,6 +1311,22 @@ function aiPrompt(task, o) {
       return `Translate this ${kind} into ${o.lang}. Translate only the words: keep every tag, colour, size, symbol and line break where it belongs, and keep %username% unchanged.${part}` + wrap(o.code);
     case "style":
       return `Restyle this ${kind} with a "${o.theme}" look: ${AI_THEMES[o.theme] || o.theme}. Keep the words exactly the same. Add colour, size, bold or italic, and a few fitting symbols or one divider line. Use few colour tags.${part}` + wrap(o.code);
+    case "decorate":
+      return `Add a few fitting symbols to this ${kind}, and a divider line if there's room. Keep every word, colour and line exactly as it is.${part}` + wrap(o.code);
+    case "readable":
+      return `Some colours in this ${kind} are too dark to read on the game's dark panel. Change only those colours to brighter, easy-to-read versions of the same hue. Keep everything else exactly the same.${part}` + wrap(o.code);
+    case "template":
+      return `Design a reusable ${kind} template in this style: ${o.vibe || "anything eye-catching"}.\n`
+        + `Use a placeholder name like "Nova"${o.mode === "gift" ? " and %username% for the recipient" : ""} and friendly wording anyone can personalise. `
+        + (o.mode === "gift" ? "Make it short and striking, centred on one big line." : "Make it striking: a big coloured title, a divider line, and two or three short sections with coloured headings and fitting symbols.")
+        + ` Aim for about ${o.target} characters by the game's count.`;
+    case "chat":
+      return `${o.code.trim() ? `Here is the player's current ${kind}.` : `The player hasn't written anything yet.`} Do what they ask and reply with the complete new ${kind}.`
+        + ` Change only what they asked for; keep every other word, colour, size, symbol and line break exactly as it is.`
+        + (o.selected ? `\nThey have selected this part, so "this" or "it" probably means it: ${JSON.stringify(o.selected)}` : "")
+        + (o.history && o.history.length ? `\nEarlier requests in this chat, already applied: ${o.history.map((h) => JSON.stringify(h)).join("; ")}` : "")
+        + `\nIf the request is unclear, make your best guess. Stay under ${o.limit} characters by the game's count.`
+        + `\n\nTheir request: ${o.instruction}` + (o.code.trim() ? wrap(o.code) : "\n\nReply with only the new text.");
     default:
       throw new Error("unknown AI task " + task);
   }
@@ -1085,7 +1389,7 @@ const TEMPLATES = {
     { name: "Soft pastel", code: "<size=24><color=#f9a8d4>❀</color> <color=#c4b5fd>sweet</color> <color=#a5f3fc>dreams</color> <color=#f9a8d4>❀</color></size>\n\n<color=#fbcfe8>I'm calm, kind and a little shy.</color>\n<color=#ddd6fe>Say hello and I'll make you a drink ♡</color>\n\n<size=12><color=#9ca3c9>`•.¸¸.•´´¯`••.¸¸.•´´¯`••.¸¸.•´</color></size>" }
   ],
   gift: [
-    { name: "Hearts", code: "<size=38><color=red>❤</color> For %username% <color=red>❤</color></size>" },
+    { name: "Hearts", code: "<size=38><color=red>♥</color> For %username% <color=red>♥</color></size>" },
     { name: "Birthday", code: "<size=34><b><color=#ffd23d>✿</color> Happy Birthday <color=#ffd23d>✿</color></b></size>\n<size=24><color=#ff7ab3>%username%</color></size>" },
     { name: "Thank you", code: "<size=30><i>thank you, <color=#22d3ee>%username%</color></i></size>\n<size=40><color=#ff3d8b>♡</color></size>" },
     { name: "Party", code: "<size=36><b><color=#ff3d8b>♫</color> <color=#ffd23d>Party</color> <color=#22d3ee>time</color> <color=#8b5cf6>♫</color></b></size>" }
@@ -1190,7 +1494,12 @@ function readDOM(root) {
     for (const ch of node.childNodes) {
       if (ch.nodeType === 3) push(ch.nodeValue.replace(/ /g, " ").replace(/​/g, ""), f);
       else if (ch.nodeType === 1) {
-        if (ch.tagName === "BR") { if (!("sentinel" in ch.dataset)) push("\n", f); continue; }
+        if (ch.tagName === "BR") {
+          // the browser's own placeholder <br> in an empty (or newline-ended) editor isn't a line of text
+          const placeholder = "sentinel" in ch.dataset || (node === root && ch === root.lastChild && (len === 0 || lastCh === "\n"));
+          if (!placeholder) push("\n", f);
+          continue;
+        }
         if (/^(DIV|P|LI|H[1-6])$/.test(ch.tagName) && len > 0 && lastCh !== "\n") push("\n", f);
         walk(ch, styleFmt(ch, f));
       }
@@ -1359,16 +1668,22 @@ function icon(id) { return `<svg class="ic"><use href="#${id}"/></svg>`; }
 function checks(code, chars, bytes) {
   const out = [];
   const lim = LIMITS[mode];
-  if (chars > lim.chars) out.push(["err", `${chars - lim.chars} characters over the ${lim.chars} limit. Try per-word gradients, fewer colours, or shorter lines.`]);
+  if (chars > lim.chars) out.push(["err", `${chars - lim.chars} characters over the ${lim.chars} limit. Try per-word gradients, fewer colours, or shorter lines.`, "fit"]);
   else if (chars > lim.chars * 0.9) out.push(["warn", `${lim.chars - chars} characters left.`]);
-  if (mode === "gift" && bytes > lim.bytes) out.push(["err", `${bytes - lim.bytes} bytes over the 255-byte gift limit. Symbols cost 2–3 bytes each.`]);
+  if (mode === "gift" && bytes > lim.bytes) out.push(["err", `${bytes - lim.bytes} bytes over the 255-byte gift limit. Symbols cost 2–3 bytes each.`, "fit"]);
   const text = textOf(runs);
   if (/<\/?(b|i|color|size)\b/i.test(text)) out.push(["warn", "Your text contains something that looks like a tag. The game will read it as formatting."]);
   if (/\t/.test(text)) out.push(["warn", "Tabs show differently in the game than here."]);
   if (mode === "gift") {
     const po = [...new Set([...text].filter((ch) => PROFILE_ONLY.has(ch)))];
-    if (po.length) out.push(["warn", `${po.join(" ")} ${po.length > 1 ? "don't" : "doesn't"} show in gifts. Swap for a symbol without the amber dot.`]);
+    if (po.length) out.push(["warn", `${po.join(" ")} ${po.length > 1 ? "don't" : "doesn't"} show in gifts. Swap for a symbol without the amber dot.`, "giftfix"]);
   }
+  // decorative symbols outside the Studio's tested list may show as boxes in the game
+  const known = KNOWN_SYMBOLS();
+  const odd = [...new Set([...text].filter((ch) => /\p{So}|\p{Sm}/u.test(ch) && !known.has(ch)))];
+  if (odd.length) out.push(["warn", `${odd.slice(0, 8).join(" ")} ${odd.length > 1 ? "aren't" : "isn't"} in the Studio's symbol list and may show as a box in 3DXChat.`]);
+  const dark = [...new Set(runs.filter((r) => r.c && r.t.trim() && luminance(r.c) < 0.05).map((r) => r.c))];
+  if (dark.length) out.push(["warn", `Some text is very dark (${dark.slice(0, 3).join(", ")}) and hard to read on the game's dark panel.`, "readable"]);
   if (!out.length) out.push(["ok", mode === "gift" ? "Fits in a gift. Paste it into the gift message box." : "Ready to paste into your profile."]);
   return out;
 }
@@ -1396,10 +1711,15 @@ function changed() {
     $("#st-bytes").textContent = `${bytes} / ${lim.bytes} bytes`;
   }
   $("#s-text").textContent = text.length;
+  const words = (text.match(/[\p{L}\p{N}][\p{L}\p{N}'’-]*/gu) || []).length;
+  $("#st-words").textContent = `${words} word${words === 1 ? "" : "s"}`;
+  if (typeof autosaveDoc === "function") { autosaveDoc(); showCurrentDoc(); }
   $("#s-tags").textContent = code.length - text.length;
   $("#s-nl").textContent = newlines(code);
   const list = checks(code, chars, bytes);
-  $("#warns").innerHTML = list.map(([k, m]) => `<li class="${k}">${icon(k === "ok" ? "i-check" : "i-warn")}<span>${escapeHtml(m)}</span></li>`).join("");
+  const ACT = { fit: "Fit it with AI", giftfix: "Swap them", readable: "Brighten" };
+  $("#warns").innerHTML = list.map(([k, m, a]) => `<li class="${k}">${icon(k === "ok" ? "i-check" : "i-warn")}<span>${escapeHtml(m)}</span>${a && (a === "giftfix" || aiUsable()) ? `<button type="button" class="act" data-act="${a}">${ACT[a]}</button>` : ""}</li>`).join("")
+    + (text.trim() && aiUsable() ? `<li class="ok" style="color:var(--muted)">${icon("i-spark")}<span>Want a second look at spelling?</span><button type="button" class="act" data-act="proof">Proofread</button></li>` : "");
   const errs = list.filter(([k]) => k === "err").length, warns = list.filter(([k]) => k === "warn").length;
   $("#st-dot").className = "dot" + (errs ? " err" : warns ? " warn" : "");
   $("#st-warn").textContent = errs ? `${errs} problem${errs > 1 ? "s" : ""}` : warns ? `${warns} note${warns > 1 ? "s" : ""}` : "No problems";
@@ -1438,7 +1758,7 @@ function hideExample() { if (isExample) { isExample = false; $("#example-chip").
 // ---------- editor events ----------
 editor.addEventListener("beforeinput", (e) => {
   const t = e.inputType;
-  if (t === "insertParagraph" || t === "insertLineBreak") { e.preventDefault(); hideExample(); typeText("\n"); return; }
+  if (t === "insertParagraph" || t === "insertLineBreak") { e.preventDefault(); hideExample(); if (t === "insertLineBreak") typeText("\n"); else enterKey(); return; }
   if (t === "historyUndo") { e.preventDefault(); undo(); return; }
   if (t === "historyRedo") { e.preventDefault(); redo(); return; }
   if (t.startsWith("format")) { e.preventDefault(); return; }
@@ -1722,7 +2042,17 @@ async function copyText(text, label) {
 function copyCode() { const code = serialize(runs, opts); copyText(code, `Copied ${charCount(code)} characters`); }
 $("#btn-copy").onclick = $("#btn-copy-2").onclick = copyCode;
 
-// templates
+// templates: the hand-made ones are "Featured", then the generated library, then the player's own
+const LIBRARY = {"profile": [{"name": "Neon Nights · Spotlight", "cat": "Party & music", "code": "<size=26><color=#ff3d8b><b>✦ Hey, I'm Nova ✦</b></color></size><color=#9ca3c9>\nnight owl · music lover · here for good vibes\n\n</color><color=#22d3ee><b>▶ I'm into\n</b>▶</color> dancing till sunrise\n<color=#22d3ee>▶</color> neon lights\n\n<color=#22d3ee><b>▶ Not for me\n</b></color><color=#ffd23d>▶</color> drama\n<color=#ffd23d>▶</color> rude vibes\n\n<size=12><color=#9ca3c9>See you on the floor ✦</color></size>"}, {"name": "Neon Nights · Gradient title", "cat": "Party & music", "code": "<size=30><b><color=#ff3d8b>V</color><color=#a855f7>E</color><color=#22d3ee>X</color></b></size><color=#9ca3c9>\n▬▬▬▬▬▬▬▬▬▬▬▬</color>\n\nYou'll find me where the bass is loudest.\nSay hi, buy me a drink, and let's dance.\n\n<color=#22d3ee>deep house & techno · meeting new people\n\n</color><size=12><color=#9ca3c9><i>Turn it up!</i></color></size>"}, {"name": "Neon Nights · Do's and don'ts", "cat": "Party & music", "code": "<size=22><color=#ff3d8b><b>✦ Rio ✦</b></color></size>\nYou'll find me where the bass is loudest.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Send good vibes\n<color=#59ff00> ▶</color> Say hi first\n<color=#59ff00> ▶</color> Share your favourite song\n\n<color=red><b>My don'ts\n</b> ▶</color> Boring small talk\n<color=red> ▶</color> Spam in my whispers\n<color=red> ▶</color> Drama\n\n<size=12><color=#9ca3c9>Stay loud, stay kind</color></size>"}, {"name": "Neon Nights · Status board", "cat": "Party & music", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#ff3d8b>✦ Nova ✦</color></size><color=#9ca3c9>\nlights low, bass loud, smile on\n\n</color><color=#22d3ee><b>Find me</b></color>\n▶ <color=#22d3ee>Club Pulse on weekends\n\n<b>Looking for</b></color>\n▶ dance partners"}, {"name": "Neon Nights · Q&A card", "cat": "Party & music", "code": "<size=24><color=#ff3d8b><b>✦ Vex</b></color></size><color=#9ca3c9>\n▬▬▬▬▬▬▬▬▬▬▬▬\n</color><color=#22d3ee><b>Vibe:</b></color> night owl · music lover · here for good vibes\n<color=#22d3ee><b>Into:</b></color> glow sticks, rooftop parties\n<color=#22d3ee><b>Find me:</b></color> the main dance floor\n<color=#22d3ee><b>Looking for:</b></color> good energy\n<color=#22d3ee><b>Not into:</b></color> spam in my whispers, drama\n<color=#9ca3c9>▬▬▬▬▬▬▬▬▬▬▬▬\n</color><size=12><color=#ffd23d>Stay loud, stay kind</color></size>"}, {"name": "Neon Nights · House rules", "cat": "Party & music", "code": "<size=24><color=#ff3d8b><b>✦ Vex's rules ✦</b></color></size><color=#22d3ee>\n\n①</color> Good vibes only\n<color=#22d3ee>②</color> Ask before you whisper\n\n<color=#9ca3c9>Say hi, buy me a drink, and let's dance.\n</color><size=12><color=#ffd23d>Stay loud, stay kind</color></size>"}, {"name": "Neon Nights · Big quote", "cat": "Party & music", "code": "<size=28><color=#ff3d8b><i>“Dance like nobody's watching.”</i></color></size>\n\n<size=20><color=#22d3ee><b>Vex</b></color></size><color=#9ca3c9>\nnight owl · music lover · here for good vibes</color>\n\nYou'll find me where the bass is loudest.\n\n<color=#ffd23d>▶</color> rooftop parties <color=#ffd23d>▶</color> glow sticks"}, {"name": "Neon Nights · Minimal", "cat": "Party & music", "code": "<size=26><b>Rio</b></size><color=#9ca3c9>\nnight owl · music lover · here for good vibes</color>\n\nYou'll find me where the bass is loudest.\n\n<color=#22d3ee>meeting new people  ·  deep house & techno</color>"}, {"name": "Neon Nights · Banner", "cat": "Party & music", "code": "<color=#22d3ee>▬▬▬▬▬▬▬▬▬▬▬▬\n</color><size=26><b><color=#ff3d8b>✦ </color><color=#a855f7>Nova </color><color=#22d3ee>✦</color></b></size><color=#22d3ee>\n▬▬▬▬▬▬▬▬▬▬▬▬\n\n</color><color=#ff3d8b><b>About me</b></color>\nSay hi, buy me a drink, and let's dance.\nYou'll find me where the bass is loudest.\n\n<color=#ff3d8b><b>Looking for</b></color>\ngood energy\n\n<size=12><color=#9ca3c9>Turn it up!</color></size>"}, {"name": "Chill Lounge · Spotlight", "cat": "Chill & cozy", "code": "<size=26><color=#7dd3fc><b>☁ Hey, I'm Kai ☁</b></color></size><color=#94a3b8>\neasygoing and always up for a chat\n\n</color><color=#a7f3d0><b>• I'm into\n</b>•</color> sunsets\n<color=#a7f3d0>•</color> coffee & tea\n\n<color=#a7f3d0><b>• Not for me\n</b></color><color=#fde68a>•</color> rushing\n<color=#fde68a>•</color> shouting\n\n<size=12><color=#94a3b8>Peace and good vibes</color></size>"}, {"name": "Chill Lounge · Gradient title", "cat": "Chill & cozy", "code": "<size=30><b><color=#7dd3fc>L</color><color=#8bdeee>U</color><color=#99e9e0>N</color><color=#a7f3d0>A</color></b></size><color=#94a3b8>\n﹏﹏﹏﹏﹏﹏﹏﹏</color>\n\nNo rush, no stress, just good company.\nI'm laid-back and love deep conversations.\n\n<color=#a7f3d0>long talks · rainy days\n\n</color><size=12><color=#94a3b8><i>Take it easy ☁</i></color></size>"}, {"name": "Chill Lounge · Do's and don'ts", "cat": "Chill & cozy", "code": "<size=22><color=#7dd3fc><b>☁ Sol ☁</b></color></size>\nNo rush, no stress, just good company.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Share your favourite song\n<color=#59ff00> ▶</color> Ask me to dance\n<color=#59ff00> ▶</color> Invite me to events\n\n<color=red><b>My don'ts\n</b> ▶</color> Mind games\n<color=red> ▶</color> Negativity\n<color=red> ▶</color> Rushing\n\n<size=12><color=#94a3b8>Breathe, you're doing great</color></size>"}, {"name": "Chill Lounge · Status board", "cat": "Chill & cozy", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#7dd3fc>☁ Kai ☁</color></size><color=#94a3b8>\ncoffee first, then everything else\n\n</color><color=#a7f3d0><b>Find me</b></color>\n• <color=#a7f3d0>chill rooms after midnight\n\n<b>Looking for</b></color>\n• new friends"}, {"name": "Chill Lounge · Q&A card", "cat": "Chill & cozy", "code": "<size=24><color=#7dd3fc><b>☁ Luna</b></color></size><color=#94a3b8>\n﹏﹏﹏﹏﹏﹏﹏﹏\n</color><color=#a7f3d0><b>Vibe:</b></color> easygoing and always up for a chat\n<color=#a7f3d0><b>Into:</b></color> lo-fi beats, cozy lounges\n<color=#a7f3d0><b>Find me:</b></color> the quiet beach\n<color=#a7f3d0><b>Looking for:</b></color> easy conversation\n<color=#a7f3d0><b>Not into:</b></color> negativity, rushing\n<color=#94a3b8>﹏﹏﹏﹏﹏﹏﹏﹏\n</color><size=12><color=#fde68a>Breathe, you're doing great</color></size>"}, {"name": "Chill Lounge · House rules", "cat": "Chill & cozy", "code": "<size=24><color=#7dd3fc><b>☁ Luna's rules ☁</b></color></size><color=#a7f3d0>\n\n①</color> Be kind, always\n<color=#a7f3d0>②</color> Have fun and dance\n\n<color=#94a3b8>I'm laid-back and love deep conversations.\n</color><size=12><color=#fde68a>Breathe, you're doing great</color></size>"}, {"name": "Chill Lounge · Big quote", "cat": "Chill & cozy", "code": "<size=28><color=#7dd3fc><i>“Good things take time.”</i></color></size>\n\n<size=20><color=#a7f3d0><b>Luna</b></color></size><color=#94a3b8>\neasygoing and always up for a chat</color>\n\nNo rush, no stress, just good company.\n\n<color=#fde68a>•</color> cozy lounges <color=#fde68a>•</color> lo-fi beats"}, {"name": "Chill Lounge · Minimal", "cat": "Chill & cozy", "code": "<size=26><b>Sol</b></size><color=#94a3b8>\neasygoing and always up for a chat</color>\n\nNo rush, no stress, just good company.\n\n<color=#a7f3d0>rainy days  ·  long talks</color>"}, {"name": "Chill Lounge · Banner", "cat": "Chill & cozy", "code": "<color=#a7f3d0>﹏﹏﹏﹏﹏﹏﹏﹏\n</color><size=26><b><color=#7dd3fc>☁ </color><color=#92e3e7>Kai </color><color=#a7f3d0>☁</color></b></size><color=#a7f3d0>\n﹏﹏﹏﹏﹏﹏﹏﹏\n\n</color><color=#7dd3fc><b>About me</b></color>\nI'm laid-back and love deep conversations.\nNo rush, no stress, just good company.\n\n<color=#7dd3fc><b>Looking for</b></color>\neasy conversation\n\n<size=12><color=#94a3b8>Take it easy ☁</color></size>"}, {"name": "Sweetheart · Spotlight", "cat": "Romance", "code": "<size=26><color=#fb7185><b>♥ Hey, I'm Bella ♥</b></color></size><color=#d4a5b5>\nsoft heart, big smile\n\n</color><color=#f9a8d4><b>♡ I'm into\n</b>♡</color> candlelit dinners\n<color=#f9a8d4>♡</color> flowers\n\n<color=#f9a8d4><b>♡ Not for me\n</b></color><color=#fecdd3>♡</color> ghosting\n<color=#fecdd3>♡</color> rudeness\n\n<size=12><color=#d4a5b5>Send a smile my way</color></size>"}, {"name": "Sweetheart · Gradient title", "cat": "Romance", "code": "<size=30><b><color=#e11d48>A</color><color=#ef4f67>M</color><color=#fb7185>O</color><color=#fb8ead>U</color><color=#f9a8d4>R</color></b></size><color=#d4a5b5>\n♡ ♡ ♡ ♡ ♡ ♡</color>\n\nI believe in sweet gestures and slow dances.\nRomance isn't dead, it just needs a good playlist.\n\n<color=#f9a8d4>stargazing · slow dances\n\n</color><size=12><color=#d4a5b5><i>Love is in the air</i></color></size>"}, {"name": "Sweetheart · Do's and don'ts", "cat": "Romance", "code": "<size=22><color=#fb7185><b>♥ Rose ♥</b></color></size>\nI believe in sweet gestures and slow dances.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Invite me to events\n<color=#59ff00> ▶</color> Send good vibes\n<color=#59ff00> ▶</color> Say hi first\n\n<color=red><b>My don'ts\n</b> ▶</color> Players\n<color=red> ▶</color> Games with feelings\n<color=red> ▶</color> Ghosting\n\n<size=12><color=#d4a5b5>Be sweet, be real ♥</color></size>"}, {"name": "Sweetheart · Status board", "cat": "Romance", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#fb7185>♥ Bella ♥</color></size><color=#d4a5b5>\nhopeless romantic · candlelight dinners\n\n</color><color=#f9a8d4><b>Find me</b></color>\n♡ <color=#f9a8d4>the beach at sunset\n\n<b>Looking for</b></color>\n♡ real connection"}, {"name": "Sweetheart · Q&A card", "cat": "Romance", "code": "<size=24><color=#fb7185><b>♥ Amour</b></color></size><color=#d4a5b5>\n♡ ♡ ♡ ♡ ♡ ♡\n</color><color=#f9a8d4><b>Vibe:</b></color> soft heart, big smile\n<color=#f9a8d4><b>Into:</b></color> love songs, handwritten notes\n<color=#f9a8d4><b>Find me:</b></color> the rooftop garden\n<color=#f9a8d4><b>Looking for:</b></color> a dance partner\n<color=#f9a8d4><b>Not into:</b></color> games with feelings, ghosting\n<color=#d4a5b5>♡ ♡ ♡ ♡ ♡ ♡\n</color><size=12><color=#fecdd3>Be sweet, be real ♥</color></size>"}, {"name": "Sweetheart · House rules", "cat": "Romance", "code": "<size=24><color=#fb7185><b>♥ Amour's rules ♥</b></color></size><color=#f9a8d4>\n\n①</color> No games with feelings\n<color=#f9a8d4>②</color> Respect my space\n\n<color=#d4a5b5>Romance isn't dead, it just needs a good playlist.\n</color><size=12><color=#fecdd3>Be sweet, be real ♥</color></size>"}, {"name": "Sweetheart · Big quote", "cat": "Romance", "code": "<size=28><color=#fb7185><i>“All you need is love.”</i></color></size>\n\n<size=20><color=#f9a8d4><b>Amour</b></color></size><color=#d4a5b5>\nsoft heart, big smile</color>\n\nI believe in sweet gestures and slow dances.\n\n<color=#fecdd3>♡</color> handwritten notes <color=#fecdd3>♡</color> love songs"}, {"name": "Sweetheart · Minimal", "cat": "Romance", "code": "<size=26><b>Rose</b></size><color=#d4a5b5>\nsoft heart, big smile</color>\n\nI believe in sweet gestures and slow dances.\n\n<color=#f9a8d4>slow dances  ·  stargazing</color>"}, {"name": "Sweetheart · Banner", "cat": "Romance", "code": "<color=#f9a8d4>♡ ♡ ♡ ♡ ♡ ♡\n</color><size=26><b><color=#e11d48>♥ </color><color=#fb7185>Bella </color><color=#f9a8d4>♥</color></b></size><color=#f9a8d4>\n♡ ♡ ♡ ♡ ♡ ♡\n\n</color><color=#fb7185><b>About me</b></color>\nRomance isn't dead, it just needs a good playlist.\nI believe in sweet gestures and slow dances.\n\n<color=#fb7185><b>Looking for</b></color>\na dance partner\n\n<size=12><color=#d4a5b5>Love is in the air</color></size>"}, {"name": "Player One · Spotlight", "cat": "Gamer", "code": "<size=26><color=#4ade80><b>▶ Hey, I'm Pixel ◀</b></color></size><color=#94a3b8>\nlevel 99 in good vibes\n\n</color><color=#38bdf8><b>► I'm into\n</b>►</color> retro arcades\n<color=#38bdf8>►</color> co-op games\n\n<color=#38bdf8><b>► Not for me\n</b></color><color=#facc15>►</color> toxic chat\n<color=#facc15>►</color> lag\n\n<size=12><color=#94a3b8>GG, see you next round</color></size>"}, {"name": "Player One · Gradient title", "cat": "Gamer", "code": "<size=30><b><color=#22c55e>A</color><color=#38bdf8>C</color><color=#a855f7>E</color></b></size><color=#94a3b8>\n■■■■■■■■■■</color>\n\nAsk me about my high score.\nRespawning in the club every evening.\n\n<color=#38bdf8>late-night raids · speedruns\n\n</color><size=12><color=#94a3b8><i>Save point reached</i></color></size>"}, {"name": "Player One · Do's and don'ts", "cat": "Gamer", "code": "<size=22><color=#4ade80><b>▶ Byte ◀</b></color></size>\nAsk me about my high score.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Say hi first\n<color=#59ff00> ▶</color> Share your favourite song\n<color=#59ff00> ▶</color> Ask me to dance\n\n<color=red><b>My don'ts\n</b> ▶</color> Spoilers\n<color=red> ▶</color> Rage quitters\n<color=red> ▶</color> Toxic chat\n\n<size=12><color=#94a3b8>Player Two? ▶</color></size>"}, {"name": "Player One · Status board", "cat": "Gamer", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#4ade80>▶ Pixel ◀</color></size><color=#94a3b8>\nAFK? never. GG? always.\n\n</color><color=#38bdf8><b>Find me</b></color>\n► <color=#38bdf8>the arcade room\n\n<b>Looking for</b></color>\n► player two"}, {"name": "Player One · Q&A card", "cat": "Gamer", "code": "<size=24><color=#4ade80><b>▶ Ace</b></color></size><color=#94a3b8>\n■■■■■■■■■■\n</color><color=#38bdf8><b>Vibe:</b></color> level 99 in good vibes\n<color=#38bdf8><b>Into:</b></color> RGB everything, energy drinks\n<color=#38bdf8><b>Find me:</b></color> game night lobby\n<color=#38bdf8><b>Looking for:</b></color> friendly rivals\n<color=#38bdf8><b>Not into:</b></color> rage quitters, toxic chat\n<color=#94a3b8>■■■■■■■■■■\n</color><size=12><color=#facc15>Player Two? ▶</color></size>"}, {"name": "Player One · House rules", "cat": "Gamer", "code": "<size=24><color=#4ade80><b>▶ Ace's rules ◀</b></color></size><color=#38bdf8>\n\n①</color> Ask before you whisper\n<color=#38bdf8>②</color> Good vibes only\n\n<color=#94a3b8>Respawning in the club every evening.\n</color><size=12><color=#facc15>Player Two? ▶</color></size>"}, {"name": "Player One · Big quote", "cat": "Gamer", "code": "<size=28><color=#4ade80><i>“Game on.”</i></color></size>\n\n<size=20><color=#38bdf8><b>Ace</b></color></size><color=#94a3b8>\nlevel 99 in good vibes</color>\n\nAsk me about my high score.\n\n<color=#facc15>►</color> energy drinks <color=#facc15>►</color> RGB everything"}, {"name": "Player One · Minimal", "cat": "Gamer", "code": "<size=26><b>Byte</b></size><color=#94a3b8>\nlevel 99 in good vibes</color>\n\nAsk me about my high score.\n\n<color=#38bdf8>speedruns  ·  late-night raids</color>"}, {"name": "Player One · Banner", "cat": "Gamer", "code": "<color=#38bdf8>■■■■■■■■■■\n</color><size=26><b><color=#22c55e>▶ </color><color=#38bdf8>Pixel </color><color=#a855f7>◀</color></b></size><color=#38bdf8>\n■■■■■■■■■■\n\n</color><color=#4ade80><b>About me</b></color>\nRespawning in the club every evening.\nAsk me about my high score.\n\n<color=#4ade80><b>Looking for</b></color>\nfriendly rivals\n\n<size=12><color=#94a3b8>Save point reached</color></size>"}, {"name": "Midnight Goth · Spotlight", "cat": "Dark & gothic", "code": "<size=26><color=#c084fc><b>✟ Hey, I'm Morticia ✟</b></color></size><color=#9ca3af>\nmidnight is my favourite colour\n\n</color><color=#ef4444><b>✧ I'm into\n</b>✧</color> candlelight\n<color=#ef4444>✧</color> old castles\n\n<color=#ef4444><b>✧ Not for me\n</b></color><color=#e5e7eb>✧</color> bright mornings\n<color=#e5e7eb>✧</color> loud pop\n\n<size=12><color=#9ca3af>The night is ours</color></size>"}, {"name": "Midnight Goth · Gradient title", "cat": "Dark & gothic", "code": "<size=30><b><color=#7e22ce>R</color><color=#9e59e5>A</color><color=#c084fc>V</color><color=#d96ea6>E</color><color=#ef4444>N</color></b></size><color=#9ca3af>\n†  †  †  †  †</color>\n\nDon't let the black fool you, I'm friendly.\nI love the dark, the quiet and the mysterious.\n\n<color=#ef4444>rainy nights · full moons\n\n</color><size=12><color=#9ca3af><i>Stay mysterious ✟</i></color></size>"}, {"name": "Midnight Goth · Do's and don'ts", "cat": "Dark & gothic", "code": "<size=22><color=#c084fc><b>✟ Vlad ✟</b></color></size>\nDon't let the black fool you, I'm friendly.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Ask me to dance\n<color=#59ff00> ▶</color> Invite me to events\n<color=#59ff00> ▶</color> Send good vibes\n\n<color=red><b>My don'ts\n</b> ▶</color> Fake people\n<color=red> ▶</color> Shallow talk\n<color=red> ▶</color> Bright mornings\n\n<size=12><color=#9ca3af>Darkness looks good on you</color></size>"}, {"name": "Midnight Goth · Status board", "cat": "Dark & gothic", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#c084fc>✟ Morticia ✟</color></size><color=#9ca3af>\nblack lace and old poetry\n\n</color><color=#ef4444><b>Find me</b></color>\n✧ <color=#ef4444>the cemetery garden\n\n<b>Looking for</b></color>\n✧ deep talks"}, {"name": "Midnight Goth · Q&A card", "cat": "Dark & gothic", "code": "<size=24><color=#c084fc><b>✟ Raven</b></color></size><color=#9ca3af>\n†  †  †  †  †\n</color><color=#ef4444><b>Vibe:</b></color> midnight is my favourite colour\n<color=#ef4444><b>Into:</b></color> poetry, gothic music\n<color=#ef4444><b>Find me:</b></color> midnight lounges\n<color=#ef4444><b>Looking for:</b></color> kindred spirits\n<color=#ef4444><b>Not into:</b></color> shallow talk, bright mornings\n<color=#9ca3af>†  †  †  †  †\n</color><size=12><color=#e5e7eb>Darkness looks good on you</color></size>"}, {"name": "Midnight Goth · House rules", "cat": "Dark & gothic", "code": "<size=24><color=#c084fc><b>✟ Raven's rules ✟</b></color></size><color=#ef4444>\n\n①</color> Have fun and dance\n<color=#ef4444>②</color> Be kind, always\n\n<color=#9ca3af>I love the dark, the quiet and the mysterious.\n</color><size=12><color=#e5e7eb>Darkness looks good on you</color></size>"}, {"name": "Midnight Goth · Big quote", "cat": "Dark & gothic", "code": "<size=28><color=#c084fc><i>“Not all who wander are lost.”</i></color></size>\n\n<size=20><color=#ef4444><b>Raven</b></color></size><color=#9ca3af>\nmidnight is my favourite colour</color>\n\nDon't let the black fool you, I'm friendly.\n\n<color=#e5e7eb>✧</color> gothic music <color=#e5e7eb>✧</color> poetry"}, {"name": "Midnight Goth · Minimal", "cat": "Dark & gothic", "code": "<size=26><b>Vlad</b></size><color=#9ca3af>\nmidnight is my favourite colour</color>\n\nDon't let the black fool you, I'm friendly.\n\n<color=#ef4444>full moons  ·  rainy nights</color>"}, {"name": "Midnight Goth · Banner", "cat": "Dark & gothic", "code": "<color=#ef4444>†  †  †  †  †\n</color><size=26><b><color=#7e22ce>✟ </color><color=#c084fc>Morticia </color><color=#ef4444>✟</color></b></size><color=#ef4444>\n†  †  †  †  †\n\n</color><color=#c084fc><b>About me</b></color>\nI love the dark, the quiet and the mysterious.\nDon't let the black fool you, I'm friendly.\n\n<color=#c084fc><b>Looking for</b></color>\nkindred spirits\n\n<size=12><color=#9ca3af>Stay mysterious ✟</color></size>"}, {"name": "Pastel Dream · Spotlight", "cat": "Cute & pastel", "code": "<size=26><color=#f9a8d4><b>❀ Hey, I'm Bunny ❀</b></color></size><color=#a5b4cb>\ncute but chaotic\n\n</color><color=#c4b5fd><b>✿ I'm into\n</b>✿</color> kawaii music\n<color=#c4b5fd>✿</color> pastel everything\n\n<color=#c4b5fd><b>✿ Not for me\n</b></color><color=#a5f3fc>✿</color> shouting\n<color=#a5f3fc>✿</color> meanies\n\n<size=12><color=#a5b4cb>You're adorable</color></size>"}, {"name": "Pastel Dream · Gradient title", "cat": "Cute & pastel", "code": "<size=30><b><color=#f9a8d4>P</color><color=#e0afe9>E</color><color=#c4b5fd>A</color><color=#b8d5fd>C</color><color=#a5f3fc>H</color></b></size><color=#a5b4cb>\n✿ ❀ ✿ ❀ ✿ ❀ ✿</color>\n\nI'm calm, kind and a little shy.\nSay hello and I'll make you a drink ♡\n\n<color=#c4b5fd>bubble tea · cute outfits\n\n</color><size=12><color=#a5b4cb><i>Sending hugs ♡</i></color></size>"}, {"name": "Pastel Dream · Do's and don'ts", "cat": "Cute & pastel", "code": "<size=22><color=#f9a8d4><b>❀ Mochi ❀</b></color></size>\nI'm calm, kind and a little shy.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Send good vibes\n<color=#59ff00> ▶</color> Say hi first\n<color=#59ff00> ▶</color> Share your favourite song\n\n<color=red><b>My don'ts\n</b> ▶</color> Sad endings\n<color=red> ▶</color> Messy rooms\n<color=red> ▶</color> Shouting\n\n<size=12><color=#a5b4cb>Stay sweet ❀</color></size>"}, {"name": "Pastel Dream · Status board", "cat": "Cute & pastel", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#f9a8d4>❀ Bunny ❀</color></size><color=#a5b4cb>\nsoft vibes · sweet treats · big hugs\n\n</color><color=#c4b5fd><b>Find me</b></color>\n✿ <color=#c4b5fd>cozy bedrooms\n\n<b>Looking for</b></color>\n✿ photo buddies"}, {"name": "Pastel Dream · Q&A card", "cat": "Cute & pastel", "code": "<size=24><color=#f9a8d4><b>❀ Peach</b></color></size><color=#a5b4cb>\n✿ ❀ ✿ ❀ ✿ ❀ ✿\n</color><color=#c4b5fd><b>Vibe:</b></color> cute but chaotic\n<color=#c4b5fd><b>Into:</b></color> baking, plushies\n<color=#c4b5fd><b>Find me:</b></color> the candy café\n<color=#c4b5fd><b>Looking for:</b></color> tea parties\n<color=#c4b5fd><b>Not into:</b></color> messy rooms, shouting\n<color=#a5b4cb>✿ ❀ ✿ ❀ ✿ ❀ ✿\n</color><size=12><color=#a5f3fc>Stay sweet ❀</color></size>"}, {"name": "Pastel Dream · House rules", "cat": "Cute & pastel", "code": "<size=24><color=#f9a8d4><b>❀ Peach's rules ❀</b></color></size><color=#c4b5fd>\n\n①</color> Respect my space\n<color=#c4b5fd>②</color> No messy rooms\n\n<color=#a5b4cb>Say hello and I'll make you a drink ♡\n</color><size=12><color=#a5f3fc>Stay sweet ❀</color></size>"}, {"name": "Pastel Dream · Big quote", "cat": "Cute & pastel", "code": "<size=28><color=#f9a8d4><i>“Stay soft.”</i></color></size>\n\n<size=20><color=#c4b5fd><b>Peach</b></color></size><color=#a5b4cb>\ncute but chaotic</color>\n\nI'm calm, kind and a little shy.\n\n<color=#a5f3fc>✿</color> plushies <color=#a5f3fc>✿</color> baking"}, {"name": "Pastel Dream · Minimal", "cat": "Cute & pastel", "code": "<size=26><b>Mochi</b></size><color=#a5b4cb>\ncute but chaotic</color>\n\nI'm calm, kind and a little shy.\n\n<color=#c4b5fd>cute outfits  ·  bubble tea</color>"}, {"name": "Pastel Dream · Banner", "cat": "Cute & pastel", "code": "<color=#c4b5fd>✿ ❀ ✿ ❀ ✿ ❀ ✿\n</color><size=26><b><color=#f9a8d4>❀ </color><color=#c4b5fd>Bunny </color><color=#a5f3fc>❀</color></b></size><color=#c4b5fd>\n✿ ❀ ✿ ❀ ✿ ❀ ✿\n\n</color><color=#f9a8d4><b>About me</b></color>\nSay hello and I'll make you a drink ♡\nI'm calm, kind and a little shy.\n\n<color=#f9a8d4><b>Looking for</b></color>\ntea parties\n\n<size=12><color=#a5b4cb>Sending hugs ♡</color></size>"}, {"name": "Velvet Gold · Spotlight", "cat": "Elegant", "code": "<size=26><color=#fbbf24><b>❖ Hey, I'm Celeste ❖</b></color></size><color=#a8a29e>\nclassy · calm · curious\n\n</color><color=#e5e7eb><b>◆ I'm into\n</b>◆</color> jazz evenings\n<color=#e5e7eb>◆</color> classic films\n\n<color=#e5e7eb><b>◆ Not for me\n</b></color><color=#fde68a>◆</color> loud arguments\n<color=#fde68a>◆</color> bad manners\n\n<size=12><color=#a8a29e>Cheers ❖</color></size>"}, {"name": "Velvet Gold · Gradient title", "cat": "Elegant", "code": "<size=30><b><color=#b45309>V</color><color=#c97211>I</color><color=#dd9018>V</color><color=#f1af20>I</color><color=#fcc53b>E</color><color=#fcd05a>N</color><color=#fddb73>N</color><color=#fde68a>E</color></b></size><color=#a8a29e>\n═══════ ◆ ═══════</color>\n\nDress code: effortless.\nA gentleman's charm or a lady's grace, always welcome.\n\n<color=#e5e7eb>art galleries · ballroom dancing\n\n</color><size=12><color=#a8a29e><i>Until our next dance</i></color></size>"}, {"name": "Velvet Gold · Do's and don'ts", "cat": "Elegant", "code": "<size=22><color=#fbbf24><b>❖ Adrian ❖</b></color></size>\nDress code: effortless.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Share your favourite song\n<color=#59ff00> ▶</color> Ask me to dance\n<color=#59ff00> ▶</color> Invite me to events\n\n<color=red><b>My don'ts\n</b> ▶</color> Vulgarity\n<color=red> ▶</color> Rushing\n<color=red> ▶</color> Loud arguments\n\n<size=12><color=#a8a29e>With grace</color></size>"}, {"name": "Velvet Gold · Status board", "cat": "Elegant", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#fbbf24>❖ Celeste ❖</color></size><color=#a8a29e>\nchampagne taste, good manners\n\n</color><color=#e5e7eb><b>Find me</b></color>\n◆ <color=#e5e7eb>the grand ballroom\n\n<b>Looking for</b></color>\n◆ refined company"}, {"name": "Velvet Gold · Q&A card", "cat": "Elegant", "code": "<size=24><color=#fbbf24><b>❖ Vivienne</b></color></size><color=#a8a29e>\n═══════ ◆ ═══════\n</color><color=#e5e7eb><b>Vibe:</b></color> classy · calm · curious\n<color=#e5e7eb><b>Into:</b></color> wine tasting, fine dining\n<color=#e5e7eb><b>Find me:</b></color> rooftop bars\n<color=#e5e7eb><b>Looking for:</b></color> good conversation\n<color=#e5e7eb><b>Not into:</b></color> rushing, loud arguments\n<color=#a8a29e>═══════ ◆ ═══════\n</color><size=12><color=#fde68a>With grace</color></size>"}, {"name": "Velvet Gold · House rules", "cat": "Elegant", "code": "<size=24><color=#fbbf24><b>❖ Vivienne's rules ❖</b></color></size><color=#e5e7eb>\n\n①</color> Good vibes only\n<color=#e5e7eb>②</color> Ask before you whisper\n\n<color=#a8a29e>A gentleman's charm or a lady's grace, always welcome.\n</color><size=12><color=#fde68a>With grace</color></size>"}, {"name": "Velvet Gold · Big quote", "cat": "Elegant", "code": "<size=28><color=#fbbf24><i>“Elegance never fades.”</i></color></size>\n\n<size=20><color=#e5e7eb><b>Vivienne</b></color></size><color=#a8a29e>\nclassy · calm · curious</color>\n\nDress code: effortless.\n\n<color=#fde68a>◆</color> fine dining <color=#fde68a>◆</color> wine tasting"}, {"name": "Velvet Gold · Minimal", "cat": "Elegant", "code": "<size=26><b>Adrian</b></size><color=#a8a29e>\nclassy · calm · curious</color>\n\nDress code: effortless.\n\n<color=#e5e7eb>ballroom dancing  ·  art galleries</color>"}, {"name": "Velvet Gold · Banner", "cat": "Elegant", "code": "<color=#e5e7eb>═══════ ◆ ═══════\n</color><size=26><b><color=#b45309>❖ </color><color=#fbbf24>Celeste </color><color=#fde68a>❖</color></b></size><color=#e5e7eb>\n═══════ ◆ ═══════\n\n</color><color=#fbbf24><b>About me</b></color>\nA gentleman's charm or a lady's grace, always welcome.\nDress code: effortless.\n\n<color=#fbbf24><b>Looking for</b></color>\ngood conversation\n\n<size=12><color=#a8a29e>Until our next dance</color></size>"}, {"name": "Enchanted · Spotlight", "cat": "Fantasy", "code": "<size=26><color=#a78bfa><b>✧ Hey, I'm Faelan ✧</b></color></size><color=#a5b4c4>\nlost somewhere in a storybook\n\n</color><color=#34d399><b>✦ I'm into\n</b>✦</color> crystals\n<color=#34d399>✦</color> medieval music\n\n<color=#34d399><b>✦ Not for me\n</b></color><color=#fde047>✦</color> rude goblins\n<color=#fde047>✦</color> trolls (the online kind)\n\n<size=12><color=#a5b4c4>Blessed be</color></size>"}, {"name": "Enchanted · Gradient title", "cat": "Fantasy", "code": "<size=30><b><color=#6366f1>E</color><color=#8579f6>L</color><color=#a78bfa>A</color><color=#80b3cd>R</color><color=#34d399>A</color></b></size><color=#a5b4c4>\n｡°✩ ｡°✩ ｡°✩ ｡°✩</color>\n\nI collect stories, crystals and good friends.\nAsk me about dragons, spells and secret forests.\n\n<color=#34d399>enchanted forests · moonlit walks\n\n</color><size=12><color=#a5b4c4><i>May your path be magical ✧</i></color></size>"}, {"name": "Enchanted · Do's and don'ts", "cat": "Fantasy", "code": "<size=22><color=#a78bfa><b>✧ Lyra ✧</b></color></size>\nI collect stories, crystals and good friends.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Invite me to events\n<color=#59ff00> ▶</color> Send good vibes\n<color=#59ff00> ▶</color> Say hi first\n\n<color=red><b>My don'ts\n</b> ▶</color> Broken quests\n<color=red> ▶</color> Dull spells\n<color=red> ▶</color> Rude goblins\n\n<size=12><color=#a5b4c4>Onward, adventurer</color></size>"}, {"name": "Enchanted · Status board", "cat": "Fantasy", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#a78bfa>✧ Faelan ✧</color></size><color=#a5b4c4>\npotions brewed daily\n\n</color><color=#34d399><b>Find me</b></color>\n✦ <color=#34d399>the castle library\n\n<b>Looking for</b></color>\n✦ quest companions"}, {"name": "Enchanted · Q&A card", "cat": "Fantasy", "code": "<size=24><color=#a78bfa><b>✧ Elara</b></color></size><color=#a5b4c4>\n｡°✩ ｡°✩ ｡°✩ ｡°✩\n</color><color=#34d399><b>Vibe:</b></color> lost somewhere in a storybook\n<color=#34d399><b>Into:</b></color> fairy tales, dragons\n<color=#34d399><b>Find me:</b></color> the crystal cave\n<color=#34d399><b>Looking for:</b></color> fellow adventurers\n<color=#34d399><b>Not into:</b></color> dull spells, rude goblins\n<color=#a5b4c4>｡°✩ ｡°✩ ｡°✩ ｡°✩\n</color><size=12><color=#fde047>Onward, adventurer</color></size>"}, {"name": "Enchanted · House rules", "cat": "Fantasy", "code": "<size=24><color=#a78bfa><b>✧ Elara's rules ✧</b></color></size><color=#34d399>\n\n①</color> Be kind, always\n<color=#34d399>②</color> Have fun and dance\n\n<color=#a5b4c4>Ask me about dragons, spells and secret forests.\n</color><size=12><color=#fde047>Onward, adventurer</color></size>"}, {"name": "Enchanted · Big quote", "cat": "Fantasy", "code": "<size=28><color=#a78bfa><i>“Once upon a time...”</i></color></size>\n\n<size=20><color=#34d399><b>Elara</b></color></size><color=#a5b4c4>\nlost somewhere in a storybook</color>\n\nI collect stories, crystals and good friends.\n\n<color=#fde047>✦</color> dragons <color=#fde047>✦</color> fairy tales"}, {"name": "Enchanted · Minimal", "cat": "Fantasy", "code": "<size=26><b>Lyra</b></size><color=#a5b4c4>\nlost somewhere in a storybook</color>\n\nI collect stories, crystals and good friends.\n\n<color=#34d399>moonlit walks  ·  enchanted forests</color>"}, {"name": "Enchanted · Banner", "cat": "Fantasy", "code": "<color=#34d399>｡°✩ ｡°✩ ｡°✩ ｡°✩\n</color><size=26><b><color=#6366f1>✧ </color><color=#a78bfa>Faelan </color><color=#34d399>✧</color></b></size><color=#34d399>\n｡°✩ ｡°✩ ｡°✩ ｡°✩\n\n</color><color=#a78bfa><b>About me</b></color>\nAsk me about dragons, spells and secret forests.\nI collect stories, crystals and good friends.\n\n<color=#a78bfa><b>Looking for</b></color>\nfellow adventurers\n\n<size=12><color=#a5b4c4>May your path be magical ✧</color></size>"}, {"name": "Beach Days · Spotlight", "cat": "Summer", "code": "<size=26><color=#38bdf8><b>☀ Hey, I'm Bodhi ☀</b></color></size><color=#94a3b8>\nforever on summer time\n\n</color><color=#fbbf24><b>≈ I'm into\n</b>≈</color> surfing\n<color=#fbbf24>≈</color> bonfires\n\n<color=#fbbf24><b>≈ Not for me\n</b></color><color=#fb923c>≈</color> cold weather\n<color=#fb923c>≈</color> rainy beach days\n\n<size=12><color=#94a3b8>See you at the shore</color></size>"}, {"name": "Beach Days · Gradient title", "cat": "Summer", "code": "<size=30><b><color=#0ea5e9>C</color><color=#27b1f1>O</color><color=#38bdf8>R</color><color=#adc4aa>A</color><color=#fbbf24>L</color></b></size><color=#94a3b8>\n≈≈≈≈≈≈≈≈≈≈≈≈</color>\n\nHappiest by the ocean with a cold drink.\nSunsets, waves and good playlists.\n\n<color=#fbbf24>cocktails · ocean waves\n\n</color><size=12><color=#94a3b8><i>Good vibes only</i></color></size>"}, {"name": "Beach Days · Do's and don'ts", "cat": "Summer", "code": "<size=22><color=#38bdf8><b>☀ Marina ☀</b></color></size>\nHappiest by the ocean with a cold drink.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Say hi first\n<color=#59ff00> ▶</color> Share your favourite song\n<color=#59ff00> ▶</color> Ask me to dance\n\n<color=red><b>My don'ts\n</b> ▶</color> Grumpy people\n<color=red> ▶</color> Bad sunburns\n<color=red> ▶</color> Cold weather\n\n<size=12><color=#94a3b8>Stay salty ☀</color></size>"}, {"name": "Beach Days · Status board", "cat": "Summer", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#38bdf8>☀ Bodhi ☀</color></size><color=#94a3b8>\nsalty hair · sunny heart\n\n</color><color=#fbbf24><b>Find me</b></color>\n≈ <color=#fbbf24>pool parties\n\n<b>Looking for</b></color>\n≈ summer friends"}, {"name": "Beach Days · Q&A card", "cat": "Summer", "code": "<size=24><color=#38bdf8><b>☀ Coral</b></color></size><color=#94a3b8>\n≈≈≈≈≈≈≈≈≈≈≈≈\n</color><color=#fbbf24><b>Vibe:</b></color> forever on summer time\n<color=#fbbf24><b>Into:</b></color> beach parties, sunsets\n<color=#fbbf24><b>Find me:</b></color> the beach bar\n<color=#fbbf24><b>Looking for:</b></color> sunset dates\n<color=#fbbf24><b>Not into:</b></color> bad sunburns, cold weather\n<color=#94a3b8>≈≈≈≈≈≈≈≈≈≈≈≈\n</color><size=12><color=#fb923c>Stay salty ☀</color></size>"}, {"name": "Beach Days · House rules", "cat": "Summer", "code": "<size=24><color=#38bdf8><b>☀ Coral's rules ☀</b></color></size><color=#fbbf24>\n\n①</color> No bad sunburns\n<color=#fbbf24>②</color> Respect my space\n\n<color=#94a3b8>Sunsets, waves and good playlists.\n</color><size=12><color=#fb923c>Stay salty ☀</color></size>"}, {"name": "Beach Days · Big quote", "cat": "Summer", "code": "<size=28><color=#38bdf8><i>“Life's a beach.”</i></color></size>\n\n<size=20><color=#fbbf24><b>Coral</b></color></size><color=#94a3b8>\nforever on summer time</color>\n\nHappiest by the ocean with a cold drink.\n\n<color=#fb923c>≈</color> sunsets <color=#fb923c>≈</color> beach parties"}, {"name": "Beach Days · Minimal", "cat": "Summer", "code": "<size=26><b>Marina</b></size><color=#94a3b8>\nforever on summer time</color>\n\nHappiest by the ocean with a cold drink.\n\n<color=#fbbf24>ocean waves  ·  cocktails</color>"}, {"name": "Beach Days · Banner", "cat": "Summer", "code": "<color=#fbbf24>≈≈≈≈≈≈≈≈≈≈≈≈\n</color><size=26><b><color=#0ea5e9>☀ </color><color=#38bdf8>Bodhi </color><color=#fbbf24>☀</color></b></size><color=#fbbf24>\n≈≈≈≈≈≈≈≈≈≈≈≈\n\n</color><color=#38bdf8><b>About me</b></color>\nSunsets, waves and good playlists.\nHappiest by the ocean with a cold drink.\n\n<color=#38bdf8><b>Looking for</b></color>\nsunset dates\n\n<size=12><color=#94a3b8>Good vibes only</color></size>"}, {"name": "Club Host · Spotlight", "cat": "Hosts & DJs", "code": "<size=26><color=#f472b6><b>★ Hey, I'm Diamond ★</b></color></size><color=#a1a1aa>\nyour host with the most\n\n</color><color=#facc15><b>➳ I'm into\n</b>➳</color> great music\n<color=#facc15>➳</color> hosting events\n\n<color=#facc15><b>➳ Not for me\n</b></color><color=#22d3ee>➳</color> disrespect\n<color=#22d3ee>➳</color> trolls\n\n<size=12><color=#a1a1aa>Doors open at 9 ★</color></size>"}, {"name": "Club Host · Gradient title", "cat": "Hosts & DJs", "code": "<size=30><b><color=#f472b6>S</color><color=#f68ca0>A</color><color=#f8a385>S</color><color=#f9b861>H</color><color=#facc15>A</color></b></size><color=#a1a1aa>\n★ ▬▬▬▬▬▬▬▬ ★</color>\n\nAsk about my rooms and parties.\nEveryone's welcome, respect is the dress code.\n\n<color=#facc15>dress-up nights · themed parties\n\n</color><size=12><color=#a1a1aa><i>Bring a friend!</i></color></size>"}, {"name": "Club Host · Do's and don'ts", "cat": "Hosts & DJs", "code": "<size=22><color=#f472b6><b>★ Monroe ★</b></color></size>\nAsk about my rooms and parties.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Ask me to dance\n<color=#59ff00> ▶</color> Invite me to events\n<color=#59ff00> ▶</color> Send good vibes\n\n<color=red><b>My don'ts\n</b> ▶</color> Drama in my rooms\n<color=red> ▶</color> Door crashers\n<color=red> ▶</color> Disrespect\n\n<size=12><color=#a1a1aa>Hope to see you there</color></size>"}, {"name": "Club Host · Status board", "cat": "Hosts & DJs", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#f472b6>★ Diamond ★</color></size><color=#a1a1aa>\nparty planner · room owner · DJ\n\n</color><color=#facc15><b>Find me</b></color>\n➳ <color=#facc15>my club every Friday\n\n<b>Looking for</b></color>\n➳ party guests"}, {"name": "Club Host · Q&A card", "cat": "Hosts & DJs", "code": "<size=24><color=#f472b6><b>★ Sasha</b></color></size><color=#a1a1aa>\n★ ▬▬▬▬▬▬▬▬ ★\n</color><color=#facc15><b>Vibe:</b></color> your host with the most\n<color=#facc15><b>Into:</b></color> new faces, karaoke\n<color=#facc15><b>Find me:</b></color> the VIP lounge\n<color=#facc15><b>Looking for:</b></color> event staff\n<color=#facc15><b>Not into:</b></color> door crashers, disrespect\n<color=#a1a1aa>★ ▬▬▬▬▬▬▬▬ ★\n</color><size=12><color=#22d3ee>Hope to see you there</color></size>"}, {"name": "Club Host · House rules", "cat": "Hosts & DJs", "code": "<size=24><color=#f472b6><b>★ Sasha's rules ★</b></color></size><color=#facc15>\n\n①</color> Ask before you whisper\n<color=#facc15>②</color> Good vibes only\n\n<color=#a1a1aa>Everyone's welcome, respect is the dress code.\n</color><size=12><color=#22d3ee>Hope to see you there</color></size>"}, {"name": "Club Host · Big quote", "cat": "Hosts & DJs", "code": "<size=28><color=#f472b6><i>“Good people, good music.”</i></color></size>\n\n<size=20><color=#facc15><b>Sasha</b></color></size><color=#a1a1aa>\nyour host with the most</color>\n\nAsk about my rooms and parties.\n\n<color=#22d3ee>➳</color> karaoke <color=#22d3ee>➳</color> new faces"}, {"name": "Club Host · Minimal", "cat": "Hosts & DJs", "code": "<size=26><b>Monroe</b></size><color=#a1a1aa>\nyour host with the most</color>\n\nAsk about my rooms and parties.\n\n<color=#facc15>themed parties  ·  dress-up nights</color>"}, {"name": "Club Host · Banner", "cat": "Hosts & DJs", "code": "<color=#facc15>★ ▬▬▬▬▬▬▬▬ ★\n</color><size=26><b><color=#f472b6>★ </color><color=#f8a385>Diamond </color><color=#facc15>★</color></b></size><color=#facc15>\n★ ▬▬▬▬▬▬▬▬ ★\n\n</color><color=#f472b6><b>About me</b></color>\nEveryone's welcome, respect is the dress code.\nAsk about my rooms and parties.\n\n<color=#f472b6><b>Looking for</b></color>\nevent staff\n\n<size=12><color=#a1a1aa>Bring a friend!</color></size>"}, {"name": "On the Decks · Spotlight", "cat": "Hosts & DJs", "code": "<size=26><color=#22d3ee><b>♫ Hey, I'm DJ Echo ♫</b></color></size><color=#9ca3af>\nspinning beats every weekend\n\n</color><color=#a3e635><b>♪ I'm into\n</b>♪</color> requests\n<color=#a3e635>♪</color> drum & bass\n\n<color=#a3e635><b>♪ Not for me\n</b></color><color=#f472b6>♪</color> talking over drops\n<color=#f472b6>♪</color> skipping songs\n\n<size=12><color=#9ca3af>See you on the dance floor</color></size>"}, {"name": "On the Decks · Gradient title", "cat": "Hosts & DJs", "code": "<size=30><b><color=#22d3ee>D</color><color=#4ad8d3>J </color><color=#65ddb6>K</color><color=#7ce197>A</color><color=#90e470>D</color><color=#a3e635>E</color></b></size><color=#9ca3af>\n▀▄▀▄▀▄▀▄▀▄▀▄▀</color>\n\nMusic is my love language.\nI play house, techno and anything that moves the floor.\n\n<color=#a3e635>new tracks · vinyl\n\n</color><size=12><color=#9ca3af><i>Turn it up ♫</i></color></size>"}, {"name": "On the Decks · Do's and don'ts", "cat": "Hosts & DJs", "code": "<size=22><color=#22d3ee><b>♫ DJ Rhea ♫</b></color></size>\nMusic is my love language.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Send good vibes\n<color=#59ff00> ▶</color> Say hi first\n<color=#59ff00> ▶</color> Share your favourite song\n\n<color=red><b>My don'ts\n</b> ▶</color> Silence\n<color=red> ▶</color> Bad speakers\n<color=red> ▶</color> Talking over drops\n\n<size=12><color=#9ca3af>Stay tuned</color></size>"}, {"name": "On the Decks · Status board", "cat": "Hosts & DJs", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#22d3ee>♫ DJ Echo ♫</color></size><color=#9ca3af>\nrequests welcome, good vibes required\n\n</color><color=#a3e635><b>Find me</b></color>\n♪ <color=#a3e635>Club Pulse on Saturdays\n\n<b>Looking for</b></color>\n♪ music lovers"}, {"name": "On the Decks · Q&A card", "cat": "Hosts & DJs", "code": "<size=24><color=#22d3ee><b>♫ DJ Kade</b></color></size><color=#9ca3af>\n▀▄▀▄▀▄▀▄▀▄▀▄▀\n</color><color=#a3e635><b>Vibe:</b></color> spinning beats every weekend\n<color=#a3e635><b>Into:</b></color> festival nights, deep house\n<color=#a3e635><b>Find me:</b></color> the radio stream\n<color=#a3e635><b>Looking for:</b></color> dancers\n<color=#a3e635><b>Not into:</b></color> bad speakers, talking over drops\n<color=#9ca3af>▀▄▀▄▀▄▀▄▀▄▀▄▀\n</color><size=12><color=#f472b6>Stay tuned</color></size>"}, {"name": "On the Decks · House rules", "cat": "Hosts & DJs", "code": "<size=24><color=#22d3ee><b>♫ DJ Kade's rules ♫</b></color></size><color=#a3e635>\n\n①</color> Have fun and dance\n<color=#a3e635>②</color> Be kind, always\n\n<color=#9ca3af>I play house, techno and anything that moves the floor.\n</color><size=12><color=#f472b6>Stay tuned</color></size>"}, {"name": "On the Decks · Big quote", "cat": "Hosts & DJs", "code": "<size=28><color=#22d3ee><i>“Music is life.”</i></color></size>\n\n<size=20><color=#a3e635><b>DJ Kade</b></color></size><color=#9ca3af>\nspinning beats every weekend</color>\n\nMusic is my love language.\n\n<color=#f472b6>♪</color> deep house <color=#f472b6>♪</color> festival nights"}, {"name": "On the Decks · Minimal", "cat": "Hosts & DJs", "code": "<size=26><b>DJ Rhea</b></size><color=#9ca3af>\nspinning beats every weekend</color>\n\nMusic is my love language.\n\n<color=#a3e635>vinyl  ·  new tracks</color>"}, {"name": "On the Decks · Banner", "cat": "Hosts & DJs", "code": "<color=#a3e635>▀▄▀▄▀▄▀▄▀▄▀▄▀\n</color><size=26><b><color=#22d3ee>♫ </color><color=#5ddcc0>DJ </color><color=#83e28b>Echo </color><color=#a3e635>♫</color></b></size><color=#a3e635>\n▀▄▀▄▀▄▀▄▀▄▀▄▀\n\n</color><color=#22d3ee><b>About me</b></color>\nI play house, techno and anything that moves the floor.\nMusic is my love language.\n\n<color=#22d3ee><b>Looking for</b></color>\ndancers\n\n<size=12><color=#9ca3af>Turn it up ♫</color></size>"}, {"name": "Clean & Simple · Spotlight", "cat": "Minimal", "code": "<size=26><color=#e5e7eb><b>· Hey, I'm Jordan ·</b></color></size><color=#9ca3af>\njust here to chat\n\n</color><color=#93c5fd><b>– I'm into\n</b>–</color> friends\n<color=#93c5fd>–</color> travel\n\n<color=#93c5fd><b>– Not for me\n</b></color><color=#fca5a5>–</color> fakes\n<color=#fca5a5>–</color> rudeness\n\n<size=12><color=#9ca3af>Thanks for stopping by</color></size>"}, {"name": "Clean & Simple · Gradient title", "cat": "Minimal", "code": "<size=30><b><color=#e5e7eb>S</color><color=#bdd6f5>A</color><color=#93c5fd>M</color></b></size><color=#9ca3af>\n¯¯¯¯¯¯¯¯¯¯¯¯</color>\n\nI keep it simple and real.\nHappy to chat about anything.\n\n<color=#93c5fd>music · coffee\n\n</color><size=12><color=#9ca3af><i>Be kind</i></color></size>"}, {"name": "Clean & Simple · Do's and don'ts", "cat": "Minimal", "code": "<size=22><color=#e5e7eb><b>· Alex ·</b></color></size>\nI keep it simple and real.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Share your favourite song\n<color=#59ff00> ▶</color> Ask me to dance\n<color=#59ff00> ▶</color> Invite me to events\n\n<color=red><b>My don'ts\n</b> ▶</color> Spam\n<color=red> ▶</color> Drama\n<color=red> ▶</color> Fakes\n\n<size=12><color=#9ca3af>Say hi</color></size>"}, {"name": "Clean & Simple · Status board", "cat": "Minimal", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#e5e7eb>· Jordan ·</color></size><color=#9ca3af>\nsimple · honest · friendly\n\n</color><color=#93c5fd><b>Find me</b></color>\n– <color=#93c5fd>the lounge\n\n<b>Looking for</b></color>\n– good company"}, {"name": "Clean & Simple · Q&A card", "cat": "Minimal", "code": "<size=24><color=#e5e7eb><b>· Sam</b></color></size><color=#9ca3af>\n¯¯¯¯¯¯¯¯¯¯¯¯\n</color><color=#93c5fd><b>Vibe:</b></color> just here to chat\n<color=#93c5fd><b>Into:</b></color> films, good talks\n<color=#93c5fd><b>Find me:</b></color> around\n<color=#93c5fd><b>Looking for:</b></color> chats\n<color=#93c5fd><b>Not into:</b></color> drama, fakes\n<color=#9ca3af>¯¯¯¯¯¯¯¯¯¯¯¯\n</color><size=12><color=#fca5a5>Say hi</color></size>"}, {"name": "Clean & Simple · House rules", "cat": "Minimal", "code": "<size=24><color=#e5e7eb><b>· Sam's rules ·</b></color></size><color=#93c5fd>\n\n①</color> Respect my space\n<color=#93c5fd>②</color> No drama\n\n<color=#9ca3af>Happy to chat about anything.\n</color><size=12><color=#fca5a5>Say hi</color></size>"}, {"name": "Clean & Simple · Big quote", "cat": "Minimal", "code": "<size=28><color=#e5e7eb><i>“Be yourself.”</i></color></size>\n\n<size=20><color=#93c5fd><b>Sam</b></color></size><color=#9ca3af>\njust here to chat</color>\n\nI keep it simple and real.\n\n<color=#fca5a5>–</color> good talks <color=#fca5a5>–</color> films"}, {"name": "Clean & Simple · Minimal", "cat": "Minimal", "code": "<size=26><b>Alex</b></size><color=#9ca3af>\njust here to chat</color>\n\nI keep it simple and real.\n\n<color=#93c5fd>coffee  ·  music</color>"}, {"name": "Clean & Simple · Banner", "cat": "Minimal", "code": "<color=#93c5fd>¯¯¯¯¯¯¯¯¯¯¯¯\n</color><size=26><b><color=#e5e7eb>· </color><color=#bdd6f5>Jordan </color><color=#93c5fd>·</color></b></size><color=#93c5fd>\n¯¯¯¯¯¯¯¯¯¯¯¯\n\n</color><color=#e5e7eb><b>About me</b></color>\nHappy to chat about anything.\nI keep it simple and real.\n\n<color=#e5e7eb><b>Looking for</b></color>\nchats\n\n<size=12><color=#9ca3af>Be kind</color></size>"}, {"name": "Class Clown · Spotlight", "cat": "Funny", "code": "<size=26><color=#fde047><b>ツ Hey, I'm Giggles ツ</b></color></size><color=#a3a3a3>\nprofessional overthinker · amateur comedian\n\n</color><color=#fb923c><b>☺ I'm into\n</b>☺</color> bad puns\n<color=#fb923c>☺</color> naps\n\n<color=#fb923c><b>☺ Not for me\n</b></color><color=#4ade80>☺</color> serious faces\n<color=#4ade80>☺</color> spoilers\n\n<size=12><color=#a3a3a3>Stay weird ツ</color></size>"}, {"name": "Class Clown · Gradient title", "cat": "Funny", "code": "<size=30><b><color=#fde047>P</color><color=#fec143>I</color><color=#fda23e>C</color><color=#f98d5f>K</color><color=#f6818f>L</color><color=#f472b6>E</color></b></size><color=#a3a3a3>\n~ ☺ ~ ☺ ~ ☺ ~</color>\n\nI laugh at my own jokes so you don't have to.\nHere for snacks, stayed for the people.\n\n<color=#fb923c>memes · dancing badly\n\n</color><size=12><color=#a3a3a3><i>Thanks for reading, here's a cookie</i></color></size>"}, {"name": "Class Clown · Do's and don'ts", "cat": "Funny", "code": "<size=22><color=#fde047><b>ツ Chuckles ツ</b></color></size>\nI laugh at my own jokes so you don't have to.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Invite me to events\n<color=#59ff00> ▶</color> Send good vibes\n<color=#59ff00> ▶</color> Say hi first\n\n<color=red><b>My don'ts\n</b> ▶</color> Mondays\n<color=red> ▶</color> No snacks\n<color=red> ▶</color> Serious faces\n\n<size=12><color=#a3a3a3>Smile, it confuses people</color></size>"}, {"name": "Class Clown · Status board", "cat": "Funny", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#fde047>ツ Giggles ツ</color></size><color=#a3a3a3>\nI came for the snacks\n\n</color><color=#fb923c><b>Find me</b></color>\n☺ <color=#fb923c>near the snack table\n\n<b>Looking for</b></color>\n☺ joke buddies"}, {"name": "Class Clown · Q&A card", "cat": "Funny", "code": "<size=24><color=#fde047><b>ツ Pickle</b></color></size><color=#a3a3a3>\n~ ☺ ~ ☺ ~ ☺ ~\n</color><color=#fb923c><b>Vibe:</b></color> professional overthinker · amateur comedian\n<color=#fb923c><b>Into:</b></color> cat videos, snacks\n<color=#fb923c><b>Find me:</b></color> on the dance floor (badly)\n<color=#fb923c><b>Looking for:</b></color> fellow goofballs\n<color=#fb923c><b>Not into:</b></color> no snacks, serious faces\n<color=#a3a3a3>~ ☺ ~ ☺ ~ ☺ ~\n</color><size=12><color=#4ade80>Smile, it confuses people</color></size>"}, {"name": "Class Clown · House rules", "cat": "Funny", "code": "<size=24><color=#fde047><b>ツ Pickle's rules ツ</b></color></size><color=#fb923c>\n\n①</color> Good vibes only\n<color=#fb923c>②</color> Ask before you whisper\n\n<color=#a3a3a3>Here for snacks, stayed for the people.\n</color><size=12><color=#4ade80>Smile, it confuses people</color></size>"}, {"name": "Class Clown · Big quote", "cat": "Funny", "code": "<size=28><color=#fde047><i>“Life's too short to be serious.”</i></color></size>\n\n<size=20><color=#fb923c><b>Pickle</b></color></size><color=#a3a3a3>\nprofessional overthinker · amateur comedian</color>\n\nI laugh at my own jokes so you don't have to.\n\n<color=#4ade80>☺</color> snacks <color=#4ade80>☺</color> cat videos"}, {"name": "Class Clown · Minimal", "cat": "Funny", "code": "<size=26><b>Chuckles</b></size><color=#a3a3a3>\nprofessional overthinker · amateur comedian</color>\n\nI laugh at my own jokes so you don't have to.\n\n<color=#fb923c>dancing badly  ·  memes</color>"}, {"name": "Class Clown · Banner", "cat": "Funny", "code": "<color=#fb923c>~ ☺ ~ ☺ ~ ☺ ~\n</color><size=26><b><color=#fde047>ツ </color><color=#fb923c>Giggles </color><color=#f472b6>ツ</color></b></size><color=#fb923c>\n~ ☺ ~ ☺ ~ ☺ ~\n\n</color><color=#fde047><b>About me</b></color>\nHere for snacks, stayed for the people.\nI laugh at my own jokes so you don't have to.\n\n<color=#fde047><b>Looking for</b></color>\nfellow goofballs\n\n<size=12><color=#a3a3a3>Thanks for reading, here's a cookie</color></size>"}, {"name": "Wanderer · Spotlight", "cat": "Explorer", "code": "<size=26><color=#34d399><b>➳ Hey, I'm Juno ➳</b></color></size><color=#a8a29e>\ncollecting places, not things\n\n</color><color=#fbbf24><b>→ I'm into\n</b>→</color> photos\n<color=#fbbf24>→</color> languages\n\n<color=#fbbf24><b>→ Not for me\n</b></color><color=#60a5fa>→</color> closed doors\n<color=#60a5fa>→</color> staying still\n\n<size=12><color=#a8a29e>Adventure awaits</color></size>"}, {"name": "Wanderer · Gradient title", "cat": "Explorer", "code": "<size=30><b><color=#059669>A</color><color=#20b481>T</color><color=#34d399>L</color><color=#b2cc6f>A</color><color=#fbbf24>S</color></b></size><color=#a8a29e>\n· · · ✈ · · ·</color>\n\nEvery place has a story.\nI love exploring new worlds and rooms.\n\n<color=#fbbf24>maps · hidden gems\n\n</color><size=12><color=#a8a29e><i>See you out there ➳</i></color></size>"}, {"name": "Wanderer · Do's and don'ts", "cat": "Explorer", "code": "<size=22><color=#34d399><b>➳ Ezra ➳</b></color></size>\nEvery place has a story.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Say hi first\n<color=#59ff00> ▶</color> Share your favourite song\n<color=#59ff00> ▶</color> Ask me to dance\n\n<color=red><b>My don'ts\n</b> ▶</color> Bad directions\n<color=red> ▶</color> Boring routes\n<color=red> ▶</color> Closed doors\n\n<size=12><color=#a8a29e>Bon voyage</color></size>"}, {"name": "Wanderer · Status board", "cat": "Explorer", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#34d399>➳ Juno ➳</color></size><color=#a8a29e>\nsay hi in any language\n\n</color><color=#fbbf24><b>Find me</b></color>\n→ <color=#fbbf24>the world map\n\n<b>Looking for</b></color>\n→ guides"}, {"name": "Wanderer · Q&A card", "cat": "Explorer", "code": "<size=24><color=#34d399><b>➳ Atlas</b></color></size><color=#a8a29e>\n· · · ✈ · · ·\n</color><color=#fbbf24><b>Vibe:</b></color> collecting places, not things\n<color=#fbbf24><b>Into:</b></color> new places, road trips\n<color=#fbbf24><b>Find me:</b></color> your favourite room\n<color=#fbbf24><b>Looking for:</b></color> travel buddies\n<color=#fbbf24><b>Not into:</b></color> boring routes, closed doors\n<color=#a8a29e>· · · ✈ · · ·\n</color><size=12><color=#60a5fa>Bon voyage</color></size>"}, {"name": "Wanderer · House rules", "cat": "Explorer", "code": "<size=24><color=#34d399><b>➳ Atlas's rules ➳</b></color></size><color=#fbbf24>\n\n①</color> Be kind, always\n<color=#fbbf24>②</color> Have fun and dance\n\n<color=#a8a29e>I love exploring new worlds and rooms.\n</color><size=12><color=#60a5fa>Bon voyage</color></size>"}, {"name": "Wanderer · Big quote", "cat": "Explorer", "code": "<size=28><color=#34d399><i>“Go see the world.”</i></color></size>\n\n<size=20><color=#fbbf24><b>Atlas</b></color></size><color=#a8a29e>\ncollecting places, not things</color>\n\nEvery place has a story.\n\n<color=#60a5fa>→</color> road trips <color=#60a5fa>→</color> new places"}, {"name": "Wanderer · Minimal", "cat": "Explorer", "code": "<size=26><b>Ezra</b></size><color=#a8a29e>\ncollecting places, not things</color>\n\nEvery place has a story.\n\n<color=#fbbf24>hidden gems  ·  maps</color>"}, {"name": "Wanderer · Banner", "cat": "Explorer", "code": "<color=#fbbf24>· · · ✈ · · ·\n</color><size=26><b><color=#059669>➳ </color><color=#34d399>Juno </color><color=#fbbf24>➳</color></b></size><color=#fbbf24>\n· · · ✈ · · ·\n\n</color><color=#34d399><b>About me</b></color>\nI love exploring new worlds and rooms.\nEvery place has a story.\n\n<color=#34d399><b>Looking for</b></color>\ntravel buddies\n\n<size=12><color=#a8a29e>See you out there ➳</color></size>"}, {"name": "Stardust · Spotlight", "cat": "Space", "code": "<size=26><color=#818cf8><b>☆ Hey, I'm Nebula ☆</b></color></size><color=#a5b4fc>\norbiting good vibes\n\n</color><color=#f0abfc><b>✩ I'm into\n</b>✩</color> synthwave\n<color=#f0abfc>✩</color> moon phases\n\n<color=#f0abfc><b>✩ Not for me\n</b></color><color=#fef08a>✩</color> flat earth talk\n<color=#fef08a>✩</color> closed minds\n\n<size=12><color=#a5b4fc>Shine on</color></size>"}, {"name": "Stardust · Gradient title", "cat": "Space", "code": "<size=30><b><color=#312e81>O</color><color=#575cbb>R</color><color=#818cf8>I</color><color=#b99dfb>O</color><color=#f0abfc>N</color></b></size><color=#a5b4fc>\n° ☆ ° ☆ ° ☆ °</color>\n\nAsk me about planets, stars and the big questions.\nLate-night stargazer.\n\n<color=#f0abfc>night skies · stargazing\n\n</color><size=12><color=#a5b4fc><i>To infinity</i></color></size>"}, {"name": "Stardust · Do's and don'ts", "cat": "Space", "code": "<size=22><color=#818cf8><b>☆ Astra ☆</b></color></size>\nAsk me about planets, stars and the big questions.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Ask me to dance\n<color=#59ff00> ▶</color> Invite me to events\n<color=#59ff00> ▶</color> Send good vibes\n\n<color=red><b>My don'ts\n</b> ▶</color> Light pollution\n<color=red> ▶</color> Cloudy nights\n<color=red> ▶</color> Flat earth talk\n\n<size=12><color=#a5b4fc>Reach for the stars ☆</color></size>"}, {"name": "Stardust · Status board", "cat": "Space", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#818cf8>☆ Nebula ☆</color></size><color=#a5b4fc>\nmade of stardust\n\n</color><color=#f0abfc><b>Find me</b></color>\n✩ <color=#f0abfc>space-themed rooms\n\n<b>Looking for</b></color>\n✩ night owls"}, {"name": "Stardust · Q&A card", "cat": "Space", "code": "<size=24><color=#818cf8><b>☆ Orion</b></color></size><color=#a5b4fc>\n° ☆ ° ☆ ° ☆ °\n</color><color=#f0abfc><b>Vibe:</b></color> orbiting good vibes\n<color=#f0abfc><b>Into:</b></color> space documentaries, big ideas\n<color=#f0abfc><b>Find me:</b></color> the observatory\n<color=#f0abfc><b>Looking for:</b></color> deep thinkers\n<color=#f0abfc><b>Not into:</b></color> cloudy nights, flat earth talk\n<color=#a5b4fc>° ☆ ° ☆ ° ☆ °\n</color><size=12><color=#fef08a>Reach for the stars ☆</color></size>"}, {"name": "Stardust · House rules", "cat": "Space", "code": "<size=24><color=#818cf8><b>☆ Orion's rules ☆</b></color></size><color=#f0abfc>\n\n①</color> No cloudy nights\n<color=#f0abfc>②</color> Respect my space\n\n<color=#a5b4fc>Late-night stargazer.\n</color><size=12><color=#fef08a>Reach for the stars ☆</color></size>"}, {"name": "Stardust · Big quote", "cat": "Space", "code": "<size=28><color=#818cf8><i>“We are all stardust.”</i></color></size>\n\n<size=20><color=#f0abfc><b>Orion</b></color></size><color=#a5b4fc>\norbiting good vibes</color>\n\nAsk me about planets, stars and the big questions.\n\n<color=#fef08a>✩</color> big ideas <color=#fef08a>✩</color> space documentaries"}, {"name": "Stardust · Minimal", "cat": "Space", "code": "<size=26><b>Astra</b></size><color=#a5b4fc>\norbiting good vibes</color>\n\nAsk me about planets, stars and the big questions.\n\n<color=#f0abfc>stargazing  ·  night skies</color>"}, {"name": "Stardust · Banner", "cat": "Space", "code": "<color=#f0abfc>° ☆ ° ☆ ° ☆ °\n</color><size=26><b><color=#312e81>☆ </color><color=#818cf8>Nebula </color><color=#f0abfc>☆</color></b></size><color=#f0abfc>\n° ☆ ° ☆ ° ☆ °\n\n</color><color=#818cf8><b>About me</b></color>\nLate-night stargazer.\nAsk me about planets, stars and the big questions.\n\n<color=#818cf8><b>Looking for</b></color>\ndeep thinkers\n\n<size=12><color=#a5b4fc>To infinity</color></size>"}, {"name": "Forest Spirit · Spotlight", "cat": "Nature", "code": "<size=26><color=#86efac><b>❦ Hey, I'm Willow ❦</b></color></size><color=#a3a3a3>\ntree hugger · flower finder\n\n</color><color=#fcd34d><b>♣ I'm into\n</b>♣</color> hiking\n<color=#fcd34d>♣</color> forests\n\n<color=#fcd34d><b>♣ Not for me\n</b></color><color=#7dd3fc>♣</color> noise\n<color=#7dd3fc>♣</color> rushing\n\n<size=12><color=#a3a3a3>Stay wild ❦</color></size>"}, {"name": "Forest Spirit · Gradient title", "cat": "Nature", "code": "<size=30><b><color=#15803d>A</color><color=#86efac>S</color><color=#fcd34d>H</color></b></size><color=#a3a3a3>\n~ ❦ ~ ❦ ~ ❦ ~</color>\n\nNature is my favourite room.\nLet's go for a walk.\n\n<color=#fcd34d>campfires · flowers\n\n</color><size=12><color=#a3a3a3><i>Breathe in, breathe out</i></color></size>"}, {"name": "Forest Spirit · Do's and don'ts", "cat": "Nature", "code": "<size=22><color=#86efac><b>❦ Fern ❦</b></color></size>\nNature is my favourite room.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Send good vibes\n<color=#59ff00> ▶</color> Say hi first\n<color=#59ff00> ▶</color> Share your favourite song\n\n<color=red><b>My don'ts\n</b> ▶</color> Concrete jungles\n<color=red> ▶</color> Littering\n<color=red> ▶</color> Noise\n\n<size=12><color=#a3a3a3>Bloom where you're planted</color></size>"}, {"name": "Forest Spirit · Status board", "cat": "Nature", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#86efac>❦ Willow ❦</color></size><color=#a3a3a3>\nhappiest in the forest\n\n</color><color=#fcd34d><b>Find me</b></color>\n♣ <color=#fcd34d>the forest trail\n\n<b>Looking for</b></color>\n♣ walking buddies"}, {"name": "Forest Spirit · Q&A card", "cat": "Nature", "code": "<size=24><color=#86efac><b>❦ Ash</b></color></size><color=#a3a3a3>\n~ ❦ ~ ❦ ~ ❦ ~\n</color><color=#fcd34d><b>Vibe:</b></color> tree hugger · flower finder\n<color=#fcd34d><b>Into:</b></color> rain, birdsong\n<color=#fcd34d><b>Find me:</b></color> the garden\n<color=#fcd34d><b>Looking for:</b></color> nature lovers\n<color=#fcd34d><b>Not into:</b></color> littering, noise\n<color=#a3a3a3>~ ❦ ~ ❦ ~ ❦ ~\n</color><size=12><color=#7dd3fc>Bloom where you're planted</color></size>"}, {"name": "Forest Spirit · House rules", "cat": "Nature", "code": "<size=24><color=#86efac><b>❦ Ash's rules ❦</b></color></size><color=#fcd34d>\n\n①</color> Ask before you whisper\n<color=#fcd34d>②</color> Good vibes only\n\n<color=#a3a3a3>Let's go for a walk.\n</color><size=12><color=#7dd3fc>Bloom where you're planted</color></size>"}, {"name": "Forest Spirit · Big quote", "cat": "Nature", "code": "<size=28><color=#86efac><i>“Nature heals.”</i></color></size>\n\n<size=20><color=#fcd34d><b>Ash</b></color></size><color=#a3a3a3>\ntree hugger · flower finder</color>\n\nNature is my favourite room.\n\n<color=#7dd3fc>♣</color> birdsong <color=#7dd3fc>♣</color> rain"}, {"name": "Forest Spirit · Minimal", "cat": "Nature", "code": "<size=26><b>Fern</b></size><color=#a3a3a3>\ntree hugger · flower finder</color>\n\nNature is my favourite room.\n\n<color=#fcd34d>flowers  ·  campfires</color>"}, {"name": "Forest Spirit · Banner", "cat": "Nature", "code": "<color=#fcd34d>~ ❦ ~ ❦ ~ ❦ ~\n</color><size=26><b><color=#15803d>❦ </color><color=#86efac>Willow </color><color=#fcd34d>❦</color></b></size><color=#fcd34d>\n~ ❦ ~ ❦ ~ ❦ ~\n\n</color><color=#86efac><b>About me</b></color>\nLet's go for a walk.\nNature is my favourite room.\n\n<color=#86efac><b>Looking for</b></color>\nnature lovers\n\n<size=12><color=#a3a3a3>Breathe in, breathe out</color></size>"}, {"name": "Snowfall · Spotlight", "cat": "Seasons", "code": "<size=26><color=#bae6fd><b>☃ Hey, I'm Holly ☃</b></color></size><color=#94a3b8>\nwinter is my season\n\n</color><color=#e0f2fe><b>✽ I'm into\n</b>✽</color> cozy sweaters\n<color=#e0f2fe>✽</color> hot cocoa\n\n<color=#e0f2fe><b>✽ Not for me\n</b></color><color=#fca5a5>✽</color> heatwaves\n<color=#fca5a5>✽</color> grinches\n\n<size=12><color=#94a3b8>Let it snow</color></size>"}, {"name": "Snowfall · Gradient title", "cat": "Seasons", "code": "<size=30><b><color=#38bdf8>F</color><color=#82d2fb>R</color><color=#bae6fd>O</color><color=#ddf3fe>S</color><color=white>T</color></b></size><color=#94a3b8>\n✽ ☃ ✽ ☃ ✽ ☃ ✽</color>\n\nWinter magic all year round.\nFind me by the fire with hot chocolate.\n\n<color=#e0f2fe>holiday lights · fireplaces\n\n</color><size=12><color=#94a3b8><i>Stay warm ☃</i></color></size>"}, {"name": "Snowfall · Do's and don'ts", "cat": "Seasons", "code": "<size=22><color=#bae6fd><b>☃ Noel ☃</b></color></size>\nWinter magic all year round.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Share your favourite song\n<color=#59ff00> ▶</color> Ask me to dance\n<color=#59ff00> ▶</color> Invite me to events\n\n<color=red><b>My don'ts\n</b> ▶</color> Wet socks\n<color=red> ▶</color> Cold coffee\n<color=red> ▶</color> Heatwaves\n\n<size=12><color=#94a3b8>Hugs and hot cocoa</color></size>"}, {"name": "Snowfall · Status board", "cat": "Seasons", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#bae6fd>☃ Holly ☃</color></size><color=#94a3b8>\ncold hands, warm heart\n\n</color><color=#e0f2fe><b>Find me</b></color>\n✽ <color=#e0f2fe>by the fireplace\n\n<b>Looking for</b></color>\n✽ snowball partners"}, {"name": "Snowfall · Q&A card", "cat": "Seasons", "code": "<size=24><color=#bae6fd><b>☃ Frost</b></color></size><color=#94a3b8>\n✽ ☃ ✽ ☃ ✽ ☃ ✽\n</color><color=#e0f2fe><b>Vibe:</b></color> winter is my season\n<color=#e0f2fe><b>Into:</b></color> ice skating, snow days\n<color=#e0f2fe><b>Find me:</b></color> the ice rink\n<color=#e0f2fe><b>Looking for:</b></color> cozy company\n<color=#e0f2fe><b>Not into:</b></color> cold coffee, heatwaves\n<color=#94a3b8>✽ ☃ ✽ ☃ ✽ ☃ ✽\n</color><size=12><color=#fca5a5>Hugs and hot cocoa</color></size>"}, {"name": "Snowfall · House rules", "cat": "Seasons", "code": "<size=24><color=#bae6fd><b>☃ Frost's rules ☃</b></color></size><color=#e0f2fe>\n\n①</color> Have fun and dance\n<color=#e0f2fe>②</color> Be kind, always\n\n<color=#94a3b8>Find me by the fire with hot chocolate.\n</color><size=12><color=#fca5a5>Hugs and hot cocoa</color></size>"}, {"name": "Snowfall · Big quote", "cat": "Seasons", "code": "<size=28><color=#bae6fd><i>“Let it snow.”</i></color></size>\n\n<size=20><color=#e0f2fe><b>Frost</b></color></size><color=#94a3b8>\nwinter is my season</color>\n\nWinter magic all year round.\n\n<color=#fca5a5>✽</color> snow days <color=#fca5a5>✽</color> ice skating"}, {"name": "Snowfall · Minimal", "cat": "Seasons", "code": "<size=26><b>Noel</b></size><color=#94a3b8>\nwinter is my season</color>\n\nWinter magic all year round.\n\n<color=#e0f2fe>fireplaces  ·  holiday lights</color>"}, {"name": "Snowfall · Banner", "cat": "Seasons", "code": "<color=#e0f2fe>✽ ☃ ✽ ☃ ✽ ☃ ✽\n</color><size=26><b><color=#38bdf8>☃ </color><color=#bae6fd>Holly </color><color=white>☃</color></b></size><color=#e0f2fe>\n✽ ☃ ✽ ☃ ✽ ☃ ✽\n\n</color><color=#bae6fd><b>About me</b></color>\nFind me by the fire with hot chocolate.\nWinter magic all year round.\n\n<color=#bae6fd><b>Looking for</b></color>\ncozy company\n\n<size=12><color=#94a3b8>Stay warm ☃</color></size>"}, {"name": "Spooky Season · Spotlight", "cat": "Seasons", "code": "<size=26><color=#fb923c><b>☠ Hey, I'm Wednesday ☠</b></color></size><color=#a3a3a3>\nboo! did I scare you?\n\n</color><color=#a855f7><b>✟ I'm into\n</b>✟</color> ghost stories\n<color=#a855f7>✟</color> pumpkins\n\n<color=#a855f7><b>✟ Not for me\n</b></color><color=#4ade80>✟</color> no candy\n<color=#4ade80>✟</color> jump scares (okay, maybe)\n\n<size=12><color=#a3a3a3>Boo!</color></size>"}, {"name": "Spooky Season · Gradient title", "cat": "Seasons", "code": "<size=30><b><color=#ea580c>P</color><color=#f06c20>U</color><color=#f6802f>M</color><color=#fb923c>P</color><color=#dc8790>K</color><color=#c074c7>I</color><color=#a855f7>N</color></b></size><color=#a3a3a3>\n☠ ✟ ☠ ✟ ☠ ✟ ☠</color>\n\nHalloween is my favourite holiday.\nHaunted houses and horror movies, yes please.\n\n<color=#a855f7>horror movies · costumes\n\n</color><size=12><color=#a3a3a3><i>Trick or treat</i></color></size>"}, {"name": "Spooky Season · Do's and don'ts", "cat": "Seasons", "code": "<size=22><color=#fb923c><b>☠ Hex ☠</b></color></size>\nHalloween is my favourite holiday.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Invite me to events\n<color=#59ff00> ▶</color> Send good vibes\n<color=#59ff00> ▶</color> Say hi first\n\n<color=red><b>My don'ts\n</b> ▶</color> Daylight\n<color=red> ▶</color> Lame costumes\n<color=red> ▶</color> No candy\n\n<size=12><color=#a3a3a3>Stay spooky ☠</color></size>"}, {"name": "Spooky Season · Status board", "cat": "Seasons", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#fb923c>☠ Wednesday ☠</color></size><color=#a3a3a3>\nspooky all year round\n\n</color><color=#a855f7><b>Find me</b></color>\n✟ <color=#a855f7>pumpkin patches\n\n<b>Looking for</b></color>\n✟ horror fans"}, {"name": "Spooky Season · Q&A card", "cat": "Seasons", "code": "<size=24><color=#fb923c><b>☠ Pumpkin</b></color></size><color=#a3a3a3>\n☠ ✟ ☠ ✟ ☠ ✟ ☠\n</color><color=#a855f7><b>Vibe:</b></color> boo! did I scare you?\n<color=#a855f7><b>Into:</b></color> candy, haunted houses\n<color=#a855f7><b>Find me:</b></color> the haunted mansion\n<color=#a855f7><b>Looking for:</b></color> costume buddies\n<color=#a855f7><b>Not into:</b></color> lame costumes, no candy\n<color=#a3a3a3>☠ ✟ ☠ ✟ ☠ ✟ ☠\n</color><size=12><color=#4ade80>Stay spooky ☠</color></size>"}, {"name": "Spooky Season · House rules", "cat": "Seasons", "code": "<size=24><color=#fb923c><b>☠ Pumpkin's rules ☠</b></color></size><color=#a855f7>\n\n①</color> Respect my space\n<color=#a855f7>②</color> No lame costumes\n\n<color=#a3a3a3>Haunted houses and horror movies, yes please.\n</color><size=12><color=#4ade80>Stay spooky ☠</color></size>"}, {"name": "Spooky Season · Big quote", "cat": "Seasons", "code": "<size=28><color=#fb923c><i>“Boo.”</i></color></size>\n\n<size=20><color=#a855f7><b>Pumpkin</b></color></size><color=#a3a3a3>\nboo! did I scare you?</color>\n\nHalloween is my favourite holiday.\n\n<color=#4ade80>✟</color> haunted houses <color=#4ade80>✟</color> candy"}, {"name": "Spooky Season · Minimal", "cat": "Seasons", "code": "<size=26><b>Hex</b></size><color=#a3a3a3>\nboo! did I scare you?</color>\n\nHalloween is my favourite holiday.\n\n<color=#a855f7>costumes  ·  horror movies</color>"}, {"name": "Spooky Season · Banner", "cat": "Seasons", "code": "<color=#a855f7>☠ ✟ ☠ ✟ ☠ ✟ ☠\n</color><size=26><b><color=#ea580c>☠ </color><color=#fb923c>Wednesday </color><color=#a855f7>☠</color></b></size><color=#a855f7>\n☠ ✟ ☠ ✟ ☠ ✟ ☠\n\n</color><color=#fb923c><b>About me</b></color>\nHaunted houses and horror movies, yes please.\nHalloween is my favourite holiday.\n\n<color=#fb923c><b>Looking for</b></color>\ncostume buddies\n\n<size=12><color=#a3a3a3>Trick or treat</color></size>"}, {"name": "Storyteller · Spotlight", "cat": "Roleplay", "code": "<size=26><color=#fcd34d><b>『 Hey, I'm Scribe 』</b></color></size><color=#a8a29e>\nroleplayer · writer · dreamer\n\n</color><color=#f87171><b>✎ I'm into\n</b>✎</color> roleplay\n<color=#f87171>✎</color> character arcs\n\n<color=#f87171><b>✎ Not for me\n</b></color><color=#93c5fd>✎</color> meta gaming\n<color=#93c5fd>✎</color> one-word replies\n\n<size=12><color=#a8a29e>The story continues...</color></size>"}, {"name": "Storyteller · Gradient title", "cat": "Roleplay", "code": "<size=30><b><color=#b45309>S</color><color=#cd7e22>A</color><color=#e5a838>G</color><color=#fcd34d>E</color></b></size><color=#a8a29e>\n═══ ✎ ═══</color>\n\nAsk me for a scene and I'll set the stage.\nPlot twists are my favourite.\n\n<color=#f87171>plot twists · fantasy & sci-fi\n\n</color><size=12><color=#a8a29e><i>To be continued</i></color></size>"}, {"name": "Storyteller · Do's and don'ts", "cat": "Roleplay", "code": "<size=22><color=#fcd34d><b>『 Bard 』</b></color></size>\nAsk me for a scene and I'll set the stage.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Say hi first\n<color=#59ff00> ▶</color> Share your favourite song\n<color=#59ff00> ▶</color> Ask me to dance\n\n<color=red><b>My don'ts\n</b> ▶</color> Godmodding\n<color=red> ▶</color> Breaking scenes\n<color=red> ▶</color> Meta gaming\n\n<size=12><color=#a8a29e>Write with me ✎</color></size>"}, {"name": "Storyteller · Status board", "cat": "Roleplay", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#fcd34d>『 Scribe 』</color></size><color=#a8a29e>\nevery room is a story\n\n</color><color=#f87171><b>Find me</b></color>\n✎ <color=#f87171>the tavern\n\n<b>Looking for</b></color>\n✎ writing partners"}, {"name": "Storyteller · Q&A card", "cat": "Roleplay", "code": "<size=24><color=#fcd34d><b>『 Sage</b></color></size><color=#a8a29e>\n═══ ✎ ═══\n</color><color=#f87171><b>Vibe:</b></color> roleplayer · writer · dreamer\n<color=#f87171><b>Into:</b></color> good writing, world-building\n<color=#f87171><b>Find me:</b></color> the library\n<color=#f87171><b>Looking for:</b></color> creative friends\n<color=#f87171><b>Not into:</b></color> breaking scenes, meta gaming\n<color=#a8a29e>═══ ✎ ═══\n</color><size=12><color=#93c5fd>Write with me ✎</color></size>"}, {"name": "Storyteller · House rules", "cat": "Roleplay", "code": "<size=24><color=#fcd34d><b>『 Sage's rules 』</b></color></size><color=#f87171>\n\n①</color> Good vibes only\n<color=#f87171>②</color> Ask before you whisper\n\n<color=#a8a29e>Plot twists are my favourite.\n</color><size=12><color=#93c5fd>Write with me ✎</color></size>"}, {"name": "Storyteller · Big quote", "cat": "Roleplay", "code": "<size=28><color=#fcd34d><i>“Every story matters.”</i></color></size>\n\n<size=20><color=#f87171><b>Sage</b></color></size><color=#a8a29e>\nroleplayer · writer · dreamer</color>\n\nAsk me for a scene and I'll set the stage.\n\n<color=#93c5fd>✎</color> world-building <color=#93c5fd>✎</color> good writing"}, {"name": "Storyteller · Minimal", "cat": "Roleplay", "code": "<size=26><b>Bard</b></size><color=#a8a29e>\nroleplayer · writer · dreamer</color>\n\nAsk me for a scene and I'll set the stage.\n\n<color=#f87171>fantasy & sci-fi  ·  plot twists</color>"}, {"name": "Storyteller · Banner", "cat": "Roleplay", "code": "<color=#f87171>═══ ✎ ═══\n</color><size=26><b><color=#b45309>『 </color><color=#da932d>Scribe </color><color=#fcd34d>』</color></b></size><color=#f87171>\n═══ ✎ ═══\n\n</color><color=#fcd34d><b>About me</b></color>\nPlot twists are my favourite.\nAsk me for a scene and I'll set the stage.\n\n<color=#fcd34d><b>Looking for</b></color>\ncreative friends\n\n<size=12><color=#a8a29e>To be continued</color></size>"}, {"name": "Taken & Happy · Spotlight", "cat": "Romance", "code": "<size=26><color=#f43f5e><b>❤ Hey, I'm Ivy & Max ❤</b></color></size><color=#d4a5b5>\ntwo hearts, one beat\n\n</color><color=#fda4af><b>♥ I'm into\n</b>♥</color> slow dances\n<color=#fda4af>♥</color> music\n\n<color=#fda4af><b>♥ Not for me\n</b></color><color=#fde68a>♥</color> rude whispers\n<color=#fde68a>♥</color> jealousy games\n\n<size=12><color=#d4a5b5>Together is better</color></size>"}, {"name": "Taken & Happy · Gradient title", "cat": "Romance", "code": "<size=30><b><color=#be123c>M</color><color=#d02447>I</color><color=#e23252>A </color><color=#f43f5e>& </color><color=#f96779>L</color><color=#fc8794>E</color><color=#fda4af>O</color></b></size><color=#d4a5b5>\n❤ ═════════ ❤</color>\n\nRespect our relationship and we'll get along great.\nWe love dancing together and meeting new friends.\n\n<color=#fda4af>couple outfits · friends\n\n</color><size=12><color=#d4a5b5><i>Love wins ❤</i></color></size>"}, {"name": "Taken & Happy · Do's and don'ts", "cat": "Romance", "code": "<size=22><color=#f43f5e><b>❤ Ella & Noah ❤</b></color></size>\nRespect our relationship and we'll get along great.\n\n<color=#59ff00><b>My do's\n</b> ▶</color> Ask me to dance\n<color=#59ff00> ▶</color> Invite me to events\n<color=#59ff00> ▶</color> Send good vibes\n\n<color=red><b>My don'ts\n</b> ▶</color> Drama\n<color=red> ▶</color> Flirting with my partner\n<color=red> ▶</color> Rude whispers\n\n<size=12><color=#d4a5b5>Be kind, be happy</color></size>"}, {"name": "Taken & Happy · Status board", "cat": "Romance", "code": "<size=16><b>( ) Online   (✓) AFK   ( ) Busy</b></size>\n\n<size=22><color=#f43f5e>❤ Ivy & Max ❤</color></size><color=#d4a5b5>\npartners in crime\n\n</color><color=#fda4af><b>Find me</b></color>\n♥ <color=#fda4af>romantic rooms\n\n<b>Looking for</b></color>\n♥ fun nights"}, {"name": "Taken & Happy · Q&A card", "cat": "Romance", "code": "<size=24><color=#f43f5e><b>❤ Mia & Leo</b></color></size><color=#d4a5b5>\n❤ ═════════ ❤\n</color><color=#fda4af><b>Vibe:</b></color> two hearts, one beat\n<color=#fda4af><b>Into:</b></color> date nights, double dates\n<color=#fda4af><b>Find me:</b></color> the beach at sunset\n<color=#fda4af><b>Looking for:</b></color> couple friends\n<color=#fda4af><b>Not into:</b></color> flirting with my partner, rude whispers\n<color=#d4a5b5>❤ ═════════ ❤\n</color><size=12><color=#fde68a>Be kind, be happy</color></size>"}, {"name": "Taken & Happy · House rules", "cat": "Romance", "code": "<size=24><color=#f43f5e><b>❤ Mia & Leo's rules ❤</b></color></size><color=#fda4af>\n\n①</color> Be kind, always\n<color=#fda4af>②</color> Have fun and dance\n\n<color=#d4a5b5>We love dancing together and meeting new friends.\n</color><size=12><color=#fde68a>Be kind, be happy</color></size>"}, {"name": "Taken & Happy · Big quote", "cat": "Romance", "code": "<size=28><color=#f43f5e><i>“Love is all you need.”</i></color></size>\n\n<size=20><color=#fda4af><b>Mia & Leo</b></color></size><color=#d4a5b5>\ntwo hearts, one beat</color>\n\nRespect our relationship and we'll get along great.\n\n<color=#fde68a>♥</color> double dates <color=#fde68a>♥</color> date nights"}, {"name": "Taken & Happy · Minimal", "cat": "Romance", "code": "<size=26><b>Ella & Noah</b></size><color=#d4a5b5>\ntwo hearts, one beat</color>\n\nRespect our relationship and we'll get along great.\n\n<color=#fda4af>friends  ·  couple outfits</color>"}, {"name": "Taken & Happy · Banner", "cat": "Romance", "code": "<color=#fda4af>❤ ═════════ ❤\n</color><size=26><b><color=#be123c>❤ </color><color=#d92b4d>Ivy </color><color=#f43f5e>& </color><color=#fb7786>Max </color><color=#fda4af>❤</color></b></size><color=#fda4af>\n❤ ═════════ ❤\n\n</color><color=#f43f5e><b>About me</b></color>\nWe love dancing together and meeting new friends.\nRespect our relationship and we'll get along great.\n\n<color=#f43f5e><b>Looking for</b></color>\ncouple friends\n\n<size=12><color=#d4a5b5>Love wins ❤</color></size>"}], "gift": [{"name": "Birthday · Big line", "cat": "Birthday", "code": "<size=38><color=#f472b6>★</color> Happy Birthday %username% <color=#f472b6>★</color></size>"}, {"name": "Birthday · Title + message", "cat": "Birthday", "code": "<size=30><color=#f472b6><b>Happy B-day, %username%!</b></color></size><color=#fbbf24>\nMake a wish and dance all night!</color>"}, {"name": "Birthday · Gradient", "cat": "Birthday", "code": "<size=32><b><color=#f472b6>Happy </color><color=#22d3ee>Birthday</color></b></size>\n%username%, cake, music and you. perfect."}, {"name": "Birthday · Framed", "cat": "Birthday", "code": "<color=#fbbf24>★ ★ ★\n</color><size=28><b>It's your day</b></size>\nFor %username%\n<color=#fbbf24>★ ★ ★</color>"}, {"name": "Birthday · Note", "cat": "Birthday", "code": "<color=#f472b6><b>To:</b></color> %username%\n<i>Another year more awesome!\n</i><size=24><color=#fbbf24>★ Happy B-day ★</color></size>"}, {"name": "Birthday · Two-tone", "cat": "Birthday", "code": "<size=34><color=#f472b6><b>Happy Birthday\n</b></color><color=#22d3ee>%username%</color></size>"}, {"name": "Birthday · Sparkle", "cat": "Birthday", "code": "<size=26><color=#22d3ee>★ </color><color=#f472b6><b>Happy Birthday </b></color><color=#22d3ee>★</color></size>\nMake a wish and dance all night!\n<size=14><color=#fbbf24>from your friend ♥</color></size>"}, {"name": "Birthday · Simple", "cat": "Birthday", "code": "Happy Birthday, %username%! <color=#f472b6>★\n</color><color=#fbbf24>Cake, music and you. Perfect.</color>"}, {"name": "Love · Big line", "cat": "Love", "code": "<size=38><color=red>♥</color> My love %username% <color=red>♥</color></size>"}, {"name": "Love · Title + message", "cat": "Love", "code": "<size=30><color=red><b>Always yours, %username%!</b></color></size><color=#fb7185>\nI'm so lucky to have you.</color>"}, {"name": "Love · Gradient", "cat": "Love", "code": "<size=32><b><color=red>My </color><color=#f9a8d4>love</color></b></size>\n%username%, you make my heart dance."}, {"name": "Love · Framed", "cat": "Love", "code": "<color=#fb7185>♥ ♥ ♥\n</color><size=28><b>For you</b></size>\nFor %username%\n<color=#fb7185>♥ ♥ ♥</color>"}, {"name": "Love · Note", "cat": "Love", "code": "<color=red><b>To:</b></color> %username%\n<i>You're my favourite person.\n</i><size=24><color=#fb7185>♥ Always yours ♥</color></size>"}, {"name": "Love · Two-tone", "cat": "Love", "code": "<size=34><color=red><b>My love\n</b></color><color=#f9a8d4>%username%</color></size>"}, {"name": "Love · Sparkle", "cat": "Love", "code": "<size=26><color=#f9a8d4>♥ </color><color=red><b>My love </b></color><color=#f9a8d4>♥</color></size>\nI'm so lucky to have you.\n<size=14><color=#fb7185>from your friend ♥</color></size>"}, {"name": "Love · Simple", "cat": "Love", "code": "My love, %username%! <color=red>♥\n</color><color=#fb7185>You make my heart dance.</color>"}, {"name": "Thank you · Big line", "cat": "Thank you", "code": "<size=38><color=#4ade80>✿</color> Grateful for you %username% <color=#4ade80>✿</color></size>"}, {"name": "Thank you · Title + message", "cat": "Thank you", "code": "<size=30><color=#4ade80><b>Thank you, %username%!</b></color></size><color=#fde047>\nI owe you a dance!</color>"}, {"name": "Thank you · Gradient", "cat": "Thank you", "code": "<size=32><b><color=#4ade80>Grateful </color><color=#64dac2>for </color><color=#7dd3fc>you</color></b></size>\n%username%, that meant a lot to me."}, {"name": "Thank you · Framed", "cat": "Thank you", "code": "<color=#fde047>✿ ✿ ✿\n</color><size=28><b>Thanks so much</b></size>\nFor %username%\n<color=#fde047>✿ ✿ ✿</color>"}, {"name": "Thank you · Note", "cat": "Thank you", "code": "<color=#4ade80><b>To:</b></color> %username%\n<i>You're the best, really.\n</i><size=24><color=#fde047>✿ Thank you ✿</color></size>"}, {"name": "Thank you · Two-tone", "cat": "Thank you", "code": "<size=34><color=#4ade80><b>Grateful for you\n</b></color><color=#7dd3fc>%username%</color></size>"}, {"name": "Thank you · Sparkle", "cat": "Thank you", "code": "<size=26><color=#7dd3fc>✿ </color><color=#4ade80><b>Grateful for you </b></color><color=#7dd3fc>✿</color></size>\nI owe you a dance!\n<size=14><color=#fde047>from your friend ♥</color></size>"}, {"name": "Thank you · Simple", "cat": "Thank you", "code": "Grateful for you, %username%! <color=#4ade80>✿\n</color><color=#fde047>That meant a lot to me.</color>"}, {"name": "Friendship · Big line", "cat": "Friendship", "code": "<size=38><color=#38bdf8>ツ</color> Best friends %username% <color=#38bdf8>ツ</color></size>"}, {"name": "Friendship · Title + message", "cat": "Friendship", "code": "<size=30><color=#38bdf8><b>Bestie, %username%!</b></color></size><color=#facc15>\nFriends forever, no matter what.</color>"}, {"name": "Friendship · Gradient", "cat": "Friendship", "code": "<size=32><b><color=#38bdf8>Best </color><color=#f472b6>friends</color></b></size>\n%username%, you make every room better."}, {"name": "Friendship · Framed", "cat": "Friendship", "code": "<color=#facc15>ツ ツ ツ\n</color><size=28><b>To my friend</b></size>\nFor %username%\n<color=#facc15>ツ ツ ツ</color>"}, {"name": "Friendship · Note", "cat": "Friendship", "code": "<color=#38bdf8><b>To:</b></color> %username%\n<i>Thanks for always being there.\n</i><size=24><color=#facc15>ツ Bestie ツ</color></size>"}, {"name": "Friendship · Two-tone", "cat": "Friendship", "code": "<size=34><color=#38bdf8><b>Best friends\n</b></color><color=#f472b6>%username%</color></size>"}, {"name": "Friendship · Sparkle", "cat": "Friendship", "code": "<size=26><color=#f472b6>ツ </color><color=#38bdf8><b>Best friends </b></color><color=#f472b6>ツ</color></size>\nFriends forever, no matter what.\n<size=14><color=#facc15>from your friend ♥</color></size>"}, {"name": "Friendship · Simple", "cat": "Friendship", "code": "Best friends, %username%! <color=#38bdf8>ツ\n</color><color=#facc15>You make every room better.</color>"}, {"name": "Congratulations · Big line", "cat": "Congrats", "code": "<size=38><color=#fbbf24>★</color> Well done %username% <color=#fbbf24>★</color></size>"}, {"name": "Congratulations · Title + message", "cat": "Congrats", "code": "<size=30><color=#fbbf24><b>You did it, %username%!</b></color></size><color=#a855f7>\nYou earned this!</color>"}, {"name": "Congratulations · Gradient", "cat": "Congrats", "code": "<size=32><b><color=#fbbf24>Well </color><color=#22d3ee>done</color></b></size>\n%username%, cheers to you!"}, {"name": "Congratulations · Framed", "cat": "Congrats", "code": "<color=#a855f7>★ ★ ★\n</color><size=28><b>Congrats</b></size>\nFor %username%\n<color=#a855f7>★ ★ ★</color>"}, {"name": "Congratulations · Note", "cat": "Congrats", "code": "<color=#fbbf24><b>To:</b></color> %username%\n<i>Big win, bigger party!\n</i><size=24><color=#a855f7>★ You did it ★</color></size>"}, {"name": "Congratulations · Two-tone", "cat": "Congrats", "code": "<size=34><color=#fbbf24><b>Well done\n</b></color><color=#22d3ee>%username%</color></size>"}, {"name": "Congratulations · Sparkle", "cat": "Congrats", "code": "<size=26><color=#22d3ee>★ </color><color=#fbbf24><b>Well done </b></color><color=#22d3ee>★</color></size>\nYou earned this!\n<size=14><color=#a855f7>from your friend ♥</color></size>"}, {"name": "Congratulations · Simple", "cat": "Congrats", "code": "Well done, %username%! <color=#fbbf24>★\n</color><color=#a855f7>Cheers to you!</color>"}, {"name": "Welcome · Big line", "cat": "Welcome", "code": "<size=38><color=#22d3ee>▶</color> Hello there %username% <color=#22d3ee>▶</color></size>"}, {"name": "Welcome · Title + message", "cat": "Welcome", "code": "<size=30><color=#22d3ee><b>Welcome, %username%!</b></color></size><color=#4ade80>\nWelcome to the family!</color>"}, {"name": "Welcome · Gradient", "cat": "Welcome", "code": "<size=32><b><color=#22d3ee>Hello </color><color=#fde047>there</color></b></size>\n%username%, so glad you're here!"}, {"name": "Welcome · Framed", "cat": "Welcome", "code": "<color=#4ade80>▶ ▶ ▶\n</color><size=28><b>Welcome in</b></size>\nFor %username%\n<color=#4ade80>▶ ▶ ▶</color>"}, {"name": "Welcome · Note", "cat": "Welcome", "code": "<color=#22d3ee><b>To:</b></color> %username%\n<i>Let the fun begin!\n</i><size=24><color=#4ade80>▶ Welcome ▶</color></size>"}, {"name": "Welcome · Two-tone", "cat": "Welcome", "code": "<size=34><color=#22d3ee><b>Hello there\n</b></color><color=#fde047>%username%</color></size>"}, {"name": "Welcome · Sparkle", "cat": "Welcome", "code": "<size=26><color=#fde047>▶ </color><color=#22d3ee><b>Hello there </b></color><color=#fde047>▶</color></size>\nWelcome to the family!\n<size=14><color=#4ade80>from your friend ♥</color></size>"}, {"name": "Welcome · Simple", "cat": "Welcome", "code": "Hello there, %username%! <color=#22d3ee>▶\n</color><color=#4ade80>So glad you're here!</color>"}, {"name": "Sorry · Big line", "cat": "Sorry", "code": "<size=38><color=#93c5fd>♡</color> I'm sorry %username% <color=#93c5fd>♡</color></size>"}, {"name": "Sorry · Title + message", "cat": "Sorry", "code": "<size=30><color=#93c5fd><b>Forgive me?, %username%!</b></color></size><color=#c4b5fd>\nHug it out?</color>"}, {"name": "Sorry · Gradient", "cat": "Sorry", "code": "<size=32><b><color=#93c5fd>I'm </color><color=#f9a8d4>sorry</color></b></size>\n%username%, can we start over?"}, {"name": "Sorry · Framed", "cat": "Sorry", "code": "<color=#c4b5fd>♡ ♡ ♡\n</color><size=28><b>My bad</b></size>\nFor %username%\n<color=#c4b5fd>♡ ♡ ♡</color>"}, {"name": "Sorry · Note", "cat": "Sorry", "code": "<color=#93c5fd><b>To:</b></color> %username%\n<i>I didn't mean it. Friends again?\n</i><size=24><color=#c4b5fd>♡ Forgive me? ♡</color></size>"}, {"name": "Sorry · Two-tone", "cat": "Sorry", "code": "<size=34><color=#93c5fd><b>I'm sorry\n</b></color><color=#f9a8d4>%username%</color></size>"}, {"name": "Sorry · Sparkle", "cat": "Sorry", "code": "<size=26><color=#f9a8d4>♡ </color><color=#93c5fd><b>I'm sorry </b></color><color=#f9a8d4>♡</color></size>\nHug it out?\n<size=14><color=#c4b5fd>from your friend ♥</color></size>"}, {"name": "Sorry · Simple", "cat": "Sorry", "code": "I'm sorry, %username%! <color=#93c5fd>♡\n</color><color=#c4b5fd>Can we start over?</color>"}, {"name": "Good night · Big line", "cat": "Good night", "code": "<size=38><color=#818cf8>☆</color> Sweet dreams %username% <color=#818cf8>☆</color></size>"}, {"name": "Good night · Title + message", "cat": "Good night", "code": "<size=30><color=#818cf8><b>Nighty night, %username%!</b></color></size><color=#fde68a>\nSleep tight, see you tomorrow.</color>"}, {"name": "Good night · Gradient", "cat": "Good night", "code": "<size=32><b><color=#818cf8>Sweet </color><color=#c4b5fd>dreams</color></b></size>\n%username%, rest well, superstar."}, {"name": "Good night · Framed", "cat": "Good night", "code": "<color=#fde68a>☆ ☆ ☆\n</color><size=28><b>Good night</b></size>\nFor %username%\n<color=#fde68a>☆ ☆ ☆</color>"}, {"name": "Good night · Note", "cat": "Good night", "code": "<color=#818cf8><b>To:</b></color> %username%\n<i>Dream of something wonderful.\n</i><size=24><color=#fde68a>☆ Nighty night ☆</color></size>"}, {"name": "Good night · Two-tone", "cat": "Good night", "code": "<size=34><color=#818cf8><b>Sweet dreams\n</b></color><color=#c4b5fd>%username%</color></size>"}, {"name": "Good night · Sparkle", "cat": "Good night", "code": "<size=26><color=#c4b5fd>☆ </color><color=#818cf8><b>Sweet dreams </b></color><color=#c4b5fd>☆</color></size>\nSleep tight, see you tomorrow.\n<size=14><color=#fde68a>from your friend ♥</color></size>"}, {"name": "Good night · Simple", "cat": "Good night", "code": "Sweet dreams, %username%! <color=#818cf8>☆\n</color><color=#fde68a>Rest well, superstar.</color>"}, {"name": "Party · Big line", "cat": "Party", "code": "<size=38><color=#ff3d8b>♫</color> Turn it up %username% <color=#ff3d8b>♫</color></size>"}, {"name": "Party · Title + message", "cat": "Party", "code": "<size=30><color=#ff3d8b><b>Party time, %username%!</b></color></size><color=#22d3ee>\nTonight we celebrate!</color>"}, {"name": "Party · Gradient", "cat": "Party", "code": "<size=32><b><color=#ff3d8b>Turn </color><color=#ff9a77>it </color><color=#fde047>up</color></b></size>\n%username%, bring your best moves!"}, {"name": "Party · Framed", "cat": "Party", "code": "<color=#22d3ee>♫ ♫ ♫\n</color><size=28><b>Let's dance</b></size>\nFor %username%\n<color=#22d3ee>♫ ♫ ♫</color>"}, {"name": "Party · Note", "cat": "Party", "code": "<color=#ff3d8b><b>To:</b></color> %username%\n<i>Drinks are on me!\n</i><size=24><color=#22d3ee>♫ Party time ♫</color></size>"}, {"name": "Party · Two-tone", "cat": "Party", "code": "<size=34><color=#ff3d8b><b>Turn it up\n</b></color><color=#fde047>%username%</color></size>"}, {"name": "Party · Sparkle", "cat": "Party", "code": "<size=26><color=#fde047>♫ </color><color=#ff3d8b><b>Turn it up </b></color><color=#fde047>♫</color></size>\nTonight we celebrate!\n<size=14><color=#22d3ee>from your friend ♥</color></size>"}, {"name": "Party · Simple", "cat": "Party", "code": "Turn it up, %username%! <color=#ff3d8b>♫\n</color><color=#22d3ee>Bring your best moves!</color>"}, {"name": "Christmas · Big line", "cat": "Holidays", "code": "<size=38><color=red>☃</color> Merry Christmas %username% <color=red>☃</color></size>"}, {"name": "Christmas · Title + message", "cat": "Holidays", "code": "<size=30><color=red><b>Happy holidays, %username%!</b></color></size><color=#22c55e>\nJoy, peace and hot cocoa!</color>"}, {"name": "Christmas · Gradient", "cat": "Holidays", "code": "<size=32><b><color=red>Merry </color><color=#fde047>Christmas</color></b></size>\n%username%, warm wishes and cozy nights!"}, {"name": "Christmas · Framed", "cat": "Holidays", "code": "<color=#22c55e>☃ ☃ ☃\n</color><size=28><b>Season's greetings</b></size>\nFor %username%\n<color=#22c55e>☃ ☃ ☃</color>"}, {"name": "Christmas · Note", "cat": "Holidays", "code": "<color=red><b>To:</b></color> %username%\n<i>Have a magical holiday!\n</i><size=24><color=#22c55e>☃ Happy holidays ☃</color></size>"}, {"name": "Christmas · Two-tone", "cat": "Holidays", "code": "<size=34><color=red><b>Merry Christmas\n</b></color><color=#fde047>%username%</color></size>"}, {"name": "Christmas · Sparkle", "cat": "Holidays", "code": "<size=26><color=#fde047>☃ </color><color=red><b>Merry Christmas </b></color><color=#fde047>☃</color></size>\nJoy, peace and hot cocoa!\n<size=14><color=#22c55e>from your friend ♥</color></size>"}, {"name": "Christmas · Simple", "cat": "Holidays", "code": "Merry Christmas, %username%! <color=red>☃\n</color><color=#22c55e>Warm wishes and cozy nights!</color>"}, {"name": "New Year · Big line", "cat": "Holidays", "code": "<size=38><color=#fbbf24>☆</color> Cheers to the new year %username% <color=#fbbf24>☆</color></size>"}, {"name": "New Year · Title + message", "cat": "Holidays", "code": "<size=30><color=#fbbf24><b>New year, new vibes, %username%!</b></color></size><color=#e5e7eb>\nNew adventures await!</color>"}, {"name": "New Year · Gradient", "cat": "Holidays", "code": "<size=32><b><color=#fbbf24>Cheers </color><color=#e3ac80>to </color><color=#cc96b0>the </color><color=#b97bd6>new </color><color=#a855f7>year</color></b></size>\n%username%, let's make it the best one yet!"}, {"name": "New Year · Framed", "cat": "Holidays", "code": "<color=#e5e7eb>☆ ☆ ☆\n</color><size=28><b>Happy New Year</b></size>\nFor %username%\n<color=#e5e7eb>☆ ☆ ☆</color>"}, {"name": "New Year · Note", "cat": "Holidays", "code": "<color=#fbbf24><b>To:</b></color> %username%\n<i>Here's to an amazing year!\n</i><size=24><color=#e5e7eb>☆ New year, new vibes ☆</color></size>"}, {"name": "New Year · Two-tone", "cat": "Holidays", "code": "<size=34><color=#fbbf24><b>Cheers to the new year\n</b></color><color=#a855f7>%username%</color></size>"}, {"name": "New Year · Sparkle", "cat": "Holidays", "code": "<size=26><color=#a855f7>☆ </color><color=#fbbf24><b>Cheers to the new year </b></color><color=#a855f7>☆</color></size>\nNew adventures await!\n<size=14><color=#e5e7eb>from your friend ♥</color></size>"}, {"name": "New Year · Simple", "cat": "Holidays", "code": "Cheers to the new year, %username%! <color=#fbbf24>☆\n</color><color=#e5e7eb>Let's make it the best one yet!</color>"}, {"name": "Valentine's Day · Big line", "cat": "Holidays", "code": "<size=38><color=red>♥</color> Love you %username% <color=red>♥</color></size>"}, {"name": "Valentine's Day · Title + message", "cat": "Holidays", "code": "<size=30><color=red><b>Be my Valentine, %username%!</b></color></size><color=#f472b6>\nYou stole my heart.</color>"}, {"name": "Valentine's Day · Gradient", "cat": "Holidays", "code": "<size=32><b><color=red>Love </color><color=#fecdd3>you</color></b></size>\n%username%, my heart beats for you."}, {"name": "Valentine's Day · Framed", "cat": "Holidays", "code": "<color=#f472b6>♥ ♥ ♥\n</color><size=28><b>Happy Valentine's</b></size>\nFor %username%\n<color=#f472b6>♥ ♥ ♥</color>"}, {"name": "Valentine's Day · Note", "cat": "Holidays", "code": "<color=red><b>To:</b></color> %username%\n<i>Roses are red, you're amazing.\n</i><size=24><color=#f472b6>♥ Be my Valentine ♥</color></size>"}, {"name": "Valentine's Day · Two-tone", "cat": "Holidays", "code": "<size=34><color=red><b>Love you\n</b></color><color=#fecdd3>%username%</color></size>"}, {"name": "Valentine's Day · Sparkle", "cat": "Holidays", "code": "<size=26><color=#fecdd3>♥ </color><color=red><b>Love you </b></color><color=#fecdd3>♥</color></size>\nYou stole my heart.\n<size=14><color=#f472b6>from your friend ♥</color></size>"}, {"name": "Valentine's Day · Simple", "cat": "Holidays", "code": "Love you, %username%! <color=red>♥\n</color><color=#f472b6>My heart beats for you.</color>"}, {"name": "Halloween · Big line", "cat": "Holidays", "code": "<size=38><color=#fb923c>♠</color> Happy Halloween %username% <color=#fb923c>♠</color></size>"}, {"name": "Halloween · Title + message", "cat": "Holidays", "code": "<size=30><color=#fb923c><b>Trick or treat, %username%!</b></color></size><color=#a855f7>\nHave a spooky night!</color>"}, {"name": "Halloween · Gradient", "cat": "Holidays", "code": "<size=32><b><color=#fb923c>Happy </color><color=#4ade80>Halloween</color></b></size>\n%username%, stay creepy!"}, {"name": "Halloween · Framed", "cat": "Holidays", "code": "<color=#a855f7>♠ ♠ ♠\n</color><size=28><b>Boo</b></size>\nFor %username%\n<color=#a855f7>♠ ♠ ♠</color>"}, {"name": "Halloween · Note", "cat": "Holidays", "code": "<color=#fb923c><b>To:</b></color> %username%\n<i>You're my favourite ghoul!\n</i><size=24><color=#a855f7>♠ Trick or treat ♠</color></size>"}, {"name": "Halloween · Two-tone", "cat": "Holidays", "code": "<size=34><color=#fb923c><b>Happy Halloween\n</b></color><color=#4ade80>%username%</color></size>"}, {"name": "Halloween · Sparkle", "cat": "Holidays", "code": "<size=26><color=#4ade80>♠ </color><color=#fb923c><b>Happy Halloween </b></color><color=#4ade80>♠</color></size>\nHave a spooky night!\n<size=14><color=#a855f7>from your friend ♥</color></size>"}, {"name": "Halloween · Simple", "cat": "Holidays", "code": "Happy Halloween, %username%! <color=#fb923c>♠\n</color><color=#a855f7>Stay creepy!</color>"}, {"name": "Get well · Big line", "cat": "Get well", "code": "<size=38><color=#4ade80>✚</color> Feel better %username% <color=#4ade80>✚</color></size>"}, {"name": "Get well · Title + message", "cat": "Get well", "code": "<size=30><color=#4ade80><b>Healing hugs, %username%!</b></color></size><color=#7dd3fc>\nGet better fast!</color>"}, {"name": "Get well · Gradient", "cat": "Get well", "code": "<size=32><b><color=#4ade80>Feel </color><color=#fde047>better</color></b></size>\n%username%, sending you hugs and soup!"}, {"name": "Get well · Framed", "cat": "Get well", "code": "<color=#7dd3fc>✚ ✚ ✚\n</color><size=28><b>Get well soon</b></size>\nFor %username%\n<color=#7dd3fc>✚ ✚ ✚</color>"}, {"name": "Get well · Note", "cat": "Get well", "code": "<color=#4ade80><b>To:</b></color> %username%\n<i>Thinking of you.\n</i><size=24><color=#7dd3fc>✚ Healing hugs ✚</color></size>"}, {"name": "Get well · Two-tone", "cat": "Get well", "code": "<size=34><color=#4ade80><b>Feel better\n</b></color><color=#fde047>%username%</color></size>"}, {"name": "Get well · Sparkle", "cat": "Get well", "code": "<size=26><color=#fde047>✚ </color><color=#4ade80><b>Feel better </b></color><color=#fde047>✚</color></size>\nGet better fast!\n<size=14><color=#7dd3fc>from your friend ♥</color></size>"}, {"name": "Get well · Simple", "cat": "Get well", "code": "Feel better, %username%! <color=#4ade80>✚\n</color><color=#7dd3fc>Sending you hugs and soup!</color>"}, {"name": "Miss you · Big line", "cat": "Friendship", "code": "<size=38><color=#c4b5fd>☁</color> Come back soon %username% <color=#c4b5fd>☁</color></size>"}, {"name": "Miss you · Title + message", "cat": "Friendship", "code": "<size=30><color=#c4b5fd><b>Miss you, %username%!</b></color></size><color=#f9a8d4>\nCome back soon!</color>"}, {"name": "Miss you · Gradient", "cat": "Friendship", "code": "<size=32><b><color=#c4b5fd>Come </color><color=#adbdfd>back </color><color=#93c5fd>soon</color></b></size>\n%username%, can't wait to see you again!"}, {"name": "Miss you · Framed", "cat": "Friendship", "code": "<color=#f9a8d4>☁ ☁ ☁\n</color><size=28><b>Thinking of you</b></size>\nFor %username%\n<color=#f9a8d4>☁ ☁ ☁</color>"}, {"name": "Miss you · Note", "cat": "Friendship", "code": "<color=#c4b5fd><b>To:</b></color> %username%\n<i>It's not the same without you.\n</i><size=24><color=#f9a8d4>☁ Miss you ☁</color></size>"}, {"name": "Miss you · Two-tone", "cat": "Friendship", "code": "<size=34><color=#c4b5fd><b>Come back soon\n</b></color><color=#93c5fd>%username%</color></size>"}, {"name": "Miss you · Sparkle", "cat": "Friendship", "code": "<size=26><color=#93c5fd>☁ </color><color=#c4b5fd><b>Come back soon </b></color><color=#93c5fd>☁</color></size>\nCome back soon!\n<size=14><color=#f9a8d4>from your friend ♥</color></size>"}, {"name": "Miss you · Simple", "cat": "Friendship", "code": "Come back soon, %username%! <color=#c4b5fd>☁\n</color><color=#f9a8d4>Can't wait to see you again!</color>"}, {"name": "Cheers · Big line", "cat": "Party", "code": "<size=38><color=#fbbf24>♪</color> Cheers %username% <color=#fbbf24>♪</color></size>"}, {"name": "Cheers · Title + message", "cat": "Party", "code": "<size=30><color=#fbbf24><b>To you, %username%!</b></color></size><color=#f472b6>\nHere's to good times!</color>"}, {"name": "Cheers · Gradient", "cat": "Party", "code": "<size=32><color=#fbbf24><b>Cheers</b></color></size>\n%username%, to friends and music!"}, {"name": "Cheers · Framed", "cat": "Party", "code": "<color=#f472b6>♪ ♪ ♪\n</color><size=28><b>Bottoms up</b></size>\nFor %username%\n<color=#f472b6>♪ ♪ ♪</color>"}, {"name": "Cheers · Note", "cat": "Party", "code": "<color=#fbbf24><b>To:</b></color> %username%\n<i>Drinks and good vibes!\n</i><size=24><color=#f472b6>♪ To you ♪</color></size>"}, {"name": "Cheers · Two-tone", "cat": "Party", "code": "<size=34><color=#fbbf24><b>Cheers\n</b></color><color=#22d3ee>%username%</color></size>"}, {"name": "Cheers · Sparkle", "cat": "Party", "code": "<size=26><color=#22d3ee>♪ </color><color=#fbbf24><b>Cheers </b></color><color=#22d3ee>♪</color></size>\nHere's to good times!\n<size=14><color=#f472b6>from your friend ♥</color></size>"}, {"name": "Cheers · Simple", "cat": "Party", "code": "Cheers, %username%! <color=#fbbf24>♪\n</color><color=#f472b6>To friends and music!</color>"}]};
+for (const m of ["profile", "gift"]) { TEMPLATES[m].forEach((t) => { t.cat = t.cat || "Featured"; }); TEMPLATES[m].push(...LIBRARY[m]); }
+const myTemplates = Object.assign({ profile: [], gift: [] }, store.get("mytpl") || {});
+const saveMyTemplates = () => store.set("mytpl", myTemplates);
+function addMyTemplate(code, name) {
+  const list = myTemplates[mode];
+  list.push({ name: name || `My template ${list.length + 1}`, cat: "Mine", code });
+  saveMyTemplates(); drawTemplates();
+  toast(`Saved to My templates`);
+}
 function tplCard(t, small) {
   const b = document.createElement("button");
   b.type = "button"; b.className = "tpl";
@@ -1736,7 +2066,20 @@ function tplCard(t, small) {
   b.onclick = () => loadTemplate(t);
   return b;
 }
-function drawTemplates() { $("#ribbon-tpls").replaceChildren(...TEMPLATES[mode].map((t) => tplCard(t, true))); }
+function toolCard(ic, title, sub, onclick) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "tpl tpl-tool";
+  b.innerHTML = `${icon(ic)}<div>${escapeHtml(title)}</div><span>${escapeHtml(sub)}</span>`;
+  b.onclick = onclick;
+  return b;
+}
+function drawTemplates() {
+  const n = TEMPLATES[mode].length + myTemplates[mode].length;
+  $("#ribbon-tpls").replaceChildren(
+    toolCard("i-layout", "Browse all", `${n} templates`, () => openGallery()),
+    toolCard("i-spark", "Make one with AI", "describe a style", () => openTemplateMaker()),
+    ...[...myTemplates[mode].slice(-2), ...TEMPLATES[mode].filter((t) => t.cat === "Featured")].map((t) => tplCard(t, true)));
+}
 async function loadTemplate(t) {
   if (textOf(runs).trim() && !isExample && !(await ask(`“${t.name}” will replace what you've written. You can undo with Ctrl+Z.`))) return;
   const p = parseCode(t.code);
@@ -1842,7 +2185,7 @@ function toast(msg) {
 // ---------- AI ----------
 // "artifact": runs inside Claude (the viewer's own Claude account, no key).
 // "release": the standalone page; free built-in AI (when AI_PROXY is set), or a key from any vendor below.
-const BUILD = "release", VERSION = "1.1.0";
+const BUILD = "release", VERSION = "1.2.0";
 // The Studio's own AI server (worker/). It holds the Anthropic key, so players need none.
 const AI_PROXY = "https://3dx-profile-studio-ai.pathmoor.workers.dev";
 const SDK_URL = "https://cdn.jsdelivr.net/npm/@anthropic-ai/sdk@0.131.0/+esm";
@@ -2161,13 +2504,14 @@ async function runAi(task, extra = {}, base = null) {
   await aiReady;
   if (!aiConfigured()) { if (BUILD === "artifact") return toast("AI isn't available in this view"); return openAiSettings(); }
   const ctx = base || aiContext();
-  if (task !== "write" && !ctx.code.trim()) return toast("Write something first, or use Write it for me");
+  if (task !== "write" && task !== "template" && !ctx.code.trim()) return toast("Write something first, or use Write it for me");
   const o = { ...ctx, ...extra };
-  o.target = task === "write" ? (mode === "gift" ? 150 : 700) : Math.round(o.limit * 0.85);
+  o.target = task === "write" || task === "template" ? (mode === "gift" ? 150 : 700) : Math.round(o.limit * 0.85);
   aiJob = { task, extra, ctx, text: "", done: false };
   const dlg = $("#dlg-ai-result"), pv = $("#air-preview");
   pv.className = "ai-preview thinking"; pv.textContent = "Thinking...";
-  $("#air-title").textContent = { write: "Your new text", shorten: "Shortened", fix: "Spelling fixed", tone: `${o.tone} version`, translate: `In ${o.lang}`, style: `${o.theme} style` }[task] || "AI suggestion";
+  $("#air-title").textContent = { write: "Your new text", shorten: "Shortened", fix: "Spelling fixed", tone: `${o.tone} version`, translate: `In ${o.lang}`, style: `${o.theme} style`,
+    decorate: "With symbols", readable: "Easier to read", template: "Your new template" }[task] || "AI suggestion";
   $("#air-count").textContent = "–"; $("#air-note").textContent = ""; $("#air-warns").innerHTML = "";
   $("#air-use").disabled = true; $("#air-retry").disabled = true; $("#air-shorter").hidden = true; $("#air-stop").hidden = false;
   if (!dlg.open) dlg.showModal();
@@ -2269,6 +2613,696 @@ $("#ai-translate").onclick = () => runAi("translate", { lang: $("#ai-lang").valu
 $("#ai-style").onclick = () => runAi("style", { theme: $("#ai-theme").value });
 updateAiStatus();
 
+let knownSymbols = null;
+function KNOWN_SYMBOLS() {
+  if (!knownSymbols) knownSymbols = new Set([...SYMBOLS.common, ...SYMBOLS.profileOnly, ...DIVIDERS, ...FLAGS_TEXT()].flatMap((x) => [...x]));
+  return knownSymbols;
+}
+function FLAGS_TEXT() { try { return typeof FLAGS !== "undefined" ? FLAGS.map((f) => JSON.stringify(f)) : []; } catch { return []; } }
+
+// ---------- word processor ----------
+const lineStart = (t, i) => (i <= 0 ? 0 : t.lastIndexOf("\n", i - 1) + 1);
+const lineEnd = (t, i) => { const k = t.indexOf("\n", i); return k < 0 ? t.length : k; };
+function lineSpans(s) {                      // [{a, b}] for every line touched by the selection
+  const t = textOf(runs);
+  const last = s.b > s.a && t[s.b - 1] === "\n" ? s.b - 1 : s.b;
+  const out = [];
+  for (let a = lineStart(t, s.a); a <= last; ) {
+    const b = lineEnd(t, a);
+    out.push({ a, b });
+    if (b >= t.length) break;
+    a = b + 1;
+  }
+  return out;
+}
+const BULLETS = ["•", "▶", "♥", "★", "✿", "♫", "→", "◆", "–"];
+const NUMBERINGS = { "1.": (n) => `${n}.`, "①": (n) => "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"[n - 1] || `${n}.`,
+                     "❶": (n) => "❶❷❸❹❺❻❼❽❾❿"[n - 1] || `${n}.`, "Ⅰ.": (n) => (["Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ", "Ⅶ", "Ⅷ", "Ⅸ", "Ⅹ", "Ⅺ", "Ⅻ"][n - 1] || n) + ".",
+                     "a)": (n) => `${String.fromCharCode(96 + Math.min(n, 26))})` };
+const LIST_RE = /^( *)((?:[•▶♥★✿♫→◆–])|\d+\.|[①-⑳]|[❶-❿]|[ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ]+\.|[a-z]\)) /;
+let bulletChar = store.get("bullet") || "•", numberStyle = store.get("numbering") || "1.";
+function linePrefix(t, span) { return LIST_RE.exec(t.slice(span.a, span.b)); }
+function setLinePrefixes(prefixFor) {        // prefixFor(index, lineText) -> new prefix or null to strip
+  const s = curSel();
+  edit(() => {
+    const spans = lineSpans(s);
+    let shift = 0;
+    spans.forEach((sp, idx) => {
+      const t = textOf(runs), a = sp.a + shift, b = sp.b + shift;
+      const m = LIST_RE.exec(t.slice(a, b));
+      const lead = m ? m[1] : (t.slice(a, b).match(/^ */) || [""])[0];
+      const oldLen = m ? m[0].length : lead.length;
+      const pre = prefixFor(idx, t.slice(a, b));
+      const ins = lead + (pre ? pre + " " : "");
+      const f = a + oldLen < b ? fmtAt(runs, a + oldLen + 1) : blank();   // the line's own first character
+      runs = deleteRange(runs, a, a + oldLen);
+      runs = insertRuns(runs, a, ins ? [{ t: ins, ...fmtOf(f) }] : []);
+      shift += ins.length - oldLen;
+    });
+    const t2 = textOf(runs);
+    return { sel: { a: lineStart(t2, s.a), b: lineEnd(t2, Math.max(s.a, s.b + shift)) } };
+  });
+}
+function toggleList(kind) {
+  const t = textOf(runs), spans = lineSpans(curSel());
+  const isBullet = (m) => m && /^[•▶♥★✿♫→◆–]$/.test(m[2]);
+  const allOn = spans.every((sp) => { const m = linePrefix(t, sp); return kind === "bullet" ? isBullet(m) : m && !isBullet(m); });
+  setLinePrefixes((i) => allOn ? null : kind === "bullet" ? bulletChar : NUMBERINGS[numberStyle](i + 1));
+}
+function indentLines(dir) {
+  const s = curSel();
+  edit(() => {
+    let shift = 0;
+    for (const sp of lineSpans(s)) {
+      const a = sp.a + shift, t = textOf(runs);
+      if (dir > 0) { runs = insertRuns(runs, a, [{ t: "   ", ...fmtOf(a < textOf(runs).length ? fmtAt(runs, a + 1) : blank()) }]); shift += 3; }
+      else { const n = Math.min(3, (t.slice(a, sp.b + shift).match(/^ */) || [""])[0].length); runs = deleteRange(runs, a, a + n); shift -= n; }
+    }
+    return { sel: { a: Math.max(0, s.a + (dir > 0 ? 3 : 0)), b: Math.max(0, s.b + shift) } };
+  });
+}
+// Enter inside a list continues it; Enter on an empty item ends the list
+function continueList() {
+  const s = curSel();
+  if (s.a !== s.b) return false;
+  const t = textOf(runs), sp = { a: lineStart(t, s.a), b: lineEnd(t, s.a) };
+  const m = linePrefix(t, sp);
+  if (!m || s.a < sp.a + m[0].length) return false;
+  if (!t.slice(sp.a + m[0].length, sp.b).trim()) {          // empty item: end the list
+    edit(() => { runs = deleteRange(runs, sp.a, sp.b); return { sel: { a: sp.a, b: sp.a } }; });
+    return true;
+  }
+  let next = m[2];
+  if (/^\d+\.$/.test(next)) next = `${parseInt(next, 10) + 1}.`;
+  else if (/^[a-z]\)$/.test(next)) next = `${String.fromCharCode(Math.min(122, next.charCodeAt(0) + 1))})`;
+  else for (const [st, fn] of Object.entries(NUMBERINGS)) {
+    const k = Array.from({ length: 20 }, (_, i) => fn(i + 1)).indexOf(next);
+    if (k >= 0 && st !== "1." && st !== "a)") { next = fn(k + 2); break; }
+  }
+  typeText("\n" + m[1] + next + " ");
+  return true;
+}
+// Enter: continue a list, or after a Title/Heading/Subheading line start the next line in Normal (like Word)
+function enterKey() {
+  if (continueList()) return;
+  const s = curSel(), t = textOf(runs), f = fmtAt(runs, s.a);
+  const atEnd = s.a === s.b && s.a === lineEnd(t, s.a) && t.slice(lineStart(t, s.a), s.a).trim();
+  const heading = atEnd && STYLES.slice(0, 3).some(([, st]) => !!st.b === !!f.b && (st.s || null) === (f.s || null) && (st.c || null) === (f.c || null));
+  if (!heading) return typeText("\n");
+  edit(() => { runs = insertRuns(runs, s.a, [{ t: "\n", ...blank() }]); return { sel: { a: s.a + 1, b: s.a + 1 } }; });
+  pending = blank(); pendingAt = s.a + 1; updateToolbar();
+}
+// alignment with spaces, measured in the game font (the profile panel is about 480 px wide)
+const measureCtx = document.createElement("canvas").getContext("2d");
+function textWidth(rs) {
+  let w = 0;
+  for (const r of rs) {
+    measureCtx.font = `${r.i ? "italic " : ""}${r.b ? "bold " : ""}${r.s || DEFAULT_SIZE}px Arial`;
+    w += measureCtx.measureText(r.t).width - (r.t.match(/ /g) || []).length * 0.96;
+  }
+  return w;
+}
+function alignLines(how) {
+  const s = curSel(), W = 480;
+  let added = 0;
+  edit(() => {
+    let shift = 0;
+    for (const sp of lineSpans(s)) {
+      const a = sp.a + shift, b = sp.b + shift, t = textOf(runs);
+      const lead = (t.slice(a, b).match(/^ */) || [""])[0].length;
+      runs = deleteRange(runs, a, a + lead);
+      shift -= lead;
+      const line = sliceRuns(runs, a, b - lead);
+      if (how !== "left" && textOf(line).trim()) {
+        const f = fmtAt(runs, a + 1);
+        measureCtx.font = `${f.s || DEFAULT_SIZE}px Arial`;
+        const space = measureCtx.measureText(" ").width - 0.96;
+        const free = Math.max(0, W - textWidth(line));
+        const n = Math.max(0, Math.round((how === "center" ? free / 2 : free) / space));
+        runs = insertRuns(runs, a, [{ t: " ".repeat(n), ...fmtOf(f) }]);
+        shift += n; added += n;
+      }
+    }
+    return { sel: { a: s.a, b: Math.max(s.a, s.b + shift) } };
+  });
+  if (how !== "left") toast(`Aligned with spaces (${added} characters). It's close in the game, not pixel-perfect.`);
+}
+// change case without changing any formatting
+const CASES = { "UPPERCASE": (t) => t.toUpperCase(), "lowercase": (t) => t.toLowerCase(),
+  "Title Case": (t) => t.toLowerCase().replace(/(^|[\s\-(["“])(\p{L})/gu, (m, a, c) => a + c.toUpperCase()),
+  "Sentence case": (t) => t.toLowerCase().replace(/(^\s*|[.!?]\s+|\n\s*)(\p{L})/gu, (m, a, c) => a + c.toUpperCase()) };
+function changeCase(name) {
+  const s = needSelection();
+  if (!s) return;
+  edit((sel) => {
+    const src = textOf(sliceRuns(runs, sel.a, sel.b));
+    const dst = CASES[name](src);
+    const chars = [...src].map((ch, i) => { const d = [...dst][i]; return d && d.length === ch.length ? d : ch; });
+    let k = 0;
+    runs = mapRange(runs, sel.a, sel.b, (r) => { const n = [...r.t].length; const t = chars.slice(k, k + n).join(""); k += n; return { ...r, t }; });
+    return { sel };
+  });
+}
+// styles (whole lines)
+const STYLES = [
+  ["Title", { b: true, i: false, c: "#ff3d8b", s: 28 }], ["Heading", { b: true, i: false, c: "#22d3ee", s: 20 }],
+  ["Subheading", { b: true, i: false, c: null, s: 16 }], ["Normal", { b: false, i: false, c: null, s: null }],
+  ["Quote", { b: false, i: true, c: "#9ca3c9", s: null }], ["Small print", { b: false, i: false, c: "#9ca3c9", s: 12 }]];
+$("#style-gallery").replaceChildren(...STYLES.map(([name, f]) => {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "style-btn"; b.textContent = name; b.title = `${name} style for the whole line`;
+  b.style.fontWeight = f.b ? "800" : "400"; b.style.fontStyle = f.i ? "italic" : "normal"; if (f.c) b.style.color = f.c;
+  b.style.fontSize = Math.min(15, Math.max(11, (f.s || DEFAULT_SIZE) * 0.62)) + "px";
+  keepFocus(b);
+  b.onclick = () => {
+    const s = curSel();
+    const spans = lineSpans(s);
+    if (spans.every((sp) => sp.a === sp.b)) return setPending({ ...f });   // empty line: type in this style
+    edit(() => { for (const sp of spans) runs = mapRange(runs, sp.a, sp.b, (r) => ({ t: r.t, ...f })); return { sel: s }; });
+  };
+  return b;
+}));
+// line tools
+function moveLines(dir) {
+  const s = curSel(), t = textOf(runs), spans = lineSpans(s);
+  const a = spans[0].a, b = spans[spans.length - 1].b;
+  if (dir < 0 && a === 0) return;
+  if (dir > 0 && b >= t.length) return;
+  edit(() => {
+    const block = sliceRuns(runs, a, b);
+    if (dir < 0) {
+      const pa = lineStart(t, a - 1);
+      const prev = sliceRuns(runs, pa, a - 1);
+      runs = deleteRange(runs, pa, b);
+      runs = insertRuns(runs, pa, [...block, { t: "\n", ...fmtOf(fmtAt(runs, pa)) }, ...prev]);
+      return { sel: { a: s.a - (a - pa), b: s.b - (a - pa) } };
+    }
+    const nb = lineEnd(t, b + 1);
+    const next = sliceRuns(runs, b + 1, nb);
+    runs = deleteRange(runs, a, nb);
+    runs = insertRuns(runs, a, [...next, { t: "\n", ...fmtOf(fmtAt(runs, a)) }, ...block]);
+    const d = nb - b;
+    return { sel: { a: s.a + d, b: s.b + d } };
+  });
+}
+function duplicateLines() {
+  const s = curSel(), spans = lineSpans(s), a = spans[0].a, b = spans[spans.length - 1].b;
+  edit(() => { const block = sliceRuns(runs, a, b); runs = insertRuns(runs, b, [{ t: "\n", ...fmtOf(fmtAt(runs, b)) }, ...block]); const d = b - a + 1; return { sel: { a: s.a + d, b: s.b + d } }; });
+}
+function deleteLines() {
+  const s = curSel(), t = textOf(runs), spans = lineSpans(s), a = spans[0].a, b = spans[spans.length - 1].b;
+  edit(() => { const end = b < t.length ? b + 1 : b, start = b >= t.length && a > 0 ? a - 1 : a; runs = deleteRange(runs, start, end); return { sel: { a: start, b: start } }; });
+}
+function menuItems(menu, items) {
+  menu.replaceChildren(...items.map(([label, fn, pv]) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.innerHTML = pv ? `<span class="pv">${escapeHtml(pv)}</span><span class="sub">${escapeHtml(label)}</span>` : escapeHtml(label);
+    keepFocus(b);
+    b.onclick = () => { closePop(); fn(); };
+    return b;
+  }));
+}
+menuItems($("#bullet-menu"), BULLETS.map((ch) => [`${ch} item`, () => { bulletChar = ch; store.set("bullet", ch); toggleList("bullet"); }, `${ch} One  ${ch} Two`]));
+menuItems($("#number-menu"), Object.keys(NUMBERINGS).map((st) => [st, () => { numberStyle = st; store.set("numbering", st); toggleList("number"); }, `${NUMBERINGS[st](1)} ${NUMBERINGS[st](2)} ${NUMBERINGS[st](3)}`]));
+menuItems($("#case-menu"), Object.keys(CASES).map((n) => [n, () => changeCase(n)]));
+menuItems($("#lines-menu"), [["Move up (Alt+↑)", () => moveLines(-1)], ["Move down (Alt+↓)", () => moveLines(1)],
+  ["Duplicate (Ctrl+Shift+D)", duplicateLines], ["Delete (Ctrl+Shift+K)", deleteLines]]);
+for (const [btn, pop] of [["#b-bullets-menu", "#pop-bullets"], ["#b-numbers-menu", "#pop-numbers"], ["#b-case", "#pop-case"], ["#b-lines", "#pop-lines"]]) {
+  keepFocus($(btn));
+  $(btn).onclick = () => showPop($(pop), $(btn));
+}
+for (const id of ["#b-bullets", "#b-numbers", "#b-outdent", "#b-indent", "#b-al-left", "#b-al-center", "#b-al-right", "#b-find", "#b-selall", "#b-paste", "#b-cut", "#b-copysel", "#b-painter"]) keepFocus($(id));
+$("#b-bullets").onclick = () => toggleList("bullet");
+$("#b-numbers").onclick = () => toggleList("number");
+$("#b-indent").onclick = () => indentLines(1);
+$("#b-outdent").onclick = () => indentLines(-1);
+$("#b-al-left").onclick = () => alignLines("left");
+$("#b-al-center").onclick = () => alignLines("center");
+$("#b-al-right").onclick = () => alignLines("right");
+$("#b-selall").onclick = () => { editor.focus(); setSel(0, textOf(runs).length); };
+
+// clipboard: inside the Studio, copy keeps formatting (as code); paste turns code back into formatting
+function selectionCode(s) { return serialize(sliceRuns(runs, s.a, s.b), opts); }
+async function copySel(cut) {
+  const s = needSelection();
+  if (!s) return;
+  try { await navigator.clipboard.writeText(selectionCode(s)); } catch { return toast("Use Ctrl+C - the browser blocked the button"); }
+  if (cut) edit((sel) => { runs = deleteRange(runs, sel.a, sel.b); return { sel: { a: sel.a, b: sel.a } }; });
+  toast(cut ? "Cut" : "Copied");
+}
+async function pasteText(plain) {
+  let t;
+  try { t = await navigator.clipboard.readText(); } catch { return toast("Use Ctrl+V - the browser blocked reading the clipboard"); }
+  if (!t) return;
+  t = t.replace(/\r\n?/g, "\n");
+  hideExample();
+  if (!plain && /<\/?(b|i|color|size)(=[^>]*)?>/i.test(t)) insertAtCursor(parseCode(t).runs);
+  else {
+    if (plain) t = textOf(parseCode(t).runs);
+    const s = curSel();
+    insertAtCursor([{ t, ...fmtOf(pending && pendingAt === s.a ? pending : fmtAt(runs, s.a === s.b ? s.a : s.a + 1)) }]);
+  }
+}
+editor.addEventListener("copy", (e) => { const s = curSel(); if (s.a === s.b) return; e.preventDefault(); e.clipboardData.setData("text/plain", selectionCode(s)); });
+editor.addEventListener("cut", (e) => {
+  const s = curSel(); if (s.a === s.b) return;
+  e.preventDefault(); e.clipboardData.setData("text/plain", selectionCode(s));
+  edit((sel) => { runs = deleteRange(runs, sel.a, sel.b); return { sel: { a: sel.a, b: sel.a } }; });
+});
+$("#b-cut").onclick = () => copySel(true);
+$("#b-copysel").onclick = () => copySel(false);
+$("#b-paste").onclick = () => pasteText(false);
+
+// format painter
+let painter = null, painterSticky = false;
+function setPainter(fmt, sticky) {
+  painter = fmt; painterSticky = !!sticky;
+  $("#b-painter").setAttribute("aria-pressed", String(!!fmt));
+  document.body.classList.toggle("painting", !!fmt);
+  if (fmt) toast(sticky ? "Painting: select text to paint. Esc to stop." : "Now select the text to paint");
+}
+$("#b-painter").onclick = () => { if (painter) return setPainter(null); const f = selectionFmt(curSel()); setPainter({ b: !!f.b, i: !!f.i, c: f.c ?? null, s: f.s ?? null }, false); };
+$("#b-painter").ondblclick = () => { const f = selectionFmt(curSel()); setPainter({ b: !!f.b, i: !!f.i, c: f.c ?? null, s: f.s ?? null }, true); };
+editor.addEventListener("mouseup", () => setTimeout(() => {
+  if (!painter) return;
+  const s = curSel();
+  if (s.a === s.b) return;
+  const f = painter;
+  edit((sel) => { runs = mapRange(runs, sel.a, sel.b, (r) => ({ ...r, ...f })); return { sel }; });
+  if (!painterSticky) setPainter(null);
+}, 0));
+
+// find & replace
+const findDlg = $("#dlg-find");
+function openFind(replace) {
+  const s = curSel();
+  if (s.a !== s.b && s.b - s.a < 80) $("#find-q").value = textOf(sliceRuns(runs, s.a, s.b));
+  if (!findDlg.open) findDlg.show();
+  (replace ? $("#find-r") : $("#find-q")).focus();
+  $("#find-q").select();
+  countMatches();
+}
+function findAll() {
+  const q = $("#find-q").value;
+  if (!q) return [];
+  const cs = $("#find-case").checked, t = cs ? textOf(runs) : textOf(runs).toLowerCase(), n = cs ? q : q.toLowerCase();
+  const out = [];
+  for (let i = t.indexOf(n); i >= 0; i = t.indexOf(n, i + n.length)) out.push(i);
+  return out;
+}
+function countMatches(cur) {
+  const all = findAll(), q = $("#find-q").value;
+  $("#find-out").textContent = !q ? "" : !all.length ? "No matches" : cur != null ? `${all.indexOf(cur) + 1} of ${all.length}` : `${all.length} match${all.length > 1 ? "es" : ""}`;
+  return all;
+}
+function findStep(dir) {
+  const all = findAll();
+  if (!all.length) return countMatches();
+  const s = curSel(), q = $("#find-q").value.length;
+  const at = dir > 0 ? all.find((i) => i > s.a) ?? all[0] : [...all].reverse().find((i) => i < s.a) ?? all[all.length - 1];
+  editor.focus({ preventScroll: false }); setSel(at, at + q);
+  countMatches(at);
+  $("#find-q").focus();
+}
+function replaceOne() {
+  const s = curSel(), q = $("#find-q").value, r = $("#find-r").value;
+  const t = textOf(runs), cs = $("#find-case").checked;
+  const hit = s.b - s.a === q.length && (cs ? t.slice(s.a, s.b) === q : t.slice(s.a, s.b).toLowerCase() === q.toLowerCase());
+  if (!hit) return findStep(1);
+  edit((sel) => { const f = fmtAt(runs, sel.a + 1); runs = deleteRange(runs, sel.a, sel.b); runs = insertRuns(runs, sel.a, r ? [{ t: r, ...fmtOf(f) }] : []); return { sel: { a: sel.a + r.length, b: sel.a + r.length } }; });
+  findStep(1);
+}
+function replaceAll() {
+  const all = findAll(), q = $("#find-q").value.length, r = $("#find-r").value;
+  if (!all.length) return countMatches();
+  edit(() => { for (const i of [...all].reverse()) { const f = fmtAt(runs, i + 1); runs = deleteRange(runs, i, i + q); runs = insertRuns(runs, i, r ? [{ t: r, ...fmtOf(f) }] : []); } });
+  $("#find-out").textContent = `Replaced ${all.length}`;
+}
+$("#find-q").addEventListener("input", () => countMatches());
+$("#find-case").onchange = () => countMatches();
+$("#find-q").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); findStep(e.shiftKey ? -1 : 1); } });
+$("#find-r").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); replaceOne(); } });
+$("#find-next").onclick = () => findStep(1);
+$("#find-prev").onclick = () => findStep(-1);
+$("#find-rep").onclick = replaceOne;
+$("#find-all").onclick = replaceAll;
+$("#b-find").onclick = () => openFind(false);
+
+// documents (saved in this browser)
+const library = store.get("library") || [];
+const currentDoc = Object.assign({ profile: null, gift: null }, store.get("currentDoc") || {});
+const saveLibrary = () => { store.set("library", library); store.set("currentDoc", currentDoc); };
+const docById = (id) => library.find((d) => d.id === id);
+function showCurrentDoc() {
+  const d = docById(currentDoc[mode]);
+  $("#f-current").textContent = d ? `Editing “${d.name}”. Changes are saved to it automatically.` : "Not saved as a document yet. Your draft is still kept in this browser.";
+  document.title = d ? `${d.name} - 3DX Profile Studio` : "3DX Profile Studio";
+}
+function askName(title, value) {
+  return new Promise((res) => {
+    const d = $("#dlg-name"), inp = $("#name-input");
+    $("#name-title").textContent = title; inp.value = value || "";
+    const done = (v) => { d.close(); $("#name-ok").onclick = $("#name-cancel").onclick = inp.onkeydown = null; res(v); };
+    $("#name-ok").onclick = () => done(inp.value.trim() || null);
+    $("#name-cancel").onclick = () => done(null);
+    inp.onkeydown = (e) => { if (e.key === "Enter") { e.preventDefault(); done(inp.value.trim() || null); } };
+    d.showModal(); inp.select();
+  });
+}
+function saveDoc(id) {
+  const d = docById(id);
+  if (!d) return;
+  d.code = serialize(runs, opts); d.updated = Date.now();
+  saveLibrary();
+}
+async function saveAs() {
+  const first = textOf(runs).trim().split("\n")[0].trim().slice(0, 40);
+  const name = await askName("Save as", docById(currentDoc[mode])?.name ? `${docById(currentDoc[mode]).name} (copy)` : first || "My profile");
+  if (!name) return;
+  const d = { id: `d${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`, name, mode, code: serialize(runs, opts), updated: Date.now() };
+  library.push(d); currentDoc[mode] = d.id; saveLibrary(); showCurrentDoc();
+  toast(`Saved as “${name}”`);
+}
+function save() { if (docById(currentDoc[mode])) { saveDoc(currentDoc[mode]); toast("Saved"); } else saveAs(); }
+async function newDoc() {
+  if (textOf(runs).trim() && !isExample && !docById(currentDoc[mode]) && !(await ask("Start a new document? What you've written isn't saved as a document (you can undo with Ctrl+Z)."))) return;
+  currentDoc[mode] = null; saveLibrary();
+  editor.focus({ preventScroll: true });
+  edit(() => { runs = []; return { sel: { a: 0, b: 0 } }; });
+  hideExample(); showCurrentDoc();
+}
+function openDoc(d) {
+  if (d.mode !== mode) setMode(d.mode);
+  currentDoc[mode] = d.id; saveLibrary();
+  editor.focus({ preventScroll: true });
+  edit(() => { runs = parseCode(d.code).runs; return { sel: { a: 0, b: 0 } }; });
+  hideExample(); showCurrentDoc();
+  toast(`Opened “${d.name}”`);
+}
+function drawDocs() {
+  const list = [...library].sort((a, b) => b.updated - a.updated);
+  $("#doc-empty").hidden = list.length > 0;
+  $("#doc-list").replaceChildren(...list.map((d) => {
+    const row = document.createElement("div");
+    row.className = "doc-item" + (currentDoc[d.mode] === d.id ? " current" : "");
+    const chars = charCount(d.code);
+    row.innerHTML = `<div class="doc-name"><b>${escapeHtml(d.name)}</b><small>${d.mode === "gift" ? "Gift" : "Profile"} · ${chars} characters · ${new Date(d.updated).toLocaleString()}</small></div>`;
+    const mk = (label, fn, cls = "btn") => { const b = document.createElement("button"); b.type = "button"; b.className = cls; b.textContent = label; b.onclick = fn; return b; };
+    row.append(mk("Open", () => { $("#dlg-docs").close(); openDoc(d); }, "btn btn-accent"),
+      mk("Rename", async () => { const n = await askName("Rename", d.name); if (n) { d.name = n; saveLibrary(); drawDocs(); showCurrentDoc(); } }),
+      mk("Delete", async () => { if (await ask(`Delete “${d.name}”? This can't be undone.`)) { library.splice(library.indexOf(d), 1); for (const m of ["profile", "gift"]) if (currentDoc[m] === d.id) currentDoc[m] = null; saveLibrary(); drawDocs(); showCurrentDoc(); } }));
+    return row;
+  }));
+}
+$("#f-new").onclick = newDoc;
+$("#f-open").onclick = () => { drawDocs(); $("#dlg-docs").showModal(); };
+$("#f-save").onclick = save;
+$("#f-saveas").onclick = saveAs;
+$("#f-export").onclick = () => {
+  const name = (docById(currentDoc[mode])?.name || (mode === "gift" ? "gift" : "profile")).replace(/[\\/:*?"<>|]+/g, "_");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([serialize(runs, opts)], { type: "text/plain;charset=utf-8" }));
+  a.download = `${name}.txt`; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+};
+$("#f-import").onclick = () => $("#f-file").click();
+$("#f-file").onchange = async () => {
+  const file = $("#f-file").files[0];
+  $("#f-file").value = "";
+  if (!file) return;
+  const code = (await file.text()).replace(/\r\n?/g, "\n").replace(/\n$/, "");
+  const p = parseCode(code);
+  currentDoc[mode] = null; saveLibrary();
+  editor.focus({ preventScroll: true });
+  edit(() => { runs = p.runs; return { sel: { a: 0, b: 0 } }; });
+  hideExample(); showCurrentDoc();
+  toast(p.warnings.length ? `Opened ${file.name} with ${p.warnings.length} issue(s)` : `Opened ${file.name}`);
+};
+let docTimer = 0;
+function autosaveDoc() { clearTimeout(docTimer); const id = currentDoc[mode]; if (id) docTimer = setTimeout(() => saveDoc(id), 800); }
+
+// view
+$("#v-code").onclick = () => { const hide = !document.body.classList.toggle("no-code"); $("#v-code").setAttribute("aria-pressed", String(hide)); store.set("hideCode", !hide); };
+if (store.get("hideCode")) { document.body.classList.add("no-code"); $("#v-code").setAttribute("aria-pressed", "false"); }
+$$("[data-zoom]").forEach((b) => { b.onclick = () => setZoom(+b.dataset.zoom); });
+$("#v-keys").onclick = () => $("#dlg-keys").showModal();
+
+// keyboard
+editor.addEventListener("keydown", (e) => {
+  if (e.key === "Tab") { e.preventDefault(); indentLines(e.shiftKey ? -1 : 1); return; }
+  if (e.altKey && (e.key === "ArrowUp" || e.key === "ArrowDown")) { e.preventDefault(); moveLines(e.key === "ArrowUp" ? -1 : 1); return; }
+  const mod = e.ctrlKey || e.metaKey, k = e.key.toLowerCase();
+  if (mod && e.shiftKey && k === "d") { e.preventDefault(); duplicateLines(); }
+  else if (mod && e.shiftKey && k === "k") { e.preventDefault(); deleteLines(); }
+  else if (mod && e.shiftKey && k === "v") { e.preventDefault(); pasteText(true); }
+});
+document.addEventListener("keydown", (e) => {
+  const mod = e.ctrlKey || e.metaKey, k = e.key.toLowerCase();
+  if (mod && !e.shiftKey && k === "f") { e.preventDefault(); openFind(false); }
+  else if (mod && !e.shiftKey && k === "h") { e.preventDefault(); openFind(true); }
+  else if (mod && !e.shiftKey && k === "s") { e.preventDefault(); save(); }
+  else if (e.key === "Escape" && painter) setPainter(null);
+});
+
+// ---------- AI everywhere ----------
+function aiUsable() { return BUILD === "artifact" ? !!sample : aiConfigured(); }
+function luminance(col) { const [r, g, b] = hexToRgb(col).map(lin); return 0.2126 * r + 0.7152 * g + 0.0722 * b; }
+const GIFT_SWAP = { "❤": "♥", "❥": "♥", "ღ": "♥", "✦": "★", "✧": "☆", "✩": "☆", "✫": "★", "✬": "★", "✭": "★", "✮": "★", "✯": "★", "✪": "★",
+  "✔": "✓", "☺": "ツ", "☻": "ツ", "✿": "✿", "❁": "✿", "✾": "✿", "❀": "❀", "►": "▶", "◄": "◀", "✈": "→", "✉": "✂", "✌": "ツ", "☠": "♠", "✟": "†", "❦": "♣" };
+function giftFix() {
+  edit(() => { runs = normalize(runs.map((r) => ({ ...r, t: [...r.t].map((ch) => PROFILE_ONLY.has(ch) ? (GIFT_SWAP[ch] || "•") : ch).join("") }))); });
+  toast("Swapped for symbols that show in gifts");
+}
+$("#warns").addEventListener("click", (e) => {
+  const a = e.target.closest("[data-act]")?.dataset.act;
+  if (a === "fit") runAi("shorten");
+  else if (a === "giftfix") giftFix();
+  else if (a === "readable") runAi("readable");
+  else if (a === "proof") runAi("fix");
+});
+
+// "Save as template" from any AI result
+$("#air-save").onclick = () => {
+  if (!aiJob) return;
+  const code = serialize(resultRuns(aiJob).runs, opts);
+  if (!textOf(parseCode(code).runs).trim()) return;
+  const vibe = aiJob.extra?.vibe;
+  addMyTemplate(code, vibe ? vibe.slice(0, 40) : undefined);
+};
+
+// template gallery
+let galCat = "All";
+function openGallery(cat) {
+  galCat = cat || (galCat === "Mine" && !myTemplates[mode].length ? "All" : galCat);
+  $("#gal-title").textContent = mode === "gift" ? "Gift templates" : "Profile templates";
+  $("#gal-q").value = "";
+  drawGallery();
+  $("#dlg-gallery").showModal();
+  $("#gal-q").focus();
+}
+function galCats() {
+  const cats = [...new Set(TEMPLATES[mode].map((t) => t.cat))];
+  return ["All", ...(myTemplates[mode].length ? ["Mine"] : []), ...cats];
+}
+function drawGallery() {
+  const cats = galCats();
+  if (!cats.includes(galCat)) galCat = "All";
+  chipGroup($("#gal-cats"), cats, () => galCat, (v) => { galCat = v; drawGallery(); });
+  const q = $("#gal-q").value.trim().toLowerCase();
+  const all = [...myTemplates[mode], ...TEMPLATES[mode]];
+  const list = all.filter((t) => (galCat === "All" || t.cat === galCat)
+    && (!q || `${t.name} ${t.cat} ${textOf(parseCode(t.code).runs)}`.toLowerCase().includes(q)));
+  const grid = $("#gal-grid");
+  grid.replaceChildren(...list.map((t) => {
+    const card = tplCard(t);
+    const done = card.onclick; card.onclick = () => { $("#dlg-gallery").close(); done(); };
+    if (t.cat !== "Mine") return card;
+    const wrap = document.createElement("div"); wrap.className = "tpl-wrap";
+    const del = document.createElement("button"); del.type = "button"; del.className = "tpl-del"; del.title = "Delete"; del.innerHTML = icon("i-x");
+    del.onclick = (e) => { e.stopPropagation(); myTemplates[mode].splice(myTemplates[mode].indexOf(t), 1); saveMyTemplates(); drawTemplates(); drawGallery(); };
+    wrap.append(card, del);
+    return wrap;
+  }));
+  $("#gal-empty").hidden = list.length > 0;
+}
+$("#gal-q").addEventListener("input", () => drawGallery());
+$("#gal-save").onclick = () => {
+  const code = serialize(runs, opts);
+  const first = textOf(runs).trim().split("\n")[0].trim().slice(0, 32);
+  if (!first) return toast("Write something first");
+  addMyTemplate(code, first);
+  galCat = "Mine"; drawGallery();
+};
+$("#gal-ai").onclick = () => { $("#dlg-gallery").close(); openTemplateMaker(); };
+
+// AI template maker
+const TPL_IDEAS = { profile: ["Cozy witchy cottage", "Retro 80s arcade", "Royal & regal", "Tropical island DJ", "Anime cutie", "Cyberpunk city", "Old Hollywood glam", "Rock star"],
+                    gift: ["Birthday sparkle", "Sweet good morning", "Funny thank you", "Romantic rose", "Congrats party", "Welcome hug"] };
+function openTemplateMaker() {
+  if (!aiUsable()) { if (BUILD === "artifact") return toast("AI isn't available in this view"); return openAiSettings(); }
+  chipGroup($("#ait-ideas"), TPL_IDEAS[mode], () => "", (v) => { $("#ait-vibe").value = v; });
+  $("#dlg-ai-tpl").showModal();
+  $("#ait-vibe").focus();
+}
+$("#ait-go").onclick = () => {
+  const vibe = $("#ait-vibe").value.trim();
+  if (!vibe) return $("#ait-vibe").focus();
+  $("#dlg-ai-tpl").close();
+  const ctx = { ...aiContext(), partial: false, sel: { a: 0, b: textOf(runs).length }, code: "", limit: LIMITS[mode].chars, current: 0 };
+  runAi("template", { vibe }, ctx);
+};
+
+// right-click AI menu on the card
+const ctxMenu = $("#ctx-menu");
+function closeCtx() { ctxMenu.hidden = true; }
+function ctxItems() {
+  const s = curSel(), part = s.a !== s.b ? "selection" : "whole text";
+  const L = $("#ai-lang").value, T = $("#ai-theme").value;
+  const clip = [["Cut", () => copySel(true)], ["Copy", () => copySel(false)], ["Paste", () => pasteText(false)],
+    ["Paste as plain text", () => pasteText(true)], ["Select all", () => { editor.focus(); setSel(0, textOf(runs).length); }], ["hr"]];
+  if (!aiUsable()) return clip.slice(0, -1);
+  return [...clip,
+    ["head", `AI · ${part}`],
+    ["Make it friendlier", () => runAi("tone", { tone: "Friendly" })],
+    ["Make it funnier", () => runAi("tone", { tone: "Funny" })],
+    ["Make it flirtier", () => runAi("tone", { tone: "Flirty" })],
+    ["Make it classier", () => runAi("tone", { tone: "Classy" })],
+    ["hr"],
+    ["Add symbols", () => runAi("decorate")],
+    [`Recolour: ${T}`, () => runAi("style", { theme: T })],
+    ["Shorten", () => runAi("shorten")],
+    ["Fix spelling", () => runAi("fix")],
+    [`Translate to ${L}`, () => runAi("translate", { lang: L })],
+    ["hr"],
+    ["Ask the Assistant...", () => openAssist()],
+  ];
+}
+editor.addEventListener("contextmenu", (e) => {
+  if (e.shiftKey) return;                         // Shift+right-click keeps the browser's own menu
+  e.preventDefault();
+  ctxMenu.replaceChildren(...ctxItems().map(([label, fn]) => {
+    if (label === "hr") return document.createElement("hr");
+    if (label === "head") { const d = document.createElement("div"); d.className = "ctx-head"; d.textContent = fn; return d; }
+    const b = document.createElement("button");
+    b.type = "button"; b.setAttribute("role", "menuitem");
+    b.innerHTML = `${icon(["Cut", "Copy", "Paste", "Paste as plain text", "Select all"].includes(label) ? ({ Cut: "i-cut", Copy: "i-copy", Paste: "i-clip", "Paste as plain text": "i-clip", "Select all": "i-check" })[label] : "i-spark")}<span>${escapeHtml(label)}</span>`;
+    b.onmousedown = (ev) => ev.preventDefault();     // keep the card's selection
+    b.onclick = () => { closeCtx(); fn(); };
+    return b;
+  }));
+  ctxMenu.hidden = false;
+  const r = ctxMenu.getBoundingClientRect();
+  ctxMenu.style.left = Math.min(e.clientX, innerWidth - r.width - 8) + "px";
+  ctxMenu.style.top = Math.min(e.clientY, innerHeight - r.height - 8) + "px";
+});
+document.addEventListener("mousedown", (e) => { if (!ctxMenu.hidden && !ctxMenu.contains(e.target)) closeCtx(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeCtx(); });
+$("#desk").addEventListener("scroll", closeCtx);
+
+// assistant: tell it what to change, it edits the card (Ctrl+Z undoes)
+const assist = $("#assist"), alog = $("#assist-log");
+const SUGG = { profile: ["Make my name a pink gradient", "Add a section about my hobbies", "Make it fit the limit", "Make it more fun", "Add some symbols", "Translate to Spanish"],
+               gift: ["Make it more romantic", "Add hearts", "Make it funnier", "Make it fit", "Add %username% in big letters"] };
+let assistCtl = null, assistHistory = [];
+function openAssist() {
+  if (!aiUsable()) { if (BUILD === "artifact") return toast("AI isn't available in this view"); return openAiSettings(); }
+  assist.hidden = false; $("#assist-open").hidden = true;
+  $("#assist-sugg").replaceChildren(...SUGG[mode].map((t) => { const b = document.createElement("button"); b.type = "button"; b.textContent = t; b.onclick = () => askAssist(t); return b; }));
+  if (!alog.children.length) bubble("ai", mode === "gift" ? "Hi! Tell me what to change in your gift and I'll edit it for you." : "Hi! Tell me what to change on your card, like “make my name a pink gradient”, and I'll do it. Ctrl+Z undoes anything.");
+  $("#assist-q").focus();
+}
+function closeAssist() { assistCtl?.abort(); assist.hidden = true; $("#assist-open").hidden = false; }
+function bubble(who, text) {
+  const m = document.createElement("div"); m.className = `msg ${who}`;
+  const t = document.createElement("div"); t.textContent = text; m.append(t);
+  alog.append(m); alog.scrollTop = alog.scrollHeight;
+  return m;
+}
+async function askAssist(instruction) {
+  instruction = (instruction || "").trim();
+  if (!instruction || assistCtl) return;
+  $("#assist-q").value = "";
+  bubble("me", instruction);
+  const m = bubble("ai", "Working on it...");
+  const pv = document.createElement("div"); pv.className = "ai-preview"; pv.hidden = true; m.append(pv);
+  const foot = document.createElement("div"); foot.className = "msg-foot"; m.append(foot);
+  const stop = document.createElement("button"); stop.type = "button"; stop.textContent = "Stop"; foot.append(stop);
+  const s = curSel();
+  const o = { mode, code: serialize(runs, opts), limit: LIMITS[mode].chars, bytes: LIMITS[mode].bytes, instruction,
+              selected: s.a !== s.b ? textOf(sliceRuns(runs, s.a, s.b)).slice(0, 300) : "", history: assistHistory.slice(-4) };
+  assistCtl = new AbortController();
+  stop.onclick = () => assistCtl?.abort();
+  $("#assist-send").disabled = true;
+  try {
+    const r = await aiCall(aiSystem(o), aiPrompt("chat", o), (raw) => {
+      pv.hidden = false; renderRuns(pv, parseCode(cleanReply(raw)).runs); pv.scrollTop = pv.scrollHeight;
+    }, assistCtl.signal, true);
+    const p = parseCode(cleanReply(r.text));
+    if (!textOf(p.runs).trim()) throw new AIError("api", "I couldn't come up with a change for that. Try saying it another way.");
+    renderRuns(pv, p.runs); pv.hidden = false;
+    hideExample();
+    edit(() => { runs = p.runs; return { sel: { a: 0, b: 0 } }; });
+    assistHistory.push(instruction);
+    const code = serialize(runs, opts), chars = charCount(code), lim = LIMITS[mode];
+    const over = chars > lim.chars || (mode === "gift" && byteCount(code) > lim.bytes);
+    m.firstChild.textContent = r.truncated ? "Done, but the answer stopped early." : "Done! It's on your card.";
+    foot.replaceChildren(document.createTextNode(`${chars} / ${lim.chars} characters${over ? " (too long)" : ""}`));
+    const un = document.createElement("button"); un.type = "button"; un.textContent = "Undo";
+    un.onclick = () => { undo(); un.disabled = true; un.textContent = "Undone"; };
+    foot.append(un);
+    if (over) { const fit = document.createElement("button"); fit.type = "button"; fit.textContent = "Make it fit"; fit.onclick = () => askAssist("Make it fit the limit"); foot.append(fit); }
+  } catch (e) {
+    m.firstChild.textContent = e.code === "cancelled" ? "Stopped. Nothing was changed." : (e.message || "Something went wrong.");
+    pv.hidden = true; foot.replaceChildren();
+  } finally {
+    assistCtl = null; $("#assist-send").disabled = false; alog.scrollTop = alog.scrollHeight;
+  }
+}
+$("#assist-open").onclick = openAssist;
+$("#assist-x").onclick = closeAssist;
+$("#assist-send").onclick = () => askAssist($("#assist-q").value);
+$("#assist-q").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); askAssist($("#assist-q").value); } });
+document.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); assist.hidden ? openAssist() : closeAssist(); } });
+
+// ---------- feedback ----------
+let fbKind = "idea";
+chipGroup($("#fb-kind"), ["Idea", "Bug", "Other"], () => fbKind[0].toUpperCase() + fbKind.slice(1), (v) => (fbKind = v.toLowerCase()));
+function issueUrl(kind, message) {
+  const title = `${{ bug: "Bug", idea: "Idea", other: "Feedback" }[kind]}: ${message.split("\n")[0].slice(0, 70)}`;
+  return `${REPO_URL}/issues/new?labels=feedback,${kind}&title=${encodeURIComponent(title)}&body=${encodeURIComponent(`${message}\n\n---\nVersion ${VERSION} · ${mode}`)}`;
+}
+$("#btn-feedback").onclick = () => {
+  $("#fb-form").hidden = false; $("#fb-done").hidden = true; $("#fb-send").hidden = false;
+  $("#fb-cancel").textContent = "Cancel"; $("#fb-out").textContent = "";
+  $("#dlg-feedback").showModal();
+  $("#fb-msg").focus();
+};
+$("#fb-send").onclick = async () => {
+  const message = $("#fb-msg").value.trim(), out = $("#fb-out");
+  if (message.length < 5) { out.textContent = "Tell us a little more first."; return; }
+  if (!AI_PROXY) { window.open(issueUrl(fbKind, message), "_blank", "noopener"); $("#dlg-feedback").close(); return; }
+  const send = $("#fb-send");
+  send.disabled = true; out.textContent = "Sending...";
+  try {
+    const res = await fetch(`${AI_PROXY}/v1/feedback`, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ kind: fbKind, message, contact: $("#fb-contact").value.trim(), website: $("#fb-website").value,
+                             sample: $("#fb-sample").checked ? serialize(runs, opts) : "", version: VERSION, mode })
+    });
+    const j = await res.json().catch(() => ({}));
+    if (!res.ok || !j.ok) throw new Error(j.error?.message || "Couldn't send your feedback right now.");
+    $("#fb-msg").value = ""; $("#fb-sample").checked = false;
+    $("#fb-form").hidden = true; send.hidden = true; out.textContent = "";
+    $("#fb-cancel").textContent = "Close";
+    const done = $("#fb-done");
+    done.hidden = false;
+    done.innerHTML = `<p class="ai-note" style="font-size:15px;color:var(--text)"><b>Thank you!</b> Your feedback was sent${j.url ? ` as <a href="${escapeHtml(j.url)}" target="_blank" rel="noopener">#${j.number}</a>` : ""}.</p>`;
+  } catch (e) {
+    out.innerHTML = `${escapeHtml(e.message)} <a href="${escapeHtml(issueUrl(fbKind, message))}" target="_blank" rel="noopener">Post it on GitHub instead</a>`;
+  } finally { send.disabled = false; }
+};
+
 // ---------- boot ----------
 const saved = store.get("docs");
 const savedOpts = store.get("opts");
@@ -2282,6 +3316,7 @@ if (saved && (textOf(saved.profile || []) || textOf(saved.gift || []))) {
 }
 setMode(store.get("mode") === "gift" ? "gift" : "profile", true);
 $(".brand small").textContent = `v${VERSION} · Write it like a document · paste the code into 3DXChat`;
+showCurrentDoc();
 const fit = () => { const w = $("#desk").clientWidth - 24; if (w < 560) setZoom(Math.max(60, Math.floor((w / 560) * 10) * 10)); };
 fit();
 })();

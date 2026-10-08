@@ -31,9 +31,11 @@ TAIL = "\n</body>\n</html>\n"
 def render(build):
     src = SRC.read_text(encoding="utf-8")
     symbols = json.loads((ROOT / "src" / "symbols.json").read_text(encoding="utf-8"))
-    for token in ("/*SYMBOLS*/", '"__BUILD__"', '"__VERSION__"', '"__AI_PROXY__"'):
+    templates = json.loads((ROOT / "src" / "templates.json").read_text(encoding="utf-8"))
+    for token in ("/*SYMBOLS*/", "/*TEMPLATES*/", '"__BUILD__"', '"__VERSION__"', '"__AI_PROXY__"'):
         assert src.count(token) == 1, f"{token} must appear exactly once in {SRC.name}"
     return (src.replace("/*SYMBOLS*/", json.dumps(symbols, ensure_ascii=False))
+               .replace("/*TEMPLATES*/", json.dumps(templates, ensure_ascii=False))
                .replace('"__BUILD__"', json.dumps(build))
                .replace('"__VERSION__"', json.dumps(VERSION))
                .replace('"__AI_PROXY__"', json.dumps(AI_PROXY if build == "release" else "")))

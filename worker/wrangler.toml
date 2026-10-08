@@ -26,6 +26,8 @@ ALLOWED_ORIGINS = "https://deaeath.github.io,null"
 # requests per day for the whole site (0 = no daily cap)
 PER_MINUTE = "10"
 DAILY_LIMIT = "0"
+# Feedback becomes issues here (needs the GITHUB_TOKEN secret: fine-grained, Issues read/write on this repo)
+FEEDBACK_REPO = "Deaeath/3dx-profile-studio"
 
 [[durable_objects.bindings]]
 name = "LIMITS"

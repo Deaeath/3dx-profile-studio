@@ -401,6 +401,80 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
   .desk { padding: 18px 8px 28px; }
   .zoom input { width: 80px; }
 }
+/* word-processor tools */
+.styles { display: grid; grid-template-columns: repeat(3, 96px); gap: 4px; }
+.style-btn { height: 28px; padding: 0 8px; border: 1px solid var(--line); background: var(--game); border-radius: 7px; color: #fff;
+  font-family: var(--font-game); text-align: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; cursor: pointer; }
+.style-btn:hover { border-color: var(--pink); }
+.tb[aria-pressed="true"] { background: rgba(255, 61, 139, .18); border-color: var(--pink); }
+.case-glyph { font: 800 14px/1 var(--font-game); }
+body.painting .editor { cursor: copy; }
+body.no-code .workspace { grid-template-columns: minmax(0, 1fr); }
+body.no-code .side { display: none; }
+#dlg-find { margin: 70px 24px auto auto; width: min(420px, calc(100vw - 32px)); }
+#dlg-find .find-row { display: flex; gap: 6px; align-items: center; }
+#dlg-find .find-row .input { flex: 1; }
+.doc-list { display: grid; gap: 6px; max-height: 52vh; overflow: auto; }
+.doc-item { display: flex; gap: 10px; align-items: center; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--raised); }
+.doc-item.current { border-color: var(--pink); }
+.doc-item .doc-name { flex: 1; min-width: 0; }
+.doc-item .doc-name b { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.doc-item .doc-name small { color: var(--faint); }
+.kbd-list { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 13px; }
+.kbd-list kbd { font: 700 12px var(--font-code); background: var(--raised); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; white-space: nowrap; }
+
+/* template gallery */
+#dlg-gallery { width: min(1120px, calc(100vw - 32px)); }
+.gal-bar { display: flex; gap: 8px; padding: 12px 18px 0; flex-wrap: wrap; }
+.gal-bar .input { flex: 1; min-width: 200px; }
+.gal-cats { padding: 10px 18px 0; }
+.gal-body { max-height: min(62vh, 640px); overflow: auto; }
+#gal-grid .tpl-pv { height: 150px; }
+.tpl-wrap { position: relative; }
+.tpl-wrap .tpl { width: 100%; }
+.tpl-del { position: absolute; top: 6px; right: 6px; width: 26px; height: 26px; border-radius: 999px; border: 1px solid var(--line);
+  background: rgba(10, 8, 30, .8); color: #fff; display: grid; place-items: center; padding: 0; }
+.tpl-del:hover { border-color: var(--red); }
+.tpl-del .ic { width: 14px; height: 14px; }
+.tpl-tool { width: 150px; min-height: 86px; display: grid; place-items: center; text-align: center; gap: 2px; padding: 10px; font-weight: 800; }
+.tpl-tool .ic { width: 22px; height: 22px; color: var(--pink); }
+.tpl-tool span { font-weight: 600; font-size: 11.5px; color: var(--faint); }
+/* right-click AI menu */
+.ctx-menu { position: fixed; z-index: 120; min-width: 220px; padding: 6px; border-radius: 12px; background: var(--raised);
+  border: 1px solid var(--line); box-shadow: 0 18px 50px rgba(0, 0, 0, .55); display: grid; gap: 1px; }
+.ctx-menu button { all: unset; display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px; font-size: 13px; cursor: pointer; }
+.ctx-menu button:hover, .ctx-menu button:focus-visible { background: var(--hover); }
+.ctx-menu .ic { width: 15px; height: 15px; color: var(--pink); }
+.ctx-menu .ctx-head { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); padding: 4px 10px; }
+.ctx-menu hr { border: 0; border-top: 1px solid var(--line); margin: 4px 2px; }
+/* check actions */
+.warns li .act { margin-left: auto; flex: none; border: 1px solid var(--line); background: var(--raised); color: var(--text);
+  border-radius: 999px; padding: 3px 10px; font-weight: 800; font-size: 12px; cursor: pointer; white-space: nowrap; }
+.warns li .act:hover { border-color: var(--pink); }
+/* assistant */
+.assist-fab { position: fixed; right: 384px; bottom: 52px; z-index: 40; border-radius: 999px; padding: 10px 16px;
+  box-shadow: 0 12px 32px rgba(255, 61, 139, .35); }
+.assist { position: fixed; right: 384px; bottom: 52px; z-index: 41; width: min(400px, calc(100vw - 24px)); height: min(600px, calc(100vh - 160px));
+  display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .6); overflow: hidden; }
+.assist[hidden], .assist-fab[hidden] { display: none; }
+.assist-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.assist-head h2 { margin: 0; font: 700 15px/1.2 var(--font-display); display: flex; gap: 8px; align-items: center; }
+.assist-head h2 .ic { color: var(--pink); }
+.assist-log { flex: 1; overflow: auto; padding: 12px 14px; display: grid; align-content: start; gap: 10px; }
+.msg { max-width: 92%; padding: 9px 11px; border-radius: 12px; font-size: 13.5px; line-height: 1.45; }
+.msg.me { justify-self: end; background: rgba(255, 61, 139, .16); border: 1px solid rgba(255, 61, 139, .35); }
+.msg.ai { justify-self: start; background: var(--raised); border: 1px solid var(--line); width: 92%; }
+.msg.ai .ai-preview { max-height: 180px; margin: 6px 0 0; font-size: 12px; }
+.msg .msg-foot { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+.msg .msg-foot button { border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 999px; padding: 3px 10px; font-weight: 800; font-size: 12px; cursor: pointer; }
+.assist-sugg { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 14px 10px; }
+.assist-sugg button { border: 1px solid var(--line); background: var(--raised); color: var(--muted); border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.assist-sugg button:hover { color: var(--text); border-color: var(--pink); }
+.assist-in { display: flex; gap: 8px; padding: 10px 14px 14px; border-top: 1px solid var(--line); }
+.assist-in textarea { flex: 1; resize: none; height: 44px; font: 14px/1.4 var(--font-ui); }
+@media (max-width: 1080px) { .assist-fab, .assist { right: 12px; } }
+
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
@@ -426,6 +500,25 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
   <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2"/><circle cx="4.5" cy="12" r="1.2"/><circle cx="4.5" cy="18" r="1.2"/></symbol>
+  <symbol id="i-list-num" viewBox="0 0 24 24"><path d="M10 6h10M10 12h10M10 18h10"/><path d="M4 4.5h1.5V9M3.5 9h3M3.5 14.5c.4-.6 1-1 1.7-1 .9 0 1.5.6 1.5 1.3 0 1.2-3.2 1.7-3.2 3.7h3.2"/></symbol>
+  <symbol id="i-indent" viewBox="0 0 24 24"><path d="M10 6h10M10 12h10M10 18h10M3 9l3 3-3 3"/></symbol>
+  <symbol id="i-outdent" viewBox="0 0 24 24"><path d="M10 6h10M10 12h10M10 18h10M6 9l-3 3 3 3"/></symbol>
+  <symbol id="i-al-left" viewBox="0 0 24 24"><path d="M4 6h16M4 10h10M4 14h16M4 18h10"/></symbol>
+  <symbol id="i-al-center" viewBox="0 0 24 24"><path d="M4 6h16M7 10h10M4 14h16M7 18h10"/></symbol>
+  <symbol id="i-al-right" viewBox="0 0 24 24"><path d="M4 6h16M10 10h10M4 14h16M10 18h10"/></symbol>
+  <symbol id="i-brush" viewBox="0 0 24 24"><path d="M18 3l3 3-9 9-3-3z"/><path d="M9 12c-3 0-5 2-5 5 0 1.5-1 2.5-2 3 3 1 7 0 8.5-2.5.8-1.3.5-2.5-1.5-5.5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></symbol>
+  <symbol id="i-cut" viewBox="0 0 24 24"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M8.2 15L19 4M15.8 15L5 4"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 9h6M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l3 3v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M7 3v5h8V3M7 21v-7h10v7"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+  <symbol id="i-keys" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></symbol>
+  <symbol id="i-panel" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></symbol>
+  <symbol id="i-lines" viewBox="0 0 24 24"><path d="M4 7h11M4 12h11M4 17h11M19 5v6M17 9l2 2 2-2M19 19v-6M17 15l2-2 2 2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></symbol>
   <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></symbol>
 </svg>
 
@@ -440,6 +533,7 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
       <button type="button" id="mode-gift" aria-pressed="false"><svg class="ic"><use href="#i-gift"/></svg>Gift</button>
     </div>
     <div class="title-actions">
+      <button type="button" class="btn btn-glass" id="btn-feedback" title="Report a problem or suggest an idea"><svg class="ic"><use href="#i-chat"/></svg><span class="lbl">Feedback</span></button>
       <button type="button" class="btn btn-glass" id="btn-import" title="Load code you already have"><svg class="ic"><use href="#i-import"/></svg><span class="lbl">Import code</span></button>
       <button type="button" class="btn btn-white" id="btn-copy" title="Copy the code (Ctrl+Shift+C)"><svg class="ic"><use href="#i-copy"/></svg><span class="lbl">Copy code</span></button>
     </div>
@@ -447,15 +541,51 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
 
   <div class="ribbon">
     <div class="ribbon-tabs" role="tablist" aria-label="Toolbar">
+      <button type="button" role="tab" id="tab-file" aria-selected="false" aria-controls="panel-file">File</button>
       <button type="button" role="tab" id="tab-home" aria-selected="true" aria-controls="panel-home">Home</button>
       <button type="button" role="tab" id="tab-insert" aria-selected="false" aria-controls="panel-insert">Insert</button>
       <button type="button" role="tab" id="tab-templates" aria-selected="false" aria-controls="panel-templates">Templates</button>
       <button type="button" role="tab" id="tab-gifts" aria-selected="false" aria-controls="panel-gifts" class="gift-only">Gift tools</button>
+      <button type="button" role="tab" id="tab-view" aria-selected="false" aria-controls="panel-view">View</button>
       <button type="button" role="tab" id="tab-ai" aria-selected="false" aria-controls="panel-ai" class="tab-ai"><svg class="ic"><use href="#i-spark"/></svg>AI</button>
     </div>
     <div class="ribbon-body">
       <!-- HOME -->
+      <div class="ribbon-panel" id="panel-file" role="tabpanel" aria-labelledby="tab-file" hidden>
+        <div class="group">
+          <div class="group-body">
+            <button type="button" class="tb tb-big" id="f-new" title="Start a new, empty document"><svg class="ic"><use href="#i-file"/></svg>New</button>
+            <button type="button" class="tb tb-big" id="f-open" title="Open one of your saved documents"><svg class="ic"><use href="#i-folder"/></svg>Open</button>
+            <button type="button" class="tb tb-big" id="f-save" title="Save (Ctrl+S)"><svg class="ic"><use href="#i-save"/></svg>Save</button>
+            <button type="button" class="tb tb-big" id="f-saveas" title="Save a copy under a new name"><svg class="ic"><use href="#i-save"/></svg>Save as</button>
+          </div>
+          <div class="group-label">Documents</div>
+        </div>
+        <div class="group">
+          <div class="group-body">
+            <button type="button" class="tb tb-big" id="f-export" title="Download the code as a .txt file"><svg class="ic"><use href="#i-download"/></svg>Download</button>
+            <button type="button" class="tb tb-big" id="f-import" title="Open a .txt file with profile code"><svg class="ic"><use href="#i-import"/></svg>Open file</button>
+            <input type="file" id="f-file" accept=".txt,text/plain" hidden>
+          </div>
+          <div class="group-label">Files</div>
+        </div>
+        <div class="group">
+          <div class="group-body"><p class="hint" id="f-current" style="max-width:260px">Not saved as a document yet. Your draft is still kept in this browser.</p></div>
+          <div class="group-label">Current</div>
+        </div>
+      </div>
       <div class="ribbon-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
+        <div class="group">
+          <div class="group-body stack">
+            <button type="button" class="tb" id="b-paste" title="Paste (Ctrl+V)" aria-label="Paste"><svg class="ic"><use href="#i-clip"/></svg></button>
+            <div class="row">
+              <button type="button" class="tb" id="b-cut" title="Cut (Ctrl+X)" aria-label="Cut"><svg class="ic"><use href="#i-cut"/></svg></button>
+              <button type="button" class="tb" id="b-copysel" title="Copy (Ctrl+C)" aria-label="Copy"><svg class="ic"><use href="#i-copy"/></svg></button>
+              <button type="button" class="tb" id="b-painter" title="Format painter: copy the look of this text, then select where to paint it (double-click to keep painting)" aria-label="Format painter" aria-pressed="false"><svg class="ic"><use href="#i-brush"/></svg></button>
+            </div>
+          </div>
+          <div class="group-label">Clipboard</div>
+        </div>
         <div class="group">
           <div class="group-body stack">
             <button type="button" class="tb" id="b-undo" title="Undo (Ctrl+Z)" aria-label="Undo"><svg class="ic"><use href="#i-undo"/></svg></button>
@@ -481,6 +611,41 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
             </div>
           </div>
           <div class="group-label">Font</div>
+        </div>
+        <div class="group">
+          <div class="group-body stack">
+            <div class="row">
+              <div class="split">
+                <button type="button" class="tb" id="b-bullets" title="Bullet list" aria-label="Bullet list"><svg class="ic"><use href="#i-list"/></svg></button>
+                <button type="button" class="tb" id="b-bullets-menu" title="Bullet style" aria-label="Choose a bullet" data-pop=""><svg class="ic" style="width:14px;height:14px"><use href="#i-down"/></svg></button>
+              </div>
+              <div class="split">
+                <button type="button" class="tb" id="b-numbers" title="Numbered list" aria-label="Numbered list"><svg class="ic"><use href="#i-list-num"/></svg></button>
+                <button type="button" class="tb" id="b-numbers-menu" title="Numbering style" aria-label="Choose numbering" data-pop=""><svg class="ic" style="width:14px;height:14px"><use href="#i-down"/></svg></button>
+              </div>
+              <button type="button" class="tb" id="b-outdent" title="Decrease indent (Shift+Tab)" aria-label="Decrease indent"><svg class="ic"><use href="#i-outdent"/></svg></button>
+              <button type="button" class="tb" id="b-indent" title="Increase indent (Tab)" aria-label="Increase indent"><svg class="ic"><use href="#i-indent"/></svg></button>
+            </div>
+            <div class="row">
+              <button type="button" class="tb" id="b-al-left" title="Align left" aria-label="Align left"><svg class="ic"><use href="#i-al-left"/></svg></button>
+              <button type="button" class="tb" id="b-al-center" title="Center (with spaces - the game has no alignment, so it's close but not pixel-perfect)" aria-label="Center"><svg class="ic"><use href="#i-al-center"/></svg></button>
+              <button type="button" class="tb" id="b-al-right" title="Align right (with spaces)" aria-label="Align right"><svg class="ic"><use href="#i-al-right"/></svg></button>
+              <button type="button" class="tb" id="b-case" title="Change case" aria-label="Change case" data-pop=""><span class="case-glyph">Aa</span></button>
+              <button type="button" class="tb" id="b-lines" title="Line tools: move, duplicate, delete" aria-label="Line tools" data-pop=""><svg class="ic"><use href="#i-lines"/></svg></button>
+            </div>
+          </div>
+          <div class="group-label">Paragraph</div>
+        </div>
+        <div class="group">
+          <div class="group-body"><div class="styles" id="style-gallery"></div></div>
+          <div class="group-label">Styles</div>
+        </div>
+        <div class="group">
+          <div class="group-body stack">
+            <button type="button" class="tb" id="b-find" title="Find (Ctrl+F)" aria-label="Find"><svg class="ic"><use href="#i-search"/></svg></button>
+            <button type="button" class="tb" id="b-selall" title="Select all (Ctrl+A)" aria-label="Select all" style="font:800 11px var(--font-ui)">All</button>
+          </div>
+          <div class="group-label">Editing</div>
         </div>
         <div class="group">
           <div class="group-body">
@@ -540,6 +705,29 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
         </div>
       </div>
       <!-- AI -->
+      <div class="ribbon-panel" id="panel-view" role="tabpanel" aria-labelledby="tab-view" hidden>
+        <div class="group">
+          <div class="group-body">
+            <button type="button" class="tb tb-big" id="v-code" title="Show or hide the code and checks panel" aria-pressed="true"><svg class="ic"><use href="#i-panel"/></svg>Code panel</button>
+          </div>
+          <div class="group-label">Show</div>
+        </div>
+        <div class="group">
+          <div class="group-body">
+            <button type="button" class="tb tb-big" data-zoom="80">80%</button>
+            <button type="button" class="tb tb-big" data-zoom="100">100%</button>
+            <button type="button" class="tb tb-big" data-zoom="125">125%</button>
+            <button type="button" class="tb tb-big" data-zoom="150">150%</button>
+          </div>
+          <div class="group-label">Zoom</div>
+        </div>
+        <div class="group">
+          <div class="group-body">
+            <button type="button" class="tb tb-big" id="v-keys" title="Keyboard shortcuts"><svg class="ic"><use href="#i-keys"/></svg>Shortcuts</button>
+          </div>
+          <div class="group-label">Help</div>
+        </div>
+      </div>
       <div class="ribbon-panel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" hidden>
         <div class="group">
           <div class="group-body">
@@ -586,6 +774,7 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
 
   <main class="workspace">
     <section class="desk" id="desk" aria-label="Page">
+      <button type="button" class="btn btn-accent assist-fab" id="assist-open" title="Tell the AI what to change (Ctrl+K)"><svg class="ic"><use href="#i-spark"/></svg>Assistant</button>
       <div class="example-chip" id="example-chip"><svg class="ic" style="width:15px;height:15px"><use href="#i-spark"/></svg>Example text - type over it or pick a template</div>
       <div class="page-wrap" id="page-wrap">
         <article class="card" id="card">
@@ -639,6 +828,7 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
   <footer class="statusbar">
     <span class="status-meter"><span class="dot" id="st-dot"></span><span id="st-chars">0 / 1000</span><span class="bar" id="st-bar"><i></i></span></span>
     <span id="st-bytes" class="gift-only">0 / 255 bytes</span>
+    <span id="st-words">0 words</span>
     <span id="st-warn">No problems</span>
     <span id="st-save">Draft saved in this browser</span>
     <span class="zoom"><button type="button" id="z-out" aria-label="Zoom out">−</button><input type="range" id="zoom" min="60" max="160" step="10" value="100" aria-label="Zoom"><button type="button" id="z-in" aria-label="Zoom in">+</button><span id="z-val">100%</span></span>
@@ -659,6 +849,10 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
   <div class="pop-row" style="margin-top:10px"><button type="button" class="btn" id="color-none" style="width:100%;justify-content:center">Automatic (white, no tag)</button></div>
 </div>
 <!-- fancy text -->
+<div class="pop" id="pop-bullets" hidden><h3>Bullet style</h3><div class="menu" id="bullet-menu"></div></div>
+<div class="pop" id="pop-numbers" hidden><h3>Numbering</h3><div class="menu" id="number-menu"></div></div>
+<div class="pop" id="pop-case" hidden><h3>Change case</h3><div class="menu" id="case-menu"></div></div>
+<div class="pop" id="pop-lines" hidden><h3>Lines</h3><div class="menu" id="lines-menu"></div></div>
 <div class="pop" id="pop-fancy" hidden><h3>Restyle the selected letters</h3><div class="menu" id="fancy-menu"></div></div>
 <!-- dividers -->
 <div class="pop" id="pop-dividers" hidden><h3>Insert a line</h3><div class="menu" id="divider-menu"></div></div>
@@ -749,6 +943,7 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
     <button type="button" class="btn" id="air-stop">Stop</button>
     <button type="button" class="btn" id="air-retry">Try again</button>
     <button type="button" class="btn" id="air-shorter" hidden>Make it shorter</button>
+    <button type="button" class="btn" id="air-save" title="Keep it in My templates">Save as template</button>
     <button type="button" class="btn btn-accent" id="air-use">Use this</button>
   </div>
 </dialog>
@@ -758,6 +953,99 @@ body[data-mode="gift"] .ai-preview { text-align: center; }
   <div class="dlg-body" id="ais-body"></div>
   <div class="dlg-foot"><span class="ai-note" id="ais-test-out" style="margin-right:auto"></span><button type="button" class="btn" id="ais-test">Test</button><button type="button" class="btn btn-accent" data-close>Done</button></div>
 </dialog>
+
+<dialog id="dlg-feedback" aria-labelledby="fb-title">
+  <div class="dlg-head"><h2 id="fb-title">Send feedback</h2><button type="button" class="x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="dlg-body" id="fb-form">
+    <div class="field"><span>What's it about?</span><div class="chips-pick" id="fb-kind"></div></div>
+    <label class="field"><span>Your message</span>
+      <textarea class="input" id="fb-msg" rows="6" maxlength="4000" style="font-family:var(--font-ui);font-size:14px" placeholder="What happened, or what would you like the Studio to do?"></textarea></label>
+    <label class="field"><span>How can we reach you? (optional)</span>
+      <input class="input" id="fb-contact" maxlength="100" autocomplete="off" placeholder="Discord or in-game name">
+      <small>Feedback is posted publicly on the Studio's GitHub page, so don't include anything private.</small></label>
+    <label class="toggle"><input type="checkbox" id="fb-sample"><span>Include my current text<small>Helps when something looks wrong. Posted publicly with your message.</small></span></label>
+    <input type="text" id="fb-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+  </div>
+  <div class="dlg-body" id="fb-done" hidden></div>
+  <div class="dlg-foot"><span class="ai-note" id="fb-out" style="margin-right:auto"></span><button type="button" class="btn" data-close id="fb-cancel">Cancel</button><button type="button" class="btn btn-accent" id="fb-send"><svg class="ic"><use href="#i-chat"/></svg>Send</button></div>
+</dialog>
+
+<dialog id="dlg-find" aria-labelledby="find-title">
+  <div class="dlg-head"><h2 id="find-title">Find and replace</h2><button type="button" class="x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="dlg-body">
+    <div class="find-row"><input class="input" id="find-q" placeholder="Find" autocomplete="off" spellcheck="false"><button type="button" class="btn" id="find-prev" title="Previous (Shift+Enter)">&#8593;</button><button type="button" class="btn" id="find-next" title="Next (Enter)">&#8595;</button></div>
+    <div class="find-row"><input class="input" id="find-r" placeholder="Replace with" autocomplete="off" spellcheck="false"><button type="button" class="btn" id="find-rep">Replace</button><button type="button" class="btn" id="find-all">All</button></div>
+    <label class="toggle" style="padding:0"><input type="checkbox" id="find-case"><span>Match case</span></label>
+  </div>
+  <div class="dlg-foot"><span class="ai-note" id="find-out" style="margin-right:auto"></span><button type="button" class="btn" data-close>Done</button></div>
+</dialog>
+
+<dialog id="dlg-docs" aria-labelledby="docs-title">
+  <div class="dlg-head"><h2 id="docs-title">Your documents</h2><button type="button" class="x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="dlg-body"><div class="doc-list" id="doc-list"></div><p class="ai-note" id="doc-empty" hidden>No saved documents yet. Use Save to keep what you're writing under a name.</p></div>
+  <div class="dlg-foot"><span class="ai-note" style="margin-right:auto">Saved in this browser only.</span><button type="button" class="btn" data-close>Close</button></div>
+</dialog>
+
+<dialog id="dlg-name" aria-labelledby="name-title" style="width:min(420px, calc(100vw - 32px))">
+  <div class="dlg-head"><h2 id="name-title">Save as</h2></div>
+  <div class="dlg-body"><label class="field"><span>Name</span><input class="input" id="name-input" maxlength="60" autocomplete="off"></label></div>
+  <div class="dlg-foot"><button type="button" class="btn" id="name-cancel">Cancel</button><button type="button" class="btn btn-accent" id="name-ok">Save</button></div>
+</dialog>
+
+<dialog id="dlg-keys" aria-labelledby="keys-title">
+  <div class="dlg-head"><h2 id="keys-title">Keyboard shortcuts</h2><button type="button" class="x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="dlg-body"><div class="kbd-list">
+    <kbd>Ctrl+B</kbd><span>Bold</span><kbd>Ctrl+I</kbd><span>Italic</span>
+    <kbd>Ctrl+Z</kbd><span>Undo</span><kbd>Ctrl+Y</kbd><span>Redo</span>
+    <kbd>Ctrl+X / C / V</kbd><span>Cut, copy, paste (keeps formatting inside the Studio)</span>
+    <kbd>Ctrl+Shift+V</kbd><span>Paste as plain text</span>
+    <kbd>Ctrl+A</kbd><span>Select all</span>
+    <kbd>Ctrl+F</kbd><span>Find</span><kbd>Ctrl+H</kbd><span>Find and replace</span>
+    <kbd>Ctrl+S</kbd><span>Save document</span>
+    <kbd>Tab / Shift+Tab</kbd><span>Indent / outdent lines</span>
+    <kbd>Enter</kbd><span>In a list: next item (Enter on an empty item ends the list)</span>
+    <kbd>Alt+&#8593; / Alt+&#8595;</kbd><span>Move line up / down</span>
+    <kbd>Ctrl+Shift+D</kbd><span>Duplicate line</span><kbd>Ctrl+Shift+K</kbd><span>Delete line</span>
+    <kbd>Ctrl+Shift+C</kbd><span>Copy the game code</span>
+    <kbd>Ctrl+K</kbd><span>AI assistant</span>
+    <kbd>Shift+right-click</kbd><span>The browser's own menu (spelling suggestions)</span>
+  </div></div>
+  <div class="dlg-foot"><button type="button" class="btn btn-accent" data-close>Done</button></div>
+</dialog>
+
+<dialog id="dlg-gallery" aria-labelledby="gal-title">
+  <div class="dlg-head"><h2 id="gal-title">Templates</h2><button type="button" class="x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="gal-bar">
+    <input class="input" id="gal-q" type="search" placeholder="Search templates: birthday, gamer, pastel..." autocomplete="off">
+    <button type="button" class="btn" id="gal-save" title="Keep what's on the card as a template">Save mine as template</button>
+    <button type="button" class="btn btn-accent" id="gal-ai"><svg class="ic"><use href="#i-spark"/></svg>Make one with AI</button>
+  </div>
+  <div class="chips-pick gal-cats" id="gal-cats"></div>
+  <div class="dlg-body gal-body"><div class="tpl-grid" id="gal-grid"></div><p class="ai-note" id="gal-empty" hidden>No templates match that. Try another word, or make one with AI.</p></div>
+</dialog>
+
+<dialog id="dlg-ai-tpl" aria-labelledby="ait-title">
+  <div class="dlg-head"><h2 id="ait-title">Make a template with AI</h2><button type="button" class="x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="dlg-body">
+    <label class="field"><span>Describe the style</span>
+      <textarea class="input" id="ait-vibe" rows="3" style="font-family:var(--font-ui);font-size:14px" placeholder="Cozy witchy cottage with candles and herbs"></textarea>
+      <small>A vibe, a theme or an occasion. You'll see it first, then use it or save it to My templates.</small></label>
+    <div class="field"><span>Ideas</span><div class="chips-pick" id="ait-ideas"></div></div>
+  </div>
+  <div class="dlg-foot"><button type="button" class="btn" data-close>Cancel</button><button type="button" class="btn btn-accent" id="ait-go"><svg class="ic"><use href="#i-spark"/></svg>Make it</button></div>
+</dialog>
+
+<div class="ctx-menu" id="ctx-menu" role="menu" hidden></div>
+
+<aside class="assist" id="assist" hidden aria-label="AI assistant">
+  <div class="assist-head"><h2><svg class="ic"><use href="#i-spark"/></svg>Assistant</h2><button type="button" class="x" id="assist-x" aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="assist-log" id="assist-log" aria-live="polite"></div>
+  <div class="assist-sugg" id="assist-sugg"></div>
+  <div class="assist-in">
+    <textarea class="input" id="assist-q" placeholder="Tell me what to change..." aria-label="Instruction for the assistant"></textarea>
+    <button type="button" class="btn btn-accent" id="assist-send" aria-label="Send"><svg class="ic"><use href="#i-spark"/></svg></button>
+  </div>
+</aside>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -1015,6 +1303,22 @@ function aiPrompt(task, o) {
       return `Translate this ${kind} into ${o.lang}. Translate only the words: keep every tag, colour, size, symbol and line break where it belongs, and keep %username% unchanged.${part}` + wrap(o.code);
     case "style":
       return `Restyle this ${kind} with a "${o.theme}" look: ${AI_THEMES[o.theme] || o.theme}. Keep the words exactly the same. Add colour, size, bold or italic, and a few fitting symbols or one divider line. Use few colour tags.${part}` + wrap(o.code);
+    case "decorate":
+      return `Add a few fitting symbols to this ${kind}, and a divider line if there's room. Keep every word, colour and line exactly as it is.${part}` + wrap(o.code);
+    case "readable":
+      return `Some colours in this ${kind} are too dark to read on the game's dark panel. Change only those colours to brighter, easy-to-read versions of the same hue. Keep everything else exactly the same.${part}` + wrap(o.code);
+    case "template":
+      return `Design a reusable ${kind} template in this style: ${o.vibe || "anything eye-catching"}.\n`
+        + `Use a placeholder name like "Nova"${o.mode === "gift" ? " and %username% for the recipient" : ""} and friendly wording anyone can personalise. `
+        + (o.mode === "gift" ? "Make it short and striking, centred on one big line." : "Make it striking: a big coloured title, a divider line, and two or three short sections with coloured headings and fitting symbols.")
+        + ` Aim for about ${o.target} characters by the game's count.`;
+    case "chat":
+      return `${o.code.trim() ? `Here is the player's current ${kind}.` : `The player hasn't written anything yet.`} Do what they ask and reply with the complete new ${kind}.`
+        + ` Change only what they asked for; keep every other word, colour, size, symbol and line break exactly as it is.`
+        + (o.selected ? `\nThey have selected this part, so "this" or "it" probably means it: ${JSON.stringify(o.selected)}` : "")
+        + (o.history && o.history.length ? `\nEarlier requests in this chat, already applied: ${o.history.map((h) => JSON.stringify(h)).join("; ")}` : "")
+        + `\nIf the request is unclear, make your best guess. Stay under ${o.limit} characters by the game's count.`
+        + `\n\nTheir request: ${o.instruction}` + (o.code.trim() ? wrap(o.code) : "\n\nReply with only the new text.");
     default:
       throw new Error("unknown AI task " + task);
   }
@@ -1077,7 +1381,7 @@ const TEMPLATES = {
     { name: "Soft pastel", code: "<size=24><color=#f9a8d4>❀</color> <color=#c4b5fd>sweet</color> <color=#a5f3fc>dreams</color> <color=#f9a8d4>❀</color></size>\n\n<color=#fbcfe8>I'm calm, kind and a little shy.</color>\n<color=#ddd6fe>Say hello and I'll make you a drink ♡</color>\n\n<size=12><color=#9ca3c9>`•.¸¸.•´´¯`••.¸¸.•´´¯`••.¸¸.•´</color></size>" }
   ],
   gift: [
-    { name: "Hearts", code: "<size=38><color=red>❤</color> For %username% <color=red>❤</color></size>" },
+    { name: "Hearts", code: "<size=38><color=red>♥</color> For %username% <color=red>♥</color></size>" },
     { name: "Birthday", code: "<size=34><b><color=#ffd23d>✿</color> Happy Birthday <color=#ffd23d>✿</color></b></size>\n<size=24><color=#ff7ab3>%username%</color></size>" },
     { name: "Thank you", code: "<size=30><i>thank you, <color=#22d3ee>%username%</color></i></size>\n<size=40><color=#ff3d8b>♡</color></size>" },
     { name: "Party", code: "<size=36><b><color=#ff3d8b>♫</color> <color=#ffd23d>Party</color> <color=#22d3ee>time</color> <color=#8b5cf6>♫</color></b></size>" }
@@ -1182,7 +1486,12 @@ function readDOM(root) {
     for (const ch of node.childNodes) {
       if (ch.nodeType === 3) push(ch.nodeValue.replace(/ /g, " ").replace(/​/g, ""), f);
       else if (ch.nodeType === 1) {
-        if (ch.tagName === "BR") { if (!("sentinel" in ch.dataset)) push("\n", f); continue; }
+        if (ch.tagName === "BR") {
+          // the browser's own placeholder <br> in an empty (or newline-ended) editor isn't a line of text
+          const placeholder = "sentinel" in ch.dataset || (node === root && ch === root.lastChild && (len === 0 || lastCh === "\n"));
+          if (!placeholder) push("\n", f);
+          continue;
+        }
         if (/^(DIV|P|LI|H[1-6])$/.test(ch.tagName) && len > 0 && lastCh !== "\n") push("\n", f);
         walk(ch, styleFmt(ch, f));
       }
@@ -1351,16 +1660,22 @@ function icon(id) { return `<svg class="ic"><use href="#${id}"/></svg>`; }
 function checks(code, chars, bytes) {
   const out = [];
   const lim = LIMITS[mode];
-  if (chars > lim.chars) out.push(["err", `${chars - lim.chars} characters over the ${lim.chars} limit. Try per-word gradients, fewer colours, or shorter lines.`]);
+  if (chars > lim.chars) out.push(["err", `${chars - lim.chars} characters over the ${lim.chars} limit. Try per-word gradients, fewer colours, or shorter lines.`, "fit"]);
   else if (chars > lim.chars * 0.9) out.push(["warn", `${lim.chars - chars} characters left.`]);
-  if (mode === "gift" && bytes > lim.bytes) out.push(["err", `${bytes - lim.bytes} bytes over the 255-byte gift limit. Symbols cost 2–3 bytes each.`]);
+  if (mode === "gift" && bytes > lim.bytes) out.push(["err", `${bytes - lim.bytes} bytes over the 255-byte gift limit. Symbols cost 2–3 bytes each.`, "fit"]);
   const text = textOf(runs);
   if (/<\/?(b|i|color|size)\b/i.test(text)) out.push(["warn", "Your text contains something that looks like a tag. The game will read it as formatting."]);
   if (/\t/.test(text)) out.push(["warn", "Tabs show differently in the game than here."]);
   if (mode === "gift") {
     const po = [...new Set([...text].filter((ch) => PROFILE_ONLY.has(ch)))];
-    if (po.length) out.push(["warn", `${po.join(" ")} ${po.length > 1 ? "don't" : "doesn't"} show in gifts. Swap for a symbol without the amber dot.`]);
+    if (po.length) out.push(["warn", `${po.join(" ")} ${po.length > 1 ? "don't" : "doesn't"} show in gifts. Swap for a symbol without the amber dot.`, "giftfix"]);
   }
+  // decorative symbols outside the Studio's tested list may show as boxes in the game
+  const known = KNOWN_SYMBOLS();
+  const odd = [...new Set([...text].filter((ch) => /\p{So}|\p{Sm}/u.test(ch) && !known.has(ch)))];
+  if (odd.length) out.push(["warn", `${odd.slice(0, 8).join(" ")} ${odd.length > 1 ? "aren't" : "isn't"} in the Studio's symbol list and may show as a box in 3DXChat.`]);
+  const dark = [...new Set(runs.filter((r) => r.c && r.t.trim() && luminance(r.c) < 0.05).map((r) => r.c))];
+  if (dark.length) out.push(["warn", `Some text is very dark (${dark.slice(0, 3).join(", ")}) and hard to read on the game's dark panel.`, "readable"]);
   if (!out.length) out.push(["ok", mode === "gift" ? "Fits in a gift. Paste it into the gift message box." : "Ready to paste into your profile."]);
   return out;
 }
@@ -1388,10 +1703,15 @@ function changed() {
     $("#st-bytes").textContent = `${bytes} / ${lim.bytes} bytes`;
   }
   $("#s-text").textContent = text.length;
+  const words = (text.match(/[\p{L}\p{N}][\p{L}\p{N}'’-]*/gu) || []).length;
+  $("#st-words").textContent = `${words} word${words === 1 ? "" : "s"}`;
+  if (typeof autosaveDoc === "function") { autosaveDoc(); showCurrentDoc(); }
   $("#s-tags").textContent = code.length - text.length;
   $("#s-nl").textContent = newlines(code);
   const list = checks(code, chars, bytes);
-  $("#warns").innerHTML = list.map(([k, m]) => `<li class="${k}">${icon(k === "ok" ? "i-check" : "i-warn")}<span>${escapeHtml(m)}</span></li>`).join("");
+  const ACT = { fit: "Fit it with AI", giftfix: "Swap them", readable: "Brighten" };
+  $("#warns").innerHTML = list.map(([k, m, a]) => `<li class="${k}">${icon(k === "ok" ? "i-check" : "i-warn")}<span>${escapeHtml(m)}</span>${a && (a === "giftfix" || aiUsable()) ? `<button type="button" class="act" data-act="${a}">${ACT[a]}</button>` : ""}</li>`).join("")
+    + (text.trim() && aiUsable() ? `<li class="ok" style="color:var(--muted)">${icon("i-spark")}<span>Want a second look at spelling?</span><button type="button" class="act" data-act="proof">Proofread</button></li>` : "");
   const errs = list.filter(([k]) => k === "err").length, warns = list.filter(([k]) => k === "warn").length;
   $("#st-dot").className = "dot" + (errs ? " err" : warns ? " warn" : "");
   $("#st-warn").textContent = errs ? `${errs} problem${errs > 1 ? "s" : ""}` : warns ? `${warns} note${warns > 1 ? "s" : ""}` : "No problems";
@@ -1430,7 +1750,7 @@ function hideExample() { if (isExample) { isExample = false; $("#example-chip").
 // ---------- editor events ----------
 editor.addEventListener("beforeinput", (e) => {
   const t = e.inputType;
-  if (t === "insertParagraph" || t === "insertLineBreak") { e.preventDefault(); hideExample(); typeText("\n"); return; }
+  if (t === "insertParagraph" || t === "insertLineBreak") { e.preventDefault(); hideExample(); if (t === "insertLineBreak") typeText("\n"); else enterKey(); return; }
   if (t === "historyUndo") { e.preventDefault(); undo(); return; }
   if (t === "historyRedo") { e.preventDefault(); redo(); return; }
   if (t.startsWith("format")) { e.preventDefault(); return; }
@@ -1714,7 +2034,17 @@ async function copyText(text, label) {
 function copyCode() { const code = serialize(runs, opts); copyText(code, `Copied ${charCount(code)} characters`); }
 $("#btn-copy").onclick = $("#btn-copy-2").onclick = copyCode;
 
-// templates
+// templates: the hand-made ones are "Featured", then the generated library, then the player's own
+const LIBRARY = /*TEMPLATES*/;
+for (const m of ["profile", "gift"]) { TEMPLATES[m].forEach((t) => { t.cat = t.cat || "Featured"; }); TEMPLATES[m].push(...LIBRARY[m]); }
+const myTemplates = Object.assign({ profile: [], gift: [] }, store.get("mytpl") || {});
+const saveMyTemplates = () => store.set("mytpl", myTemplates);
+function addMyTemplate(code, name) {
+  const list = myTemplates[mode];
+  list.push({ name: name || `My template ${list.length + 1}`, cat: "Mine", code });
+  saveMyTemplates(); drawTemplates();
+  toast(`Saved to My templates`);
+}
 function tplCard(t, small) {
   const b = document.createElement("button");
   b.type = "button"; b.className = "tpl";
@@ -1728,7 +2058,20 @@ function tplCard(t, small) {
   b.onclick = () => loadTemplate(t);
   return b;
 }
-function drawTemplates() { $("#ribbon-tpls").replaceChildren(...TEMPLATES[mode].map((t) => tplCard(t, true))); }
+function toolCard(ic, title, sub, onclick) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "tpl tpl-tool";
+  b.innerHTML = `${icon(ic)}<div>${escapeHtml(title)}</div><span>${escapeHtml(sub)}</span>`;
+  b.onclick = onclick;
+  return b;
+}
+function drawTemplates() {
+  const n = TEMPLATES[mode].length + myTemplates[mode].length;
+  $("#ribbon-tpls").replaceChildren(
+    toolCard("i-layout", "Browse all", `${n} templates`, () => openGallery()),
+    toolCard("i-spark", "Make one with AI", "describe a style", () => openTemplateMaker()),
+    ...[...myTemplates[mode].slice(-2), ...TEMPLATES[mode].filter((t) => t.cat === "Featured")].map((t) => tplCard(t, true)));
+}
 async function loadTemplate(t) {
   if (textOf(runs).trim() && !isExample && !(await ask(`“${t.name}” will replace what you've written. You can undo with Ctrl+Z.`))) return;
   const p = parseCode(t.code);
@@ -2153,13 +2496,14 @@ async function runAi(task, extra = {}, base = null) {
   await aiReady;
   if (!aiConfigured()) { if (BUILD === "artifact") return toast("AI isn't available in this view"); return openAiSettings(); }
   const ctx = base || aiContext();
-  if (task !== "write" && !ctx.code.trim()) return toast("Write something first, or use Write it for me");
+  if (task !== "write" && task !== "template" && !ctx.code.trim()) return toast("Write something first, or use Write it for me");
   const o = { ...ctx, ...extra };
-  o.target = task === "write" ? (mode === "gift" ? 150 : 700) : Math.round(o.limit * 0.85);
+  o.target = task === "write" || task === "template" ? (mode === "gift" ? 150 : 700) : Math.round(o.limit * 0.85);
   aiJob = { task, extra, ctx, text: "", done: false };
   const dlg = $("#dlg-ai-result"), pv = $("#air-preview");
   pv.className = "ai-preview thinking"; pv.textContent = "Thinking...";
-  $("#air-title").textContent = { write: "Your new text", shorten: "Shortened", fix: "Spelling fixed", tone: `${o.tone} version`, translate: `In ${o.lang}`, style: `${o.theme} style` }[task] || "AI suggestion";
+  $("#air-title").textContent = { write: "Your new text", shorten: "Shortened", fix: "Spelling fixed", tone: `${o.tone} version`, translate: `In ${o.lang}`, style: `${o.theme} style`,
+    decorate: "With symbols", readable: "Easier to read", template: "Your new template" }[task] || "AI suggestion";
   $("#air-count").textContent = "–"; $("#air-note").textContent = ""; $("#air-warns").innerHTML = "";
   $("#air-use").disabled = true; $("#air-retry").disabled = true; $("#air-shorter").hidden = true; $("#air-stop").hidden = false;
   if (!dlg.open) dlg.showModal();
@@ -2261,6 +2605,696 @@ $("#ai-translate").onclick = () => runAi("translate", { lang: $("#ai-lang").valu
 $("#ai-style").onclick = () => runAi("style", { theme: $("#ai-theme").value });
 updateAiStatus();
 
+let knownSymbols = null;
+function KNOWN_SYMBOLS() {
+  if (!knownSymbols) knownSymbols = new Set([...SYMBOLS.common, ...SYMBOLS.profileOnly, ...DIVIDERS, ...FLAGS_TEXT()].flatMap((x) => [...x]));
+  return knownSymbols;
+}
+function FLAGS_TEXT() { try { return typeof FLAGS !== "undefined" ? FLAGS.map((f) => JSON.stringify(f)) : []; } catch { return []; } }
+
+// ---------- word processor ----------
+const lineStart = (t, i) => (i <= 0 ? 0 : t.lastIndexOf("\n", i - 1) + 1);
+const lineEnd = (t, i) => { const k = t.indexOf("\n", i); return k < 0 ? t.length : k; };
+function lineSpans(s) {                      // [{a, b}] for every line touched by the selection
+  const t = textOf(runs);
+  const last = s.b > s.a && t[s.b - 1] === "\n" ? s.b - 1 : s.b;
+  const out = [];
+  for (let a = lineStart(t, s.a); a <= last; ) {
+    const b = lineEnd(t, a);
+    out.push({ a, b });
+    if (b >= t.length) break;
+    a = b + 1;
+  }
+  return out;
+}
+const BULLETS = ["•", "▶", "♥", "★", "✿", "♫", "→", "◆", "–"];
+const NUMBERINGS = { "1.": (n) => `${n}.`, "①": (n) => "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"[n - 1] || `${n}.`,
+                     "❶": (n) => "❶❷❸❹❺❻❼❽❾❿"[n - 1] || `${n}.`, "Ⅰ.": (n) => (["Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ", "Ⅶ", "Ⅷ", "Ⅸ", "Ⅹ", "Ⅺ", "Ⅻ"][n - 1] || n) + ".",
+                     "a)": (n) => `${String.fromCharCode(96 + Math.min(n, 26))})` };
+const LIST_RE = /^( *)((?:[•▶♥★✿♫→◆–])|\d+\.|[①-⑳]|[❶-❿]|[ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ]+\.|[a-z]\)) /;
+let bulletChar = store.get("bullet") || "•", numberStyle = store.get("numbering") || "1.";
+function linePrefix(t, span) { return LIST_RE.exec(t.slice(span.a, span.b)); }
+function setLinePrefixes(prefixFor) {        // prefixFor(index, lineText) -> new prefix or null to strip
+  const s = curSel();
+  edit(() => {
+    const spans = lineSpans(s);
+    let shift = 0;
+    spans.forEach((sp, idx) => {
+      const t = textOf(runs), a = sp.a + shift, b = sp.b + shift;
+      const m = LIST_RE.exec(t.slice(a, b));
+      const lead = m ? m[1] : (t.slice(a, b).match(/^ */) || [""])[0];
+      const oldLen = m ? m[0].length : lead.length;
+      const pre = prefixFor(idx, t.slice(a, b));
+      const ins = lead + (pre ? pre + " " : "");
+      const f = a + oldLen < b ? fmtAt(runs, a + oldLen + 1) : blank();   // the line's own first character
+      runs = deleteRange(runs, a, a + oldLen);
+      runs = insertRuns(runs, a, ins ? [{ t: ins, ...fmtOf(f) }] : []);
+      shift += ins.length - oldLen;
+    });
+    const t2 = textOf(runs);
+    return { sel: { a: lineStart(t2, s.a), b: lineEnd(t2, Math.max(s.a, s.b + shift)) } };
+  });
+}
+function toggleList(kind) {
+  const t = textOf(runs), spans = lineSpans(curSel());
+  const isBullet = (m) => m && /^[•▶♥★✿♫→◆–]$/.test(m[2]);
+  const allOn = spans.every((sp) => { const m = linePrefix(t, sp); return kind === "bullet" ? isBullet(m) : m && !isBullet(m); });
+  setLinePrefixes((i) => allOn ? null : kind === "bullet" ? bulletChar : NUMBERINGS[numberStyle](i + 1));
+}
+function indentLines(dir) {
+  const s = curSel();
+  edit(() => {
+    let shift = 0;
+    for (const sp of lineSpans(s)) {
+      const a = sp.a + shift, t = textOf(runs);
+      if (dir > 0) { runs = insertRuns(runs, a, [{ t: "   ", ...fmtOf(a < textOf(runs).length ? fmtAt(runs, a + 1) : blank()) }]); shift += 3; }
+      else { const n = Math.min(3, (t.slice(a, sp.b + shift).match(/^ */) || [""])[0].length); runs = deleteRange(runs, a, a + n); shift -= n; }
+    }
+    return { sel: { a: Math.max(0, s.a + (dir > 0 ? 3 : 0)), b: Math.max(0, s.b + shift) } };
+  });
+}
+// Enter inside a list continues it; Enter on an empty item ends the list
+function continueList() {
+  const s = curSel();
+  if (s.a !== s.b) return false;
+  const t = textOf(runs), sp = { a: lineStart(t, s.a), b: lineEnd(t, s.a) };
+  const m = linePrefix(t, sp);
+  if (!m || s.a < sp.a + m[0].length) return false;
+  if (!t.slice(sp.a + m[0].length, sp.b).trim()) {          // empty item: end the list
+    edit(() => { runs = deleteRange(runs, sp.a, sp.b); return { sel: { a: sp.a, b: sp.a } }; });
+    return true;
+  }
+  let next = m[2];
+  if (/^\d+\.$/.test(next)) next = `${parseInt(next, 10) + 1}.`;
+  else if (/^[a-z]\)$/.test(next)) next = `${String.fromCharCode(Math.min(122, next.charCodeAt(0) + 1))})`;
+  else for (const [st, fn] of Object.entries(NUMBERINGS)) {
+    const k = Array.from({ length: 20 }, (_, i) => fn(i + 1)).indexOf(next);
+    if (k >= 0 && st !== "1." && st !== "a)") { next = fn(k + 2); break; }
+  }
+  typeText("\n" + m[1] + next + " ");
+  return true;
+}
+// Enter: continue a list, or after a Title/Heading/Subheading line start the next line in Normal (like Word)
+function enterKey() {
+  if (continueList()) return;
+  const s = curSel(), t = textOf(runs), f = fmtAt(runs, s.a);
+  const atEnd = s.a === s.b && s.a === lineEnd(t, s.a) && t.slice(lineStart(t, s.a), s.a).trim();
+  const heading = atEnd && STYLES.slice(0, 3).some(([, st]) => !!st.b === !!f.b && (st.s || null) === (f.s || null) && (st.c || null) === (f.c || null));
+  if (!heading) return typeText("\n");
+  edit(() => { runs = insertRuns(runs, s.a, [{ t: "\n", ...blank() }]); return { sel: { a: s.a + 1, b: s.a + 1 } }; });
+  pending = blank(); pendingAt = s.a + 1; updateToolbar();
+}
+// alignment with spaces, measured in the game font (the profile panel is about 480 px wide)
+const measureCtx = document.createElement("canvas").getContext("2d");
+function textWidth(rs) {
+  let w = 0;
+  for (const r of rs) {
+    measureCtx.font = `${r.i ? "italic " : ""}${r.b ? "bold " : ""}${r.s || DEFAULT_SIZE}px Arial`;
+    w += measureCtx.measureText(r.t).width - (r.t.match(/ /g) || []).length * 0.96;
+  }
+  return w;
+}
+function alignLines(how) {
+  const s = curSel(), W = 480;
+  let added = 0;
+  edit(() => {
+    let shift = 0;
+    for (const sp of lineSpans(s)) {
+      const a = sp.a + shift, b = sp.b + shift, t = textOf(runs);
+      const lead = (t.slice(a, b).match(/^ */) || [""])[0].length;
+      runs = deleteRange(runs, a, a + lead);
+      shift -= lead;
+      const line = sliceRuns(runs, a, b - lead);
+      if (how !== "left" && textOf(line).trim()) {
+        const f = fmtAt(runs, a + 1);
+        measureCtx.font = `${f.s || DEFAULT_SIZE}px Arial`;
+        const space = measureCtx.measureText(" ").width - 0.96;
+        const free = Math.max(0, W - textWidth(line));
+        const n = Math.max(0, Math.round((how === "center" ? free / 2 : free) / space));
+        runs = insertRuns(runs, a, [{ t: " ".repeat(n), ...fmtOf(f) }]);
+        shift += n; added += n;
+      }
+    }
+    return { sel: { a: s.a, b: Math.max(s.a, s.b + shift) } };
+  });
+  if (how !== "left") toast(`Aligned with spaces (${added} characters). It's close in the game, not pixel-perfect.`);
+}
+// change case without changing any formatting
+const CASES = { "UPPERCASE": (t) => t.toUpperCase(), "lowercase": (t) => t.toLowerCase(),
+  "Title Case": (t) => t.toLowerCase().replace(/(^|[\s\-(["“])(\p{L})/gu, (m, a, c) => a + c.toUpperCase()),
+  "Sentence case": (t) => t.toLowerCase().replace(/(^\s*|[.!?]\s+|\n\s*)(\p{L})/gu, (m, a, c) => a + c.toUpperCase()) };
+function changeCase(name) {
+  const s = needSelection();
+  if (!s) return;
+  edit((sel) => {
+    const src = textOf(sliceRuns(runs, sel.a, sel.b));
+    const dst = CASES[name](src);
+    const chars = [...src].map((ch, i) => { const d = [...dst][i]; return d && d.length === ch.length ? d : ch; });
+    let k = 0;
+    runs = mapRange(runs, sel.a, sel.b, (r) => { const n = [...r.t].length; const t = chars.slice(k, k + n).join(""); k += n; return { ...r, t }; });
+    return { sel };
+  });
+}
+// styles (whole lines)
+const STYLES = [
+  ["Title", { b: true, i: false, c: "#ff3d8b", s: 28 }], ["Heading", { b: true, i: false, c: "#22d3ee", s: 20 }],
+  ["Subheading", { b: true, i: false, c: null, s: 16 }], ["Normal", { b: false, i: false, c: null, s: null }],
+  ["Quote", { b: false, i: true, c: "#9ca3c9", s: null }], ["Small print", { b: false, i: false, c: "#9ca3c9", s: 12 }]];
+$("#style-gallery").replaceChildren(...STYLES.map(([name, f]) => {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "style-btn"; b.textContent = name; b.title = `${name} style for the whole line`;
+  b.style.fontWeight = f.b ? "800" : "400"; b.style.fontStyle = f.i ? "italic" : "normal"; if (f.c) b.style.color = f.c;
+  b.style.fontSize = Math.min(15, Math.max(11, (f.s || DEFAULT_SIZE) * 0.62)) + "px";
+  keepFocus(b);
+  b.onclick = () => {
+    const s = curSel();
+    const spans = lineSpans(s);
+    if (spans.every((sp) => sp.a === sp.b)) return setPending({ ...f });   // empty line: type in this style
+    edit(() => { for (const sp of spans) runs = mapRange(runs, sp.a, sp.b, (r) => ({ t: r.t, ...f })); return { sel: s }; });
+  };
+  return b;
+}));
+// line tools
+function moveLines(dir) {
+  const s = curSel(), t = textOf(runs), spans = lineSpans(s);
+  const a = spans[0].a, b = spans[spans.length - 1].b;
+  if (dir < 0 && a === 0) return;
+  if (dir > 0 && b >= t.length) return;
+  edit(() => {
+    const block = sliceRuns(runs, a, b);
+    if (dir < 0) {
+      const pa = lineStart(t, a - 1);
+      const prev = sliceRuns(runs, pa, a - 1);
+      runs = deleteRange(runs, pa, b);
+      runs = insertRuns(runs, pa, [...block, { t: "\n", ...fmtOf(fmtAt(runs, pa)) }, ...prev]);
+      return { sel: { a: s.a - (a - pa), b: s.b - (a - pa) } };
+    }
+    const nb = lineEnd(t, b + 1);
+    const next = sliceRuns(runs, b + 1, nb);
+    runs = deleteRange(runs, a, nb);
+    runs = insertRuns(runs, a, [...next, { t: "\n", ...fmtOf(fmtAt(runs, a)) }, ...block]);
+    const d = nb - b;
+    return { sel: { a: s.a + d, b: s.b + d } };
+  });
+}
+function duplicateLines() {
+  const s = curSel(), spans = lineSpans(s), a = spans[0].a, b = spans[spans.length - 1].b;
+  edit(() => { const block = sliceRuns(runs, a, b); runs = insertRuns(runs, b, [{ t: "\n", ...fmtOf(fmtAt(runs, b)) }, ...block]); const d = b - a + 1; return { sel: { a: s.a + d, b: s.b + d } }; });
+}
+function deleteLines() {
+  const s = curSel(), t = textOf(runs), spans = lineSpans(s), a = spans[0].a, b = spans[spans.length - 1].b;
+  edit(() => { const end = b < t.length ? b + 1 : b, start = b >= t.length && a > 0 ? a - 1 : a; runs = deleteRange(runs, start, end); return { sel: { a: start, b: start } }; });
+}
+function menuItems(menu, items) {
+  menu.replaceChildren(...items.map(([label, fn, pv]) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.innerHTML = pv ? `<span class="pv">${escapeHtml(pv)}</span><span class="sub">${escapeHtml(label)}</span>` : escapeHtml(label);
+    keepFocus(b);
+    b.onclick = () => { closePop(); fn(); };
+    return b;
+  }));
+}
+menuItems($("#bullet-menu"), BULLETS.map((ch) => [`${ch} item`, () => { bulletChar = ch; store.set("bullet", ch); toggleList("bullet"); }, `${ch} One  ${ch} Two`]));
+menuItems($("#number-menu"), Object.keys(NUMBERINGS).map((st) => [st, () => { numberStyle = st; store.set("numbering", st); toggleList("number"); }, `${NUMBERINGS[st](1)} ${NUMBERINGS[st](2)} ${NUMBERINGS[st](3)}`]));
+menuItems($("#case-menu"), Object.keys(CASES).map((n) => [n, () => changeCase(n)]));
+menuItems($("#lines-menu"), [["Move up (Alt+↑)", () => moveLines(-1)], ["Move down (Alt+↓)", () => moveLines(1)],
+  ["Duplicate (Ctrl+Shift+D)", duplicateLines], ["Delete (Ctrl+Shift+K)", deleteLines]]);
+for (const [btn, pop] of [["#b-bullets-menu", "#pop-bullets"], ["#b-numbers-menu", "#pop-numbers"], ["#b-case", "#pop-case"], ["#b-lines", "#pop-lines"]]) {
+  keepFocus($(btn));
+  $(btn).onclick = () => showPop($(pop), $(btn));
+}
+for (const id of ["#b-bullets", "#b-numbers", "#b-outdent", "#b-indent", "#b-al-left", "#b-al-center", "#b-al-right", "#b-find", "#b-selall", "#b-paste", "#b-cut", "#b-copysel", "#b-painter"]) keepFocus($(id));
+$("#b-bullets").onclick = () => toggleList("bullet");
+$("#b-numbers").onclick = () => toggleList("number");
+$("#b-indent").onclick = () => indentLines(1);
+$("#b-outdent").onclick = () => indentLines(-1);
+$("#b-al-left").onclick = () => alignLines("left");
+$("#b-al-center").onclick = () => alignLines("center");
+$("#b-al-right").onclick = () => alignLines("right");
+$("#b-selall").onclick = () => { editor.focus(); setSel(0, textOf(runs).length); };
+
+// clipboard: inside the Studio, copy keeps formatting (as code); paste turns code back into formatting
+function selectionCode(s) { return serialize(sliceRuns(runs, s.a, s.b), opts); }
+async function copySel(cut) {
+  const s = needSelection();
+  if (!s) return;
+  try { await navigator.clipboard.writeText(selectionCode(s)); } catch { return toast("Use Ctrl+C - the browser blocked the button"); }
+  if (cut) edit((sel) => { runs = deleteRange(runs, sel.a, sel.b); return { sel: { a: sel.a, b: sel.a } }; });
+  toast(cut ? "Cut" : "Copied");
+}
+async function pasteText(plain) {
+  let t;
+  try { t = await navigator.clipboard.readText(); } catch { return toast("Use Ctrl+V - the browser blocked reading the clipboard"); }
+  if (!t) return;
+  t = t.replace(/\r\n?/g, "\n");
+  hideExample();
+  if (!plain && /<\/?(b|i|color|size)(=[^>]*)?>/i.test(t)) insertAtCursor(parseCode(t).runs);
+  else {
+    if (plain) t = textOf(parseCode(t).runs);
+    const s = curSel();
+    insertAtCursor([{ t, ...fmtOf(pending && pendingAt === s.a ? pending : fmtAt(runs, s.a === s.b ? s.a : s.a + 1)) }]);
+  }
+}
+editor.addEventListener("copy", (e) => { const s = curSel(); if (s.a === s.b) return; e.preventDefault(); e.clipboardData.setData("text/plain", selectionCode(s)); });
+editor.addEventListener("cut", (e) => {
+  const s = curSel(); if (s.a === s.b) return;
+  e.preventDefault(); e.clipboardData.setData("text/plain", selectionCode(s));
+  edit((sel) => { runs = deleteRange(runs, sel.a, sel.b); return { sel: { a: sel.a, b: sel.a } }; });
+});
+$("#b-cut").onclick = () => copySel(true);
+$("#b-copysel").onclick = () => copySel(false);
+$("#b-paste").onclick = () => pasteText(false);
+
+// format painter
+let painter = null, painterSticky = false;
+function setPainter(fmt, sticky) {
+  painter = fmt; painterSticky = !!sticky;
+  $("#b-painter").setAttribute("aria-pressed", String(!!fmt));
+  document.body.classList.toggle("painting", !!fmt);
+  if (fmt) toast(sticky ? "Painting: select text to paint. Esc to stop." : "Now select the text to paint");
+}
+$("#b-painter").onclick = () => { if (painter) return setPainter(null); const f = selectionFmt(curSel()); setPainter({ b: !!f.b, i: !!f.i, c: f.c ?? null, s: f.s ?? null }, false); };
+$("#b-painter").ondblclick = () => { const f = selectionFmt(curSel()); setPainter({ b: !!f.b, i: !!f.i, c: f.c ?? null, s: f.s ?? null }, true); };
+editor.addEventListener("mouseup", () => setTimeout(() => {
+  if (!painter) return;
+  const s = curSel();
+  if (s.a === s.b) return;
+  const f = painter;
+  edit((sel) => { runs = mapRange(runs, sel.a, sel.b, (r) => ({ ...r, ...f })); return { sel }; });
+  if (!painterSticky) setPainter(null);
+}, 0));
+
+// find & replace
+const findDlg = $("#dlg-find");
+function openFind(replace) {
+  const s = curSel();
+  if (s.a !== s.b && s.b - s.a < 80) $("#find-q").value = textOf(sliceRuns(runs, s.a, s.b));
+  if (!findDlg.open) findDlg.show();
+  (replace ? $("#find-r") : $("#find-q")).focus();
+  $("#find-q").select();
+  countMatches();
+}
+function findAll() {
+  const q = $("#find-q").value;
+  if (!q) return [];
+  const cs = $("#find-case").checked, t = cs ? textOf(runs) : textOf(runs).toLowerCase(), n = cs ? q : q.toLowerCase();
+  const out = [];
+  for (let i = t.indexOf(n); i >= 0; i = t.indexOf(n, i + n.length)) out.push(i);
+  return out;
+}
+function countMatches(cur) {
+  const all = findAll(), q = $("#find-q").value;
+  $("#find-out").textContent = !q ? "" : !all.length ? "No matches" : cur != null ? `${all.indexOf(cur) + 1} of ${all.length}` : `${all.length} match${all.length > 1 ? "es" : ""}`;
+  return all;
+}
+function findStep(dir) {
+  const all = findAll();
+  if (!all.length) return countMatches();
+  const s = curSel(), q = $("#find-q").value.length;
+  const at = dir > 0 ? all.find((i) => i > s.a) ?? all[0] : [...all].reverse().find((i) => i < s.a) ?? all[all.length - 1];
+  editor.focus({ preventScroll: false }); setSel(at, at + q);
+  countMatches(at);
+  $("#find-q").focus();
+}
+function replaceOne() {
+  const s = curSel(), q = $("#find-q").value, r = $("#find-r").value;
+  const t = textOf(runs), cs = $("#find-case").checked;
+  const hit = s.b - s.a === q.length && (cs ? t.slice(s.a, s.b) === q : t.slice(s.a, s.b).toLowerCase() === q.toLowerCase());
+  if (!hit) return findStep(1);
+  edit((sel) => { const f = fmtAt(runs, sel.a + 1); runs = deleteRange(runs, sel.a, sel.b); runs = insertRuns(runs, sel.a, r ? [{ t: r, ...fmtOf(f) }] : []); return { sel: { a: sel.a + r.length, b: sel.a + r.length } }; });
+  findStep(1);
+}
+function replaceAll() {
+  const all = findAll(), q = $("#find-q").value.length, r = $("#find-r").value;
+  if (!all.length) return countMatches();
+  edit(() => { for (const i of [...all].reverse()) { const f = fmtAt(runs, i + 1); runs = deleteRange(runs, i, i + q); runs = insertRuns(runs, i, r ? [{ t: r, ...fmtOf(f) }] : []); } });
+  $("#find-out").textContent = `Replaced ${all.length}`;
+}
+$("#find-q").addEventListener("input", () => countMatches());
+$("#find-case").onchange = () => countMatches();
+$("#find-q").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); findStep(e.shiftKey ? -1 : 1); } });
+$("#find-r").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); replaceOne(); } });
+$("#find-next").onclick = () => findStep(1);
+$("#find-prev").onclick = () => findStep(-1);
+$("#find-rep").onclick = replaceOne;
+$("#find-all").onclick = replaceAll;
+$("#b-find").onclick = () => openFind(false);
+
+// documents (saved in this browser)
+const library = store.get("library") || [];
+const currentDoc = Object.assign({ profile: null, gift: null }, store.get("currentDoc") || {});
+const saveLibrary = () => { store.set("library", library); store.set("currentDoc", currentDoc); };
+const docById = (id) => library.find((d) => d.id === id);
+function showCurrentDoc() {
+  const d = docById(currentDoc[mode]);
+  $("#f-current").textContent = d ? `Editing “${d.name}”. Changes are saved to it automatically.` : "Not saved as a document yet. Your draft is still kept in this browser.";
+  document.title = d ? `${d.name} - 3DX Profile Studio` : "3DX Profile Studio";
+}
+function askName(title, value) {
+  return new Promise((res) => {
+    const d = $("#dlg-name"), inp = $("#name-input");
+    $("#name-title").textContent = title; inp.value = value || "";
+    const done = (v) => { d.close(); $("#name-ok").onclick = $("#name-cancel").onclick = inp.onkeydown = null; res(v); };
+    $("#name-ok").onclick = () => done(inp.value.trim() || null);
+    $("#name-cancel").onclick = () => done(null);
+    inp.onkeydown = (e) => { if (e.key === "Enter") { e.preventDefault(); done(inp.value.trim() || null); } };
+    d.showModal(); inp.select();
+  });
+}
+function saveDoc(id) {
+  const d = docById(id);
+  if (!d) return;
+  d.code = serialize(runs, opts); d.updated = Date.now();
+  saveLibrary();
+}
+async function saveAs() {
+  const first = textOf(runs).trim().split("\n")[0].trim().slice(0, 40);
+  const name = await askName("Save as", docById(currentDoc[mode])?.name ? `${docById(currentDoc[mode]).name} (copy)` : first || "My profile");
+  if (!name) return;
+  const d = { id: `d${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`, name, mode, code: serialize(runs, opts), updated: Date.now() };
+  library.push(d); currentDoc[mode] = d.id; saveLibrary(); showCurrentDoc();
+  toast(`Saved as “${name}”`);
+}
+function save() { if (docById(currentDoc[mode])) { saveDoc(currentDoc[mode]); toast("Saved"); } else saveAs(); }
+async function newDoc() {
+  if (textOf(runs).trim() && !isExample && !docById(currentDoc[mode]) && !(await ask("Start a new document? What you've written isn't saved as a document (you can undo with Ctrl+Z)."))) return;
+  currentDoc[mode] = null; saveLibrary();
+  editor.focus({ preventScroll: true });
+  edit(() => { runs = []; return { sel: { a: 0, b: 0 } }; });
+  hideExample(); showCurrentDoc();
+}
+function openDoc(d) {
+  if (d.mode !== mode) setMode(d.mode);
+  currentDoc[mode] = d.id; saveLibrary();
+  editor.focus({ preventScroll: true });
+  edit(() => { runs = parseCode(d.code).runs; return { sel: { a: 0, b: 0 } }; });
+  hideExample(); showCurrentDoc();
+  toast(`Opened “${d.name}”`);
+}
+function drawDocs() {
+  const list = [...library].sort((a, b) => b.updated - a.updated);
+  $("#doc-empty").hidden = list.length > 0;
+  $("#doc-list").replaceChildren(...list.map((d) => {
+    const row = document.createElement("div");
+    row.className = "doc-item" + (currentDoc[d.mode] === d.id ? " current" : "");
+    const chars = charCount(d.code);
+    row.innerHTML = `<div class="doc-name"><b>${escapeHtml(d.name)}</b><small>${d.mode === "gift" ? "Gift" : "Profile"} · ${chars} characters · ${new Date(d.updated).toLocaleString()}</small></div>`;
+    const mk = (label, fn, cls = "btn") => { const b = document.createElement("button"); b.type = "button"; b.className = cls; b.textContent = label; b.onclick = fn; return b; };
+    row.append(mk("Open", () => { $("#dlg-docs").close(); openDoc(d); }, "btn btn-accent"),
+      mk("Rename", async () => { const n = await askName("Rename", d.name); if (n) { d.name = n; saveLibrary(); drawDocs(); showCurrentDoc(); } }),
+      mk("Delete", async () => { if (await ask(`Delete “${d.name}”? This can't be undone.`)) { library.splice(library.indexOf(d), 1); for (const m of ["profile", "gift"]) if (currentDoc[m] === d.id) currentDoc[m] = null; saveLibrary(); drawDocs(); showCurrentDoc(); } }));
+    return row;
+  }));
+}
+$("#f-new").onclick = newDoc;
+$("#f-open").onclick = () => { drawDocs(); $("#dlg-docs").showModal(); };
+$("#f-save").onclick = save;
+$("#f-saveas").onclick = saveAs;
+$("#f-export").onclick = () => {
+  const name = (docById(currentDoc[mode])?.name || (mode === "gift" ? "gift" : "profile")).replace(/[\\/:*?"<>|]+/g, "_");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([serialize(runs, opts)], { type: "text/plain;charset=utf-8" }));
+  a.download = `${name}.txt`; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+};
+$("#f-import").onclick = () => $("#f-file").click();
+$("#f-file").onchange = async () => {
+  const file = $("#f-file").files[0];
+  $("#f-file").value = "";
+  if (!file) return;
+  const code = (await file.text()).replace(/\r\n?/g, "\n").replace(/\n$/, "");
+  const p = parseCode(code);
+  currentDoc[mode] = null; saveLibrary();
+  editor.focus({ preventScroll: true });
+  edit(() => { runs = p.runs; return { sel: { a: 0, b: 0 } }; });
+  hideExample(); showCurrentDoc();
+  toast(p.warnings.length ? `Opened ${file.name} with ${p.warnings.length} issue(s)` : `Opened ${file.name}`);
+};
+let docTimer = 0;
+function autosaveDoc() { clearTimeout(docTimer); const id = currentDoc[mode]; if (id) docTimer = setTimeout(() => saveDoc(id), 800); }
+
+// view
+$("#v-code").onclick = () => { const hide = !document.body.classList.toggle("no-code"); $("#v-code").setAttribute("aria-pressed", String(hide)); store.set("hideCode", !hide); };
+if (store.get("hideCode")) { document.body.classList.add("no-code"); $("#v-code").setAttribute("aria-pressed", "false"); }
+$$("[data-zoom]").forEach((b) => { b.onclick = () => setZoom(+b.dataset.zoom); });
+$("#v-keys").onclick = () => $("#dlg-keys").showModal();
+
+// keyboard
+editor.addEventListener("keydown", (e) => {
+  if (e.key === "Tab") { e.preventDefault(); indentLines(e.shiftKey ? -1 : 1); return; }
+  if (e.altKey && (e.key === "ArrowUp" || e.key === "ArrowDown")) { e.preventDefault(); moveLines(e.key === "ArrowUp" ? -1 : 1); return; }
+  const mod = e.ctrlKey || e.metaKey, k = e.key.toLowerCase();
+  if (mod && e.shiftKey && k === "d") { e.preventDefault(); duplicateLines(); }
+  else if (mod && e.shiftKey && k === "k") { e.preventDefault(); deleteLines(); }
+  else if (mod && e.shiftKey && k === "v") { e.preventDefault(); pasteText(true); }
+});
+document.addEventListener("keydown", (e) => {
+  const mod = e.ctrlKey || e.metaKey, k = e.key.toLowerCase();
+  if (mod && !e.shiftKey && k === "f") { e.preventDefault(); openFind(false); }
+  else if (mod && !e.shiftKey && k === "h") { e.preventDefault(); openFind(true); }
+  else if (mod && !e.shiftKey && k === "s") { e.preventDefault(); save(); }
+  else if (e.key === "Escape" && painter) setPainter(null);
+});
+
+// ---------- AI everywhere ----------
+function aiUsable() { return BUILD === "artifact" ? !!sample : aiConfigured(); }
+function luminance(col) { const [r, g, b] = hexToRgb(col).map(lin); return 0.2126 * r + 0.7152 * g + 0.0722 * b; }
+const GIFT_SWAP = { "❤": "♥", "❥": "♥", "ღ": "♥", "✦": "★", "✧": "☆", "✩": "☆", "✫": "★", "✬": "★", "✭": "★", "✮": "★", "✯": "★", "✪": "★",
+  "✔": "✓", "☺": "ツ", "☻": "ツ", "✿": "✿", "❁": "✿", "✾": "✿", "❀": "❀", "►": "▶", "◄": "◀", "✈": "→", "✉": "✂", "✌": "ツ", "☠": "♠", "✟": "†", "❦": "♣" };
+function giftFix() {
+  edit(() => { runs = normalize(runs.map((r) => ({ ...r, t: [...r.t].map((ch) => PROFILE_ONLY.has(ch) ? (GIFT_SWAP[ch] || "•") : ch).join("") }))); });
+  toast("Swapped for symbols that show in gifts");
+}
+$("#warns").addEventListener("click", (e) => {
+  const a = e.target.closest("[data-act]")?.dataset.act;
+  if (a === "fit") runAi("shorten");
+  else if (a === "giftfix") giftFix();
+  else if (a === "readable") runAi("readable");
+  else if (a === "proof") runAi("fix");
+});
+
+// "Save as template" from any AI result
+$("#air-save").onclick = () => {
+  if (!aiJob) return;
+  const code = serialize(resultRuns(aiJob).runs, opts);
+  if (!textOf(parseCode(code).runs).trim()) return;
+  const vibe = aiJob.extra?.vibe;
+  addMyTemplate(code, vibe ? vibe.slice(0, 40) : undefined);
+};
+
+// template gallery
+let galCat = "All";
+function openGallery(cat) {
+  galCat = cat || (galCat === "Mine" && !myTemplates[mode].length ? "All" : galCat);
+  $("#gal-title").textContent = mode === "gift" ? "Gift templates" : "Profile templates";
+  $("#gal-q").value = "";
+  drawGallery();
+  $("#dlg-gallery").showModal();
+  $("#gal-q").focus();
+}
+function galCats() {
+  const cats = [...new Set(TEMPLATES[mode].map((t) => t.cat))];
+  return ["All", ...(myTemplates[mode].length ? ["Mine"] : []), ...cats];
+}
+function drawGallery() {
+  const cats = galCats();
+  if (!cats.includes(galCat)) galCat = "All";
+  chipGroup($("#gal-cats"), cats, () => galCat, (v) => { galCat = v; drawGallery(); });
+  const q = $("#gal-q").value.trim().toLowerCase();
+  const all = [...myTemplates[mode], ...TEMPLATES[mode]];
+  const list = all.filter((t) => (galCat === "All" || t.cat === galCat)
+    && (!q || `${t.name} ${t.cat} ${textOf(parseCode(t.code).runs)}`.toLowerCase().includes(q)));
+  const grid = $("#gal-grid");
+  grid.replaceChildren(...list.map((t) => {
+    const card = tplCard(t);
+    const done = card.onclick; card.onclick = () => { $("#dlg-gallery").close(); done(); };
+    if (t.cat !== "Mine") return card;
+    const wrap = document.createElement("div"); wrap.className = "tpl-wrap";
+    const del = document.createElement("button"); del.type = "button"; del.className = "tpl-del"; del.title = "Delete"; del.innerHTML = icon("i-x");
+    del.onclick = (e) => { e.stopPropagation(); myTemplates[mode].splice(myTemplates[mode].indexOf(t), 1); saveMyTemplates(); drawTemplates(); drawGallery(); };
+    wrap.append(card, del);
+    return wrap;
+  }));
+  $("#gal-empty").hidden = list.length > 0;
+}
+$("#gal-q").addEventListener("input", () => drawGallery());
+$("#gal-save").onclick = () => {
+  const code = serialize(runs, opts);
+  const first = textOf(runs).trim().split("\n")[0].trim().slice(0, 32);
+  if (!first) return toast("Write something first");
+  addMyTemplate(code, first);
+  galCat = "Mine"; drawGallery();
+};
+$("#gal-ai").onclick = () => { $("#dlg-gallery").close(); openTemplateMaker(); };
+
+// AI template maker
+const TPL_IDEAS = { profile: ["Cozy witchy cottage", "Retro 80s arcade", "Royal & regal", "Tropical island DJ", "Anime cutie", "Cyberpunk city", "Old Hollywood glam", "Rock star"],
+                    gift: ["Birthday sparkle", "Sweet good morning", "Funny thank you", "Romantic rose", "Congrats party", "Welcome hug"] };
+function openTemplateMaker() {
+  if (!aiUsable()) { if (BUILD === "artifact") return toast("AI isn't available in this view"); return openAiSettings(); }
+  chipGroup($("#ait-ideas"), TPL_IDEAS[mode], () => "", (v) => { $("#ait-vibe").value = v; });
+  $("#dlg-ai-tpl").showModal();
+  $("#ait-vibe").focus();
+}
+$("#ait-go").onclick = () => {
+  const vibe = $("#ait-vibe").value.trim();
+  if (!vibe) return $("#ait-vibe").focus();
+  $("#dlg-ai-tpl").close();
+  const ctx = { ...aiContext(), partial: false, sel: { a: 0, b: textOf(runs).length }, code: "", limit: LIMITS[mode].chars, current: 0 };
+  runAi("template", { vibe }, ctx);
+};
+
+// right-click AI menu on the card
+const ctxMenu = $("#ctx-menu");
+function closeCtx() { ctxMenu.hidden = true; }
+function ctxItems() {
+  const s = curSel(), part = s.a !== s.b ? "selection" : "whole text";
+  const L = $("#ai-lang").value, T = $("#ai-theme").value;
+  const clip = [["Cut", () => copySel(true)], ["Copy", () => copySel(false)], ["Paste", () => pasteText(false)],
+    ["Paste as plain text", () => pasteText(true)], ["Select all", () => { editor.focus(); setSel(0, textOf(runs).length); }], ["hr"]];
+  if (!aiUsable()) return clip.slice(0, -1);
+  return [...clip,
+    ["head", `AI · ${part}`],
+    ["Make it friendlier", () => runAi("tone", { tone: "Friendly" })],
+    ["Make it funnier", () => runAi("tone", { tone: "Funny" })],
+    ["Make it flirtier", () => runAi("tone", { tone: "Flirty" })],
+    ["Make it classier", () => runAi("tone", { tone: "Classy" })],
+    ["hr"],
+    ["Add symbols", () => runAi("decorate")],
+    [`Recolour: ${T}`, () => runAi("style", { theme: T })],
+    ["Shorten", () => runAi("shorten")],
+    ["Fix spelling", () => runAi("fix")],
+    [`Translate to ${L}`, () => runAi("translate", { lang: L })],
+    ["hr"],
+    ["Ask the Assistant...", () => openAssist()],
+  ];
+}
+editor.addEventListener("contextmenu", (e) => {
+  if (e.shiftKey) return;                         // Shift+right-click keeps the browser's own menu
+  e.preventDefault();
+  ctxMenu.replaceChildren(...ctxItems().map(([label, fn]) => {
+    if (label === "hr") return document.createElement("hr");
+    if (label === "head") { const d = document.createElement("div"); d.className = "ctx-head"; d.textContent = fn; return d; }
+    const b = document.createElement("button");
+    b.type = "button"; b.setAttribute("role", "menuitem");
+    b.innerHTML = `${icon(["Cut", "Copy", "Paste", "Paste as plain text", "Select all"].includes(label) ? ({ Cut: "i-cut", Copy: "i-copy", Paste: "i-clip", "Paste as plain text": "i-clip", "Select all": "i-check" })[label] : "i-spark")}<span>${escapeHtml(label)}</span>`;
+    b.onmousedown = (ev) => ev.preventDefault();     // keep the card's selection
+    b.onclick = () => { closeCtx(); fn(); };
+    return b;
+  }));
+  ctxMenu.hidden = false;
+  const r = ctxMenu.getBoundingClientRect();
+  ctxMenu.style.left = Math.min(e.clientX, innerWidth - r.width - 8) + "px";
+  ctxMenu.style.top = Math.min(e.clientY, innerHeight - r.height - 8) + "px";
+});
+document.addEventListener("mousedown", (e) => { if (!ctxMenu.hidden && !ctxMenu.contains(e.target)) closeCtx(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeCtx(); });
+$("#desk").addEventListener("scroll", closeCtx);
+
+// assistant: tell it what to change, it edits the card (Ctrl+Z undoes)
+const assist = $("#assist"), alog = $("#assist-log");
+const SUGG = { profile: ["Make my name a pink gradient", "Add a section about my hobbies", "Make it fit the limit", "Make it more fun", "Add some symbols", "Translate to Spanish"],
+               gift: ["Make it more romantic", "Add hearts", "Make it funnier", "Make it fit", "Add %username% in big letters"] };
+let assistCtl = null, assistHistory = [];
+function openAssist() {
+  if (!aiUsable()) { if (BUILD === "artifact") return toast("AI isn't available in this view"); return openAiSettings(); }
+  assist.hidden = false; $("#assist-open").hidden = true;
+  $("#assist-sugg").replaceChildren(...SUGG[mode].map((t) => { const b = document.createElement("button"); b.type = "button"; b.textContent = t; b.onclick = () => askAssist(t); return b; }));
+  if (!alog.children.length) bubble("ai", mode === "gift" ? "Hi! Tell me what to change in your gift and I'll edit it for you." : "Hi! Tell me what to change on your card, like “make my name a pink gradient”, and I'll do it. Ctrl+Z undoes anything.");
+  $("#assist-q").focus();
+}
+function closeAssist() { assistCtl?.abort(); assist.hidden = true; $("#assist-open").hidden = false; }
+function bubble(who, text) {
+  const m = document.createElement("div"); m.className = `msg ${who}`;
+  const t = document.createElement("div"); t.textContent = text; m.append(t);
+  alog.append(m); alog.scrollTop = alog.scrollHeight;
+  return m;
+}
+async function askAssist(instruction) {
+  instruction = (instruction || "").trim();
+  if (!instruction || assistCtl) return;
+  $("#assist-q").value = "";
+  bubble("me", instruction);
+  const m = bubble("ai", "Working on it...");
+  const pv = document.createElement("div"); pv.className = "ai-preview"; pv.hidden = true; m.append(pv);
+  const foot = document.createElement("div"); foot.className = "msg-foot"; m.append(foot);
+  const stop = document.createElement("button"); stop.type = "button"; stop.textContent = "Stop"; foot.append(stop);
+  const s = curSel();
+  const o = { mode, code: serialize(runs, opts), limit: LIMITS[mode].chars, bytes: LIMITS[mode].bytes, instruction,
+              selected: s.a !== s.b ? textOf(sliceRuns(runs, s.a, s.b)).slice(0, 300) : "", history: assistHistory.slice(-4) };
+  assistCtl = new AbortController();
+  stop.onclick = () => assistCtl?.abort();
+  $("#assist-send").disabled = true;
+  try {
+    const r = await aiCall(aiSystem(o), aiPrompt("chat", o), (raw) => {
+      pv.hidden = false; renderRuns(pv, parseCode(cleanReply(raw)).runs); pv.scrollTop = pv.scrollHeight;
+    }, assistCtl.signal, true);
+    const p = parseCode(cleanReply(r.text));
+    if (!textOf(p.runs).trim()) throw new AIError("api", "I couldn't come up with a change for that. Try saying it another way.");
+    renderRuns(pv, p.runs); pv.hidden = false;
+    hideExample();
+    edit(() => { runs = p.runs; return { sel: { a: 0, b: 0 } }; });
+    assistHistory.push(instruction);
+    const code = serialize(runs, opts), chars = charCount(code), lim = LIMITS[mode];
+    const over = chars > lim.chars || (mode === "gift" && byteCount(code) > lim.bytes);
+    m.firstChild.textContent = r.truncated ? "Done, but the answer stopped early." : "Done! It's on your card.";
+    foot.replaceChildren(document.createTextNode(`${chars} / ${lim.chars} characters${over ? " (too long)" : ""}`));
+    const un = document.createElement("button"); un.type = "button"; un.textContent = "Undo";
+    un.onclick = () => { undo(); un.disabled = true; un.textContent = "Undone"; };
+    foot.append(un);
+    if (over) { const fit = document.createElement("button"); fit.type = "button"; fit.textContent = "Make it fit"; fit.onclick = () => askAssist("Make it fit the limit"); foot.append(fit); }
+  } catch (e) {
+    m.firstChild.textContent = e.code === "cancelled" ? "Stopped. Nothing was changed." : (e.message || "Something went wrong.");
+    pv.hidden = true; foot.replaceChildren();
+  } finally {
+    assistCtl = null; $("#assist-send").disabled = false; alog.scrollTop = alog.scrollHeight;
+  }
+}
+$("#assist-open").onclick = openAssist;
+$("#assist-x").onclick = closeAssist;
+$("#assist-send").onclick = () => askAssist($("#assist-q").value);
+$("#assist-q").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); askAssist($("#assist-q").value); } });
+document.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); assist.hidden ? openAssist() : closeAssist(); } });
+
+// ---------- feedback ----------
+let fbKind = "idea";
+chipGroup($("#fb-kind"), ["Idea", "Bug", "Other"], () => fbKind[0].toUpperCase() + fbKind.slice(1), (v) => (fbKind = v.toLowerCase()));
+function issueUrl(kind, message) {
+  const title = `${{ bug: "Bug", idea: "Idea", other: "Feedback" }[kind]}: ${message.split("\n")[0].slice(0, 70)}`;
+  return `${REPO_URL}/issues/new?labels=feedback,${kind}&title=${encodeURIComponent(title)}&body=${encodeURIComponent(`${message}\n\n---\nVersion ${VERSION} · ${mode}`)}`;
+}
+$("#btn-feedback").onclick = () => {
+  $("#fb-form").hidden = false; $("#fb-done").hidden = true; $("#fb-send").hidden = false;
+  $("#fb-cancel").textContent = "Cancel"; $("#fb-out").textContent = "";
+  $("#dlg-feedback").showModal();
+  $("#fb-msg").focus();
+};
+$("#fb-send").onclick = async () => {
+  const message = $("#fb-msg").value.trim(), out = $("#fb-out");
+  if (message.length < 5) { out.textContent = "Tell us a little more first."; return; }
+  if (!AI_PROXY) { window.open(issueUrl(fbKind, message), "_blank", "noopener"); $("#dlg-feedback").close(); return; }
+  const send = $("#fb-send");
+  send.disabled = true; out.textContent = "Sending...";
+  try {
+    const res = await fetch(`${AI_PROXY}/v1/feedback`, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ kind: fbKind, message, contact: $("#fb-contact").value.trim(), website: $("#fb-website").value,
+                             sample: $("#fb-sample").checked ? serialize(runs, opts) : "", version: VERSION, mode })
+    });
+    const j = await res.json().catch(() => ({}));
+    if (!res.ok || !j.ok) throw new Error(j.error?.message || "Couldn't send your feedback right now.");
+    $("#fb-msg").value = ""; $("#fb-sample").checked = false;
+    $("#fb-form").hidden = true; send.hidden = true; out.textContent = "";
+    $("#fb-cancel").textContent = "Close";
+    const done = $("#fb-done");
+    done.hidden = false;
+    done.innerHTML = `<p class="ai-note" style="font-size:15px;color:var(--text)"><b>Thank you!</b> Your feedback was sent${j.url ? ` as <a href="${escapeHtml(j.url)}" target="_blank" rel="noopener">#${j.number}</a>` : ""}.</p>`;
+  } catch (e) {
+    out.innerHTML = `${escapeHtml(e.message)} <a href="${escapeHtml(issueUrl(fbKind, message))}" target="_blank" rel="noopener">Post it on GitHub instead</a>`;
+  } finally { send.disabled = false; }
+};
+
 // ---------- boot ----------
 const saved = store.get("docs");
 const savedOpts = store.get("opts");
@@ -2274,6 +3308,7 @@ if (saved && (textOf(saved.profile || []) || textOf(saved.gift || []))) {
 }
 setMode(store.get("mode") === "gift" ? "gift" : "profile", true);
 $(".brand small").textContent = `v${VERSION} · Write it like a document · paste the code into 3DXChat`;
+showCurrentDoc();
 const fit = () => { const w = $("#desk").clientWidth - 24; if (w < 560) setZoom(Math.max(60, Math.floor((w / 560) * 10) * 10)); };
 fit();
 })();

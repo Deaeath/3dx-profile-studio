@@ -36,6 +36,24 @@ Your drafts stay in your browser. Nothing is uploaded anywhere unless you use th
 - **Counts like the game does.** Profiles allow 1000 characters, gifts 240 characters and 255 bytes, and every line break counts twice. Symbols that don't show inside gifts are flagged.
 - **Import** your current profile code and keep editing it. Pasting code into the card turns it into formatting.
 
+### Word-style editing
+
+- **Styles**: Title, Heading, Subheading, Normal, Quote and Small print for whole lines. After a heading, Enter goes back to Normal.
+- **Lists**: bullets (•, ▶, ♥, ★, ✿, ♫ and more) and numbering (1., ①, ❶, Ⅰ., a)). Enter starts the next item, and Enter on an empty item ends the list.
+- **Indent** with Tab and Shift+Tab. **Center** or **right-align** lines: the game has no alignment, so the Studio measures the line in the game font and pads it with spaces, which gets it close.
+- **Change case** (UPPERCASE, lowercase, Title Case, Sentence case) without losing formatting, and a **format painter** to copy a look onto other text.
+- **Find and replace** (Ctrl+F, Ctrl+H), **line tools** (Alt+↑/↓ to move, Ctrl+Shift+D to duplicate, Ctrl+Shift+K to delete), and a **word count**.
+- **Cut, copy and paste** keep formatting inside the Studio. Ctrl+Shift+V pastes plain text. Right-click for the same tools plus AI actions; Shift+right-click gives the browser's menu with spelling suggestions.
+- **File** tab: keep several **named documents** (New, Open, Save, Save as, Rename, Delete), **download** your code as a `.txt` file or **open** one. Everything stays in your browser.
+- **View** tab: hide the code panel, zoom presets, and a list of **keyboard shortcuts**.
+
+### Templates
+
+**316 templates** in 28 categories: party, chill, romance, gamer, gothic, pastel, fantasy, hosts and DJs,
+seasons and more for profiles; birthday, love, thank you, holidays and more for gifts. Search them, save
+your own as templates, or **make one with AI** from a description such as "cozy witchy cottage". Every
+template is checked to fit the game's limits, and gift templates only use symbols that show in gifts.
+
 ## AI writer
 
 <p align="center"><img src="docs/ai-writer.png" width="720" alt="The AI writer showing a finished profile and its character count"></p>
@@ -47,6 +65,13 @@ On the **AI** tab:
 - **Style it.** Adds colours, sizes and symbols in a theme without changing your words.
 
 Every result appears in a preview with its character count first. **Use this** puts it in, and **Ctrl+Z** takes it back.
+
+- **Assistant** (Ctrl+K or the button on the page): just say what you want, such as "make my name a pink
+  gradient" or "add a section about my hobbies", and it edits the card. Ctrl+Z undoes it.
+- **Right-click** any text for AI actions: friendlier, funnier, flirtier, classier, add symbols, recolour,
+  shorten, fix spelling or translate, for the selection or everything.
+- **Smart checks**: one click to fit an over-long text, swap symbols that don't show in gifts, brighten text
+  that's too dark to read, or proofread.
 
 **It works right away, with no key or account.** The built-in **Free AI** runs on Claude and is
 provided by 3DX Profile Studio. Your text goes through the Studio's small AI server to Anthropic and

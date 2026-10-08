@@ -60,4 +60,27 @@ eq("sse rest + done", split(':2}\r\n\ndata: [DONE]\n'), ['{"b":2}']);
 eq("pick anthropic", P.pickModel("anthropic", ["claude-haiku-4-5", "claude-opus-5-5"]), "claude-opus-5-5");
 eq("pick openai", P.pickModel("openai", ["gpt-4o", "gpt-5.1", "gpt-5.1-mini", "gpt-5", "whisper-1", "gpt-5.1-codex"]), "gpt-5.1");
 eq("pick gemini", P.pickModel("gemini", ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-3-pro-preview", "text-embedding-004"]), "gemini-2.5-pro");
+// every template (hand-made and generated) must parse cleanly and fit the game's limits;
+// gift templates may only use symbols that show in gifts
+{
+  const fs = require("fs"), path = require("path");
+  const root = path.join(__dirname, "..");
+  const sym = JSON.parse(fs.readFileSync(path.join(root, "src/symbols.json"), "utf8"));
+  const po = new Set(sym.profileOnly.flatMap((x) => [...x]));
+  const lib = JSON.parse(fs.readFileSync(path.join(root, "src/templates.json"), "utf8"));
+  const src = fs.readFileSync(path.join(root, "src/profile-studio.html"), "utf8");
+  const block = src.slice(src.indexOf("const TEMPLATES = {"), src.indexOf("\n};", src.indexOf("const TEMPLATES = {")) + 3);
+  const featured = new Function(block.replace("const TEMPLATES = ", "return ").replace(/;\s*$/, ""))();
+  const bad = [];
+  for (const mode of ["profile", "gift"]) {
+    for (const t of [...featured[mode], ...lib[mode]]) {
+      const p = P.parseCode(t.code), code = P.serialize(p.runs, { names: true, mergeSpaces: true });
+      const why = p.warnings.length ? "warnings" : P.charCount(code) > (mode === "gift" ? 240 : 1000) ? "too long"
+        : mode === "gift" && P.byteCount(code) > 255 ? "too many bytes"
+        : mode === "gift" && [...code].some((ch) => po.has(ch)) ? "symbol not shown in gifts" : "";
+      if (why) bad.push(`${mode} ${t.name}: ${why}`);
+    }
+  }
+  eq(`all ${featured.profile.length + lib.profile.length} profile + ${featured.gift.length + lib.gift.length} gift templates fit`, bad, []);
+}
 console.log(fail ? `${fail} FAILED` : "ALL PASS");
