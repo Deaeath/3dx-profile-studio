@@ -54,6 +54,11 @@ eq("write prompt carries brief", /loves cats/.test(P.aiPrompt("write", { mode: "
 eq("cleanReply fence", P.cleanReply("```\n<b>x</b>\n```"), "<b>x</b>");
 eq("cleanReply markers", P.cleanReply("-----BEGIN-----\nhey\n-----END-----"), "hey");
 eq("cleanReply keeps inner newlines", P.cleanReply("  a\n\nb  "), "a\n\nb");
+const ep = P.aiPrompt("edit", { mode: "profile", code: "<b>Hi</b>", partial: true, instruction: "make it rhyme" });
+eq("edit prompt carries instruction + part", /make it rhyme/.test(ep) && /one part of a longer text/.test(ep) && ep.includes("<b>Hi</b>"), true);
+const ip = P.aiPrompt("insert", { mode: "profile", before: "<b>Top</b>\n", after: "\nBye", instruction: "a hobbies line", target: 120 });
+eq("insert prompt marks the spot", ip.includes("<b>Top</b>\n" + P.AI_MARK + "\nBye") && /a hobbies line/.test(ip) && /about 120/.test(ip), true);
+eq("cleanReply drops the marker", P.cleanReply(`${P.AI_MARK}new line`), "new line");
 const split = P.sseSplitter();
 eq("sse partial", split('data: {"a":1}\ndata: {"b"'), ['{"a":1}']);
 eq("sse rest + done", split(':2}\r\n\ndata: [DONE]\n'), ['{"b":2}']);

@@ -335,7 +335,7 @@ textarea.input { height: auto; padding: 10px; font: 13px/1.5 var(--font-code); r
 .tpl-pv span { font-size: calc(var(--s, 14) * 0.7px); }
 .tpl-meta { padding: 8px 12px; display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: 12.5px; }
 .tpl-meta span { color: var(--faint); font-variant-numeric: tabular-nums; }
-.ribbon-tpls { display: flex; gap: 8px; align-items: flex-start; }
+.ribbon-tpls { display: flex; gap: 8px; align-items: flex-start; min-width: 0; }
 .ribbon-tpls .tpl { width: 150px; }
 .ribbon-tpls .tpl-pv { height: 52px; padding: 6px 8px; font-size: 8px; }
 .gift-list { display: grid; gap: 10px; }
@@ -471,6 +471,39 @@ body.no-code .side { display: none; }
 .assist-sugg { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 14px 10px; }
 .assist-sugg button { border: 1px solid var(--line); background: var(--raised); color: var(--muted); border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 700; cursor: pointer; }
 .assist-sugg button:hover { color: var(--text); border-color: var(--pink); }
+.assist-scope { display: flex; align-items: center; gap: 8px; margin: 0 14px 8px; padding: 6px 8px 6px 10px; border-radius: 10px; font-size: 12px;
+  background: rgba(255, 61, 139, .1); border: 1px solid rgba(255, 61, 139, .35); color: var(--text); }
+.assist-scope span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.assist-scope[hidden] { display: none; }
+.selbar { position: fixed; z-index: 115; width: min(390px, calc(100vw - 16px)); padding: 10px; border-radius: 14px; background: var(--raised);
+  border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(0, 0, 0, .55); display: grid; gap: 8px; }
+.selbar-head { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: var(--muted); min-width: 0; }
+.selbar-head .ic { width: 15px; height: 15px; color: var(--pink); flex: none; }
+.selbar-head span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.selbar-row { display: flex; gap: 6px; }
+.selbar-row .input { flex: 1; min-width: 0; }
+.selbar-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.selbar-chips button, .assist-scope button { border: 1px solid var(--line); background: var(--panel); color: var(--muted); border-radius: 999px;
+  padding: 4px 10px; font: 700 12px var(--font-ui); cursor: pointer; }
+.selbar-chips button:hover, .assist-scope button:hover { color: var(--text); border-color: var(--pink); }
+.ai-pill { position: fixed; z-index: 112; display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px 5px 9px; border-radius: 999px; border: 0;
+  background: linear-gradient(135deg, var(--pink), var(--violet)); color: #fff; font: 800 12px var(--font-ui); cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .45); }
+.ai-pill .ic { width: 14px; height: 14px; }
+.ai-pill kbd { font: 700 10px var(--font-ui); opacity: .75; }
+.selbar[hidden], .ai-pill[hidden], .empty-start[hidden] { display: none; }
+::highlight(ai-sel) { background-color: rgba(255, 61, 139, .38); }
+#panel-templates { width: auto; }
+.tpl-strip-wrap { display: flex; align-items: center; gap: 4px; min-width: 0; flex: 1; }
+.tpl-strip { display: flex; gap: 8px; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: thin; padding-bottom: 4px; min-width: 0; }
+.tpl-strip .tpl { width: 150px; flex: none; position: relative; }
+.tpl-cat { position: absolute; top: 4px; right: 4px; font: 800 9.5px var(--font-ui); font-style: normal; letter-spacing: .03em; padding: 2px 6px;
+  border-radius: 999px; background: rgba(11, 12, 23, .82); color: var(--cyan); pointer-events: none; }
+.strip-nav { flex: none; width: 28px; height: 28px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--text);
+  cursor: pointer; display: grid; place-items: center; }
+.strip-nav:hover { border-color: var(--pink); }
+.strip-nav .ic { width: 16px; height: 16px; }
+.empty-start { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 18px auto 0; }
 .assist-in { display: flex; gap: 8px; padding: 10px 14px 14px; border-top: 1px solid var(--line); }
 .assist-in textarea { flex: 1; resize: none; height: 44px; font: 14px/1.4 var(--font-ui); }
 @media (max-width: 1080px) { .assist-fab, .assist { right: 12px; } }
@@ -494,6 +527,8 @@ body.no-code .side { display: none; }
   <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
   <symbol id="i-at" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></symbol>
   <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
   <symbol id="i-gradient" viewBox="0 0 24 24"><path d="M5 18 12 3l7 15M8 12h8"/></symbol>
   <symbol id="i-grow" viewBox="0 0 24 24"><path d="M3 20 8 6l5 14M5 15h6"/><path d="M17 10V4M14 7h6"/></symbol>
   <symbol id="i-shrink" viewBox="0 0 24 24"><path d="M3 20 8 6l5 14M5 15h6"/><path d="M14 7h6"/></symbol>
@@ -533,6 +568,7 @@ body.no-code .side { display: none; }
       <button type="button" id="mode-gift" aria-pressed="false"><svg class="ic"><use href="#i-gift"/></svg>Gift</button>
     </div>
     <div class="title-actions">
+      <button type="button" class="btn btn-glass" id="btn-templates" title="Browse all templates"><svg class="ic"><use href="#i-layout"/></svg><span class="lbl">Templates</span></button>
       <button type="button" class="btn btn-glass" id="btn-feedback" title="Report a problem or suggest an idea"><svg class="ic"><use href="#i-chat"/></svg><span class="lbl">Feedback</span></button>
       <button type="button" class="btn btn-glass" id="btn-import" title="Load code you already have"><svg class="ic"><use href="#i-import"/></svg><span class="lbl">Import code</span></button>
       <button type="button" class="btn btn-white" id="btn-copy" title="Copy the code (Ctrl+Shift+C)"><svg class="ic"><use href="#i-copy"/></svg><span class="lbl">Copy code</span></button>
@@ -685,9 +721,9 @@ body.no-code .side { display: none; }
       </div>
       <!-- TEMPLATES -->
       <div class="ribbon-panel" id="panel-templates" role="tabpanel" aria-labelledby="tab-templates" hidden>
-        <div class="group">
+        <div class="group" style="flex:1;min-width:0">
           <div class="group-body ribbon-tpls" id="ribbon-tpls"></div>
-          <div class="group-label">Start from a template (your text is replaced)</div>
+          <div class="group-label">Start from a template (your text is replaced) · scroll for more</div>
         </div>
       </div>
       <!-- GIFTS -->
@@ -734,6 +770,13 @@ body.no-code .side { display: none; }
             <button type="button" class="tb tb-big" id="ai-write" title="Describe yourself and get a finished, formatted text"><svg class="ic"><use href="#i-spark"/></svg>Write it<br>for me</button>
           </div>
           <div class="group-label">Create</div>
+        </div>
+        <div class="group">
+          <div class="group-body">
+            <button type="button" class="tb tb-big" id="ai-ask" title="Select text and tell the AI what to do with it, or write something new at the cursor (Ctrl+J)"><svg class="ic"><use href="#i-spark"/></svg>Ask AI<br>(Ctrl+J)</button>
+            <button type="button" class="tb tb-big" id="ai-assist" title="Chat with the Assistant (Ctrl+K)"><svg class="ic"><use href="#i-chat"/></svg>Assistant<br>(Ctrl+K)</button>
+          </div>
+          <div class="group-label">Selection · Chat</div>
         </div>
         <div class="group">
           <div class="group-body stack">
@@ -1040,6 +1083,7 @@ body.no-code .side { display: none; }
 <aside class="assist" id="assist" hidden aria-label="AI assistant">
   <div class="assist-head"><h2><svg class="ic"><use href="#i-spark"/></svg>Assistant</h2><button type="button" class="x" id="assist-x" aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
   <div class="assist-log" id="assist-log" aria-live="polite"></div>
+  <div class="assist-scope" id="assist-scope" hidden><span id="assist-scope-txt"></span><button type="button" id="assist-scope-x" title="Let the Assistant change the whole text instead">Whole text</button></div>
   <div class="assist-sugg" id="assist-sugg"></div>
   <div class="assist-in">
     <textarea class="input" id="assist-q" placeholder="Tell me what to change..." aria-label="Instruction for the assistant"></textarea>
@@ -1268,11 +1312,13 @@ const AI_THEMES = {
 const AI_TONES = ["Friendly", "Flirty", "Funny", "Mysterious", "Classy", "Cute", "Confident"];
 const AI_LANGS = ["English", "Spanish", "Portuguese", "French", "German", "Italian", "Dutch", "Polish", "Russian", "Ukrainian", "Turkish", "Japanese"];
 
+const AI_MARK = "⟦HERE⟧";
 function aiSystem(o) {
   const gift = o.mode === "gift";
   const lines = [
     `You write ${gift ? "gift messages" : "profile \"About me\" texts"} for 3DXChat, an adult 3D social game where players chat, dance and meet people.`,
     "The player pastes your reply straight into the game, so reply with only that text: no explanation, no quotes around it, no Markdown, no code fences.",
+    "Give exactly one finished version. Never offer alternatives or drafts, and never add notes about what you changed.",
     "Formatting uses Unity rich-text tags and nothing else:",
     "<b>bold</b>  <i>italic</i>  <color=#ff3d8b>colour</color> (any #rrggbb, or the names red, white, blue, yellow, black)  <size=20>size in pixels</size> (normal text is 14).",
     "Close every tag you open, innermost first. No other tags and no emoji, which the game font can't draw. Unicode symbols such as ♥ ♡ ★ ☆ ✿ ❀ ♫ ♪ ▶ • ツ ∞ ☀ ☁ are fine.",
@@ -1285,7 +1331,7 @@ function aiSystem(o) {
 }
 function aiPrompt(task, o) {
   const kind = o.mode === "gift" ? "gift message" : "profile text";
-  const part = o.partial ? " This is one part of a longer text: return only the new version of this part." : "";
+  const part = o.partial ? " This is one part of a longer text: return only the new version of this part, about as long as it is now unless asked otherwise." : "";
   const wrap = (code) => `\n\n-----BEGIN-----\n${code}\n-----END-----\n\nReply with only the new text, without the BEGIN/END lines.`;
   const keepLook = "Keep the colours, sizes, symbols and line structure.";
   switch (task) {
@@ -1312,6 +1358,13 @@ function aiPrompt(task, o) {
         + `Use a placeholder name like "Nova"${o.mode === "gift" ? " and %username% for the recipient" : ""} and friendly wording anyone can personalise. `
         + (o.mode === "gift" ? "Make it short and striking, centred on one big line." : "Make it striking: a big coloured title, a divider line, and two or three short sections with coloured headings and fitting symbols.")
         + ` Aim for about ${o.target} characters by the game's count.`;
+    case "edit":
+      return `Change this ${kind} the way the player asks: ${o.instruction}\nChange only what that needs. Keep the other words, colours, sizes, symbols and line breaks as they are unless the request is about them.${part}` + wrap(o.code);
+    case "insert":
+      return `The player wants new text added to their ${kind} at the spot marked ${AI_MARK}. What to write: ${o.instruction}\n`
+        + `Match the look of the text around it (colours, sizes, symbols, how the lines are laid out) and make it flow with what comes before and after. Aim for about ${o.target} characters by the game's count.`
+        + `\n\n-----BEGIN-----\n${o.before || ""}${AI_MARK}${o.after || ""}\n-----END-----\n\n`
+        + `Reply with only the new text that goes at ${AI_MARK}: not the rest of the text, not the marker, and without the BEGIN/END lines.`;
     case "chat":
       return `${o.code.trim() ? `Here is the player's current ${kind}.` : `The player hasn't written anything yet.`} Do what they ask and reply with the complete new ${kind}.`
         + ` Change only what they asked for; keep every other word, colour, size, symbol and line break exactly as it is.`
@@ -1328,7 +1381,7 @@ function cleanReply(t) {
   const fence = t.match(/^```[\w-]*\n([\s\S]*?)\n?```$/);
   if (fence) t = fence[1];
   t = t.replace(/^-----BEGIN-----\n?/, "").replace(/\n?-----END-----$/, "");
-  return t.trim();
+  return t.split(AI_MARK).join("").trim();
 }
 // Server-sent events: feed raw chunks, get the payload of each complete "data:" line
 function sseSplitter() {
@@ -1672,8 +1725,8 @@ function checks(code, chars, bytes) {
   }
   // decorative symbols outside the Studio's tested list may show as boxes in the game
   const known = KNOWN_SYMBOLS();
-  const odd = [...new Set([...text].filter((ch) => /\p{So}|\p{Sm}/u.test(ch) && !known.has(ch)))];
-  if (odd.length) out.push(["warn", `${odd.slice(0, 8).join(" ")} ${odd.length > 1 ? "aren't" : "isn't"} in the Studio's symbol list and may show as a box in 3DXChat.`]);
+  const odd = [...new Set([...text].filter((ch) => ch.codePointAt(0) > 0xff && /\p{So}|\p{Sm}/u.test(ch) && !known.has(ch)))];
+  if (odd.length) out.push(["warn", `${odd.slice(0, 8).map((ch) => `“${ch}”`).join(" ")} ${odd.length > 1 ? "aren't" : "isn't"} in the Studio's symbol list and may show as a box in 3DXChat.`]);
   const dark = [...new Set(runs.filter((r) => r.c && r.t.trim() && luminance(r.c) < 0.05).map((r) => r.c))];
   if (dark.length) out.push(["warn", `Some text is very dark (${dark.slice(0, 3).join(", ")}) and hard to read on the game's dark panel.`, "readable"]);
   if (!out.length) out.push(["ok", mode === "gift" ? "Fits in a gift. Paste it into the gift message box." : "Ready to paste into your profile."]);
@@ -1694,6 +1747,7 @@ function changed() {
     bar.classList.toggle("over", chars > lim.chars);
   }
   $("#st-chars").textContent = `${chars} / ${lim.chars} characters`;
+  const es = document.getElementById("empty-start"); if (es) es.hidden = !!text.trim();
   if (mode === "gift") {
     $("#m-bytes").textContent = bytes;
     const bb = $("#m-bar-bytes");
@@ -1826,7 +1880,8 @@ function selectTab(name) {
   $$(".ribbon-tabs [role=tab]").forEach((t) => t.setAttribute("aria-selected", String(t.id === "tab-" + name)));
   $$(".ribbon-panel").forEach((p) => (p.hidden = p.id !== "panel-" + name));
 }
-$("#b-templates-home").onclick = () => selectTab("templates");
+$("#b-templates-home").onclick = () => openGallery();
+$("#btn-templates").onclick = () => openGallery();
 $("#b-symbols-home").onclick = $("#b-symbols").onclick = () => openSymbols();
 
 // popovers
@@ -2066,11 +2121,30 @@ function toolCard(ic, title, sub, onclick) {
   return b;
 }
 function drawTemplates() {
-  const n = TEMPLATES[mode].length + myTemplates[mode].length;
+  const list = TEMPLATES[mode], cats = [...new Set(list.map((t) => t.cat))];
+  const n = list.length + myTemplates[mode].length;
+  // a sample of every category, so the strip shows the range at a glance
+  const picks = [...myTemplates[mode].slice(-3).reverse(), ...list.filter((t) => t.cat === "Featured"),
+    ...cats.filter((c) => c !== "Featured").flatMap((c) => list.filter((t) => t.cat === c).slice(0, 2))];
+  const strip = document.createElement("div"); strip.className = "tpl-strip"; strip.id = "tpl-strip";
+  strip.append(...picks.map((t) => {
+    const card = tplCard(t, true);
+    const tag = document.createElement("i"); tag.className = "tpl-cat"; tag.textContent = t.cat; card.append(tag);
+    return card;
+  }), toolCard("i-layout", `See all ${n}`, `${cats.length} categories`, () => openGallery()));
+  strip.addEventListener("wheel", (e) => { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { e.preventDefault(); strip.scrollLeft += e.deltaY; } }, { passive: false });
+  const nav = (dir, ic, label) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "strip-nav"; b.setAttribute("aria-label", label); b.innerHTML = icon(ic);
+    b.onclick = () => strip.scrollBy({ left: dir * Math.max(320, strip.clientWidth - 160) });
+    return b;
+  };
+  const wrap = document.createElement("div"); wrap.className = "tpl-strip-wrap";
+  wrap.append(nav(-1, "i-left", "Back"), strip, nav(1, "i-right", "More templates"));
   $("#ribbon-tpls").replaceChildren(
-    toolCard("i-layout", "Browse all", `${n} templates`, () => openGallery()),
+    toolCard("i-layout", "Browse all", `${n} templates · ${cats.length} categories`, () => openGallery()),
     toolCard("i-spark", "Make one with AI", "describe a style", () => openTemplateMaker()),
-    ...[...myTemplates[mode].slice(-2), ...TEMPLATES[mode].filter((t) => t.cat === "Featured")].map((t) => tplCard(t, true)));
+    wrap);
+  $("#btn-templates").title = `Browse all ${n} templates`;
 }
 async function loadTemplate(t) {
   if (textOf(runs).trim() && !isExample && !(await ask(`“${t.name}” will replace what you've written. You can undo with Ctrl+Z.`))) return;
@@ -2482,8 +2556,7 @@ $("#dlg-ai-settings").addEventListener("close", () => updateAiStatus());
 
 // running a task
 let aiCtl = null, aiJob = null;
-function aiContext() {
-  const s = curSel();
+function aiContext(s = curSel()) {
   const lim = LIMITS[mode];
   const docCode = serialize(runs, opts);
   const partial = s.a !== s.b;
@@ -2496,14 +2569,17 @@ async function runAi(task, extra = {}, base = null) {
   await aiReady;
   if (!aiConfigured()) { if (BUILD === "artifact") return toast("AI isn't available in this view"); return openAiSettings(); }
   const ctx = base || aiContext();
-  if (task !== "write" && task !== "template" && !ctx.code.trim()) return toast("Write something first, or use Write it for me");
+  if (task !== "write" && task !== "template" && task !== "insert" && !ctx.code.trim()) return toast("Write something first, or use Write it for me");
   const o = { ...ctx, ...extra };
-  o.target = task === "write" || task === "template" ? (mode === "gift" ? 150 : 700) : Math.round(o.limit * 0.85);
+  o.target = task === "write" || task === "template" ? (mode === "gift" ? 150 : 700)
+    : task === "insert" ? Math.max(20, Math.min(Math.round(o.limit * 0.8), mode === "gift" ? 80 : 180))
+    : task === "shorten" && o.current <= o.limit ? Math.round(o.current * 0.7)
+    : Math.round(o.limit * 0.85);
   aiJob = { task, extra, ctx, text: "", done: false };
   const dlg = $("#dlg-ai-result"), pv = $("#air-preview");
   pv.className = "ai-preview thinking"; pv.textContent = "Thinking...";
   $("#air-title").textContent = { write: "Your new text", shorten: "Shortened", fix: "Spelling fixed", tone: `${o.tone} version`, translate: `In ${o.lang}`, style: `${o.theme} style`,
-    decorate: "With symbols", readable: "Easier to read", template: "Your new template" }[task] || "AI suggestion";
+    decorate: "With symbols", readable: "Easier to read", template: "Your new template", edit: "AI edit", insert: "New text for this spot" }[task] || "AI suggestion";
   $("#air-count").textContent = "–"; $("#air-note").textContent = ""; $("#air-warns").innerHTML = "";
   $("#air-use").disabled = true; $("#air-retry").disabled = true; $("#air-shorter").hidden = true; $("#air-stop").hidden = false;
   if (!dlg.open) dlg.showModal();
@@ -2532,9 +2608,21 @@ async function runAi(task, extra = {}, base = null) {
     $("#air-stop").hidden = true; $("#air-retry").disabled = false;
   }
 }
-function resultRuns(job) { return parseCode(cleanReply(job.text)); }
+function resultRuns(job) {
+  const p = parseCode(cleanReply(job.text));
+  if (job.task === "insert") {                 // new text slots into the line; no stray breaks at either end
+    let t = textOf(p.runs);
+    const lead = t.length - t.replace(/^\n+/, "").length;
+    if (lead) p.runs = deleteRange(p.runs, 0, lead);
+    t = textOf(p.runs);
+    const tail = t.length - t.replace(/\n+$/, "").length;
+    if (tail) p.runs = deleteRange(p.runs, t.length - tail, t.length);
+  }
+  return p;
+}
 function finishAi(job, truncated) {
   const p = resultRuns(job);
+  renderRuns($("#air-preview"), p.runs);
   const code = serialize(p.runs, opts);
   const lim = LIMITS[mode];
   const docAfter = job.ctx.partial ? serialize(insertRuns(deleteRange(runs, job.ctx.sel.a, job.ctx.sel.b), job.ctx.sel.a, p.runs), opts) : code;
@@ -3156,6 +3244,8 @@ function ctxItems() {
   if (!aiUsable()) return clip.slice(0, -1);
   return [...clip,
     ["head", `AI · ${part}`],
+    [s.a !== s.b ? "Ask AI to change this..." : "Write here with AI...", () => openSelBar(s, ctxAt)],
+    ...(s.a !== s.b ? [["Make it longer", () => runAi("edit", { instruction: "Make it a little longer, with a bit more detail in the same voice" })]] : []),
     ["Make it friendlier", () => runAi("tone", { tone: "Friendly" })],
     ["Make it funnier", () => runAi("tone", { tone: "Funny" })],
     ["Make it flirtier", () => runAi("tone", { tone: "Flirty" })],
@@ -3170,9 +3260,12 @@ function ctxItems() {
     ["Ask the Assistant...", () => openAssist()],
   ];
 }
+let ctxAt = null;
 editor.addEventListener("contextmenu", (e) => {
   if (e.shiftKey) return;                         // Shift+right-click keeps the browser's own menu
   e.preventDefault();
+  hidePill();
+  ctxAt = { left: e.clientX, right: e.clientX, top: e.clientY, bottom: e.clientY };
   ctxMenu.replaceChildren(...ctxItems().map(([label, fn]) => {
     if (label === "hr") return document.createElement("hr");
     if (label === "head") { const d = document.createElement("div"); d.className = "ctx-head"; d.textContent = fn; return d; }
@@ -3197,14 +3290,27 @@ const assist = $("#assist"), alog = $("#assist-log");
 const SUGG = { profile: ["Make my name a pink gradient", "Add a section about my hobbies", "Make it fit the limit", "Make it more fun", "Add some symbols", "Translate to Spanish"],
                gift: ["Make it more romantic", "Add hearts", "Make it funnier", "Make it fit", "Add %username% in big letters"] };
 let assistCtl = null, assistHistory = [];
+let assistWhole = false;
+function drawAssistScope() {
+  if (assist.hidden) return;
+  const s = lastSel, on = s.a !== s.b && !assistWhole;
+  $("#assist-scope").hidden = !on;
+  if (!on) return unmarkSel();
+  const t = textOf(runs).slice(s.a, s.b).replace(/\s+/g, " ").trim();
+  $("#assist-scope-txt").textContent = `Only changing your selection: “${t.length > 42 ? t.slice(0, 40) + "…" : t}”`;
+  if (document.activeElement !== editor) markSel(s);
+}
+$("#assist-scope-x").onclick = () => { assistWhole = true; drawAssistScope(); $("#assist-q").focus(); };
+document.addEventListener("selectionchange", () => { if (!assist.hidden && getSel()) { assistWhole = false; drawAssistScope(); } });
 function openAssist() {
   if (!aiUsable()) { if (BUILD === "artifact") return toast("AI isn't available in this view"); return openAiSettings(); }
   assist.hidden = false; $("#assist-open").hidden = true;
+  drawAssistScope();
   $("#assist-sugg").replaceChildren(...SUGG[mode].map((t) => { const b = document.createElement("button"); b.type = "button"; b.textContent = t; b.onclick = () => askAssist(t); return b; }));
   if (!alog.children.length) bubble("ai", mode === "gift" ? "Hi! Tell me what to change in your gift and I'll edit it for you." : "Hi! Tell me what to change on your card, like “make my name a pink gradient”, and I'll do it. Ctrl+Z undoes anything.");
   $("#assist-q").focus();
 }
-function closeAssist() { assistCtl?.abort(); assist.hidden = true; $("#assist-open").hidden = false; }
+function closeAssist() { assistCtl?.abort(); assist.hidden = true; $("#assist-open").hidden = false; unmarkSel(); }
 function bubble(who, text) {
   const m = document.createElement("div"); m.className = `msg ${who}`;
   const t = document.createElement("div"); t.textContent = text; m.append(t);
@@ -3220,25 +3326,33 @@ async function askAssist(instruction) {
   const pv = document.createElement("div"); pv.className = "ai-preview"; pv.hidden = true; m.append(pv);
   const foot = document.createElement("div"); foot.className = "msg-foot"; m.append(foot);
   const stop = document.createElement("button"); stop.type = "button"; stop.textContent = "Stop"; foot.append(stop);
-  const s = curSel();
-  const o = { mode, code: serialize(runs, opts), limit: LIMITS[mode].chars, bytes: LIMITS[mode].bytes, instruction,
-              selected: s.a !== s.b ? textOf(sliceRuns(runs, s.a, s.b)).slice(0, 300) : "", history: assistHistory.slice(-4) };
+  const s = { ...curSel() }, scoped = s.a !== s.b && !assistWhole;
+  const lim0 = LIMITS[mode], doc0 = serialize(runs, opts), part0 = scoped ? serialize(sliceRuns(runs, s.a, s.b), opts) : "";
+  const o = scoped
+    ? { mode, partial: true, code: part0, limit: Math.max(40, lim0.chars - (charCount(doc0) - charCount(part0))), bytes: lim0.bytes, instruction }
+    : { mode, code: doc0, limit: lim0.chars, bytes: lim0.bytes, instruction, history: assistHistory.slice(-4) };
   assistCtl = new AbortController();
   stop.onclick = () => assistCtl?.abort();
   $("#assist-send").disabled = true;
   try {
-    const r = await aiCall(aiSystem(o), aiPrompt("chat", o), (raw) => {
+    const r = await aiCall(aiSystem(o), aiPrompt(scoped ? "edit" : "chat", o), (raw) => {
       pv.hidden = false; renderRuns(pv, parseCode(cleanReply(raw)).runs); pv.scrollTop = pv.scrollHeight;
     }, assistCtl.signal, true);
     const p = parseCode(cleanReply(r.text));
     if (!textOf(p.runs).trim()) throw new AIError("api", "I couldn't come up with a change for that. Try saying it another way.");
     renderRuns(pv, p.runs); pv.hidden = false;
     hideExample();
-    edit(() => { runs = p.runs; return { sel: { a: 0, b: 0 } }; });
-    assistHistory.push(instruction);
+    if (scoped) {
+      edit(() => { runs = insertRuns(deleteRange(runs, s.a, s.b), s.a, p.runs); return { sel: { a: s.a, b: s.a + textOf(p.runs).length } }; });
+      lastSel = { a: s.a, b: s.a + textOf(p.runs).length };
+      drawAssistScope();
+    } else {
+      edit(() => { runs = p.runs; return { sel: { a: 0, b: 0 } }; });
+      assistHistory.push(instruction);
+    }
     const code = serialize(runs, opts), chars = charCount(code), lim = LIMITS[mode];
     const over = chars > lim.chars || (mode === "gift" && byteCount(code) > lim.bytes);
-    m.firstChild.textContent = r.truncated ? "Done, but the answer stopped early." : "Done! It's on your card.";
+    m.firstChild.textContent = r.truncated ? "Done, but the answer stopped early." : scoped ? "Done! I changed only your selection." : "Done! It's on your card.";
     foot.replaceChildren(document.createTextNode(`${chars} / ${lim.chars} characters${over ? " (too long)" : ""}`));
     const un = document.createElement("button"); un.type = "button"; un.textContent = "Undo";
     un.onclick = () => { undo(); un.disabled = true; un.textContent = "Undone"; };
@@ -3252,10 +3366,149 @@ async function askAssist(instruction) {
   }
 }
 $("#assist-open").onclick = openAssist;
+$("#ai-assist").onclick = openAssist;
 $("#assist-x").onclick = closeAssist;
 $("#assist-send").onclick = () => askAssist($("#assist-q").value);
 $("#assist-q").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); askAssist($("#assist-q").value); } });
 document.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); assist.hidden ? openAssist() : closeAssist(); } });
+
+// ---------- AI on the selection: a floating pill, then a small bar ----------
+function markSel(s) {
+  if (!window.Highlight || !window.CSS?.highlights || !s || s.a === s.b) return;
+  try {
+    const [n1, o1] = pointAt(s.a), [n2, o2] = pointAt(s.b);
+    const r = new Range(); r.setStart(n1, o1); r.setEnd(n2, o2);
+    CSS.highlights.set("ai-sel", new Highlight(r));
+  } catch { }
+}
+function unmarkSel() { try { CSS.highlights?.delete("ai-sel"); } catch { } }
+function selRect(s) {                           // where the selection ends on screen
+  const [n1, o1] = pointAt(s.a), [n2, o2] = pointAt(s.b);
+  const r = document.createRange(); r.setStart(n1, o1); r.setEnd(n2, o2);
+  const rects = [...r.getClientRects()].filter((x) => x.width || x.height);
+  if (rects.length) return rects[rects.length - 1];
+  if (s.a === s.b && s.a < textOf(runs).length) return selRect({ a: s.a, b: s.a + 1 });
+  const e = editor.getBoundingClientRect();
+  return { left: e.left + 12, right: e.left + 12, top: e.top + 4, bottom: e.top + 22, height: 18 };
+}
+const aiPill = document.createElement("button");
+aiPill.type = "button"; aiPill.className = "ai-pill"; aiPill.id = "ai-pill"; aiPill.hidden = true;
+document.body.append(aiPill);
+const selbar = document.createElement("div");
+selbar.className = "selbar"; selbar.id = "selbar"; selbar.hidden = true; selbar.setAttribute("role", "dialog"); selbar.setAttribute("aria-label", "Ask AI");
+selbar.innerHTML = `<div class="selbar-head">${icon("i-spark")}<span id="sb-head"></span></div>
+  <div class="selbar-row"><input class="input" id="sb-q" autocomplete="off" spellcheck="true"><button type="button" class="btn btn-accent" id="sb-go" aria-label="Go">${icon("i-spark")}</button></div>
+  <div class="selbar-chips" id="sb-chips"></div>`;
+document.body.append(selbar);
+let sbSel = null, pillTimer = 0;
+function hidePill() { clearTimeout(pillTimer); aiPill.hidden = true; }
+function maybePill() {
+  hidePill();
+  if (!selbar.hidden || painter || !aiUsable() || document.activeElement !== editor) return;
+  const s = getSel();
+  if (!s) return;
+  const t = textOf(runs), caret = s.a === s.b;
+  if (caret && t.slice(lineStart(t, s.a), lineEnd(t, s.a)).trim()) return;      // a caret only gets the pill on an empty line
+  pillTimer = setTimeout(() => {
+    const now = getSel();
+    if (!now || now.a !== s.a || now.b !== s.b || document.activeElement !== editor) return;
+    aiPill.innerHTML = `${icon("i-spark")}${caret ? "Write here with AI" : "Ask AI"}<kbd>Ctrl+J</kbd>`;
+    aiPill.hidden = false;
+    const r = selRect(s), w = aiPill.offsetWidth, h = aiPill.offsetHeight;
+    const x = caret ? r.left + 8 : r.right - w / 2;
+    const y = caret ? r.top + ((r.height || 18) - h) / 2 : r.bottom + 6;
+    aiPill.style.left = Math.min(Math.max(8, x), innerWidth - w - 8) + "px";
+    aiPill.style.top = Math.min(Math.max(8, y), innerHeight - h - 8) + "px";
+  }, caret ? 500 : 250);
+}
+document.addEventListener("selectionchange", maybePill);
+editor.addEventListener("blur", () => { hidePill(); if (!assist.hidden && !assistWhole) drawAssistScope(); });
+editor.addEventListener("focus", unmarkSel);
+editor.addEventListener("keydown", (e) => { if (e.key !== "Shift") hidePill(); });
+aiPill.onmousedown = (e) => e.preventDefault();  // keep the card's selection
+aiPill.onclick = () => openSelBar(curSel());
+function openSelBar(s = curSel(), at = null) {
+  if (!aiUsable()) { if (BUILD === "artifact") return toast("AI isn't available in this view"); return openAiSettings(); }
+  hidePill(); closeCtx();
+  sbSel = { a: Math.min(s.a, s.b), b: Math.max(s.a, s.b) };
+  const sel = sbSel.a !== sbSel.b;
+  const snippet = textOf(runs).slice(sbSel.a, sbSel.b).replace(/\s+/g, " ").trim();
+  $("#sb-head").textContent = sel ? `Change “${snippet.length > 44 ? snippet.slice(0, 42) + "…" : snippet}”` : "Write something new here";
+  $("#sb-q").placeholder = sel ? "Tell the AI what to do, e.g. make it rhyme"
+    : mode === "gift" ? "What should it say? e.g. a birthday wish" : "What should I write? e.g. a line about my hobbies";
+  $("#sb-q").value = "";
+  const L = $("#ai-lang").value, T = $("#ai-theme").value;
+  const chips = sel ? [
+    ["Improve", () => selRun("edit", { instruction: "Make it better: livelier, clearer wording with the same meaning" })],
+    ["Shorter", () => selRun("shorten")],
+    ["Longer", () => selRun("edit", { instruction: "Make it a little longer, with a bit more detail in the same voice" })],
+    ["Fix spelling", () => selRun("fix")],
+    ["Funnier", () => selRun("tone", { tone: "Funny" })],
+    ["Flirtier", () => selRun("tone", { tone: "Flirty" })],
+    ["Classier", () => selRun("tone", { tone: "Classy" })],
+    ["Add symbols", () => selRun("decorate")],
+    [`Recolour: ${T}`, () => selRun("style", { theme: T })],
+    [`To ${L}`, () => selRun("translate", { lang: L })]
+  ] : (mode === "gift" ? ["A birthday wish", "A thank-you line", "A line of hearts", "A sweet sign-off", "A little joke"]
+       : ["A catchy intro line", "A section about my hobbies", "A divider line", "A closing line", "A fun fact about me", "A short quote"])
+      .map((x) => [x, () => selRun("insert", { instruction: x })]);
+  $("#sb-chips").replaceChildren(...chips.map(([label, fn]) => {
+    const b = document.createElement("button"); b.type = "button"; b.textContent = label; b.onclick = fn; return b;
+  }));
+  selbar.hidden = false;
+  markSel(sbSel);
+  const r = at || selRect(sbSel), w = selbar.offsetWidth, h = selbar.offsetHeight;
+  let y = r.bottom + 8;
+  if (y + h > innerHeight - 8) y = Math.max(8, r.top - h - 8);
+  selbar.style.left = Math.min(Math.max(8, r.left - 20), innerWidth - w - 8) + "px";
+  selbar.style.top = y + "px";
+  $("#sb-q").focus();
+}
+function closeSelBar(refocus) {
+  if (selbar.hidden) return;
+  selbar.hidden = true; unmarkSel();
+  if (refocus && sbSel) { editor.focus({ preventScroll: true }); setSel(sbSel.a, sbSel.b); }
+}
+function runInsert(at, instruction) {
+  const lim = LIMITS[mode], doc = serialize(runs, opts);
+  const room = lim.chars - charCount(doc), broom = lim.bytes - byteCount(doc);
+  if (room < 12 || (mode === "gift" && broom < 12)) return toast("There's no room left. Shorten something first.");
+  const end = textOf(runs).length;
+  runAi("insert", { instruction }, { sel: { a: at, b: at }, partial: true, mode, code: "", current: 0, limit: room,
+    bytes: mode === "gift" ? broom : lim.bytes,
+    before: serialize(sliceRuns(runs, 0, at), opts), after: serialize(sliceRuns(runs, at, end), opts) });
+}
+function selRun(task, extra = {}) {
+  const s = sbSel;
+  closeSelBar(false);
+  if (!s) return;
+  if (task === "insert") return runInsert(s.a, extra.instruction);
+  runAi(task, extra, aiContext(s));
+}
+$("#sb-go").onclick = () => {
+  const q = $("#sb-q").value.trim();
+  if (!q) return $("#sb-q").focus();
+  selRun(sbSel && sbSel.a !== sbSel.b ? "edit" : "insert", { instruction: q });
+};
+$("#sb-q").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") { e.preventDefault(); $("#sb-go").click(); }
+  else if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); closeSelBar(true); }
+});
+document.addEventListener("mousedown", (e) => { if (!selbar.hidden && !selbar.contains(e.target)) closeSelBar(false); });
+$("#desk").addEventListener("scroll", () => { hidePill(); closeSelBar(false); });
+document.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === "j") { e.preventDefault(); selbar.hidden ? openSelBar(curSel()) : closeSelBar(true); }
+});
+$("#ai-ask").onclick = () => openSelBar(lastSel);
+
+// empty card: offer the two quickest starts
+const emptyStart = document.createElement("div");
+emptyStart.className = "empty-start"; emptyStart.id = "empty-start"; emptyStart.hidden = true;
+emptyStart.innerHTML = `<button type="button" class="btn" id="es-tpl">${icon("i-layout")}Pick a template</button><button type="button" class="btn btn-accent" id="es-ai">${icon("i-spark")}Write it with AI</button>`;
+$("#page-wrap").after(emptyStart);
+$("#es-tpl").onclick = () => openGallery();
+$("#es-ai").onclick = () => $("#ai-write").click();
+emptyStart.hidden = !!textOf(runs).trim();
 
 // ---------- feedback ----------
 let fbKind = "idea";

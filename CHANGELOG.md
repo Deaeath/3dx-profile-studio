@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.2.1 - 2026-10-08
+
+### AI on your selection
+- Select any text and an **Ask AI** button appears next to it. Type what you want ("make it rhyme") or pick
+  Improve, Shorter, Longer, Fix spelling, Funnier, Flirtier, Classier, Add symbols, Recolour or Translate.
+  Only the selection changes.
+- On an empty line, **Write here with AI** writes something new at that spot: an intro line, a hobbies
+  section, a divider, a closing line or whatever you describe. It matches the look of the text around it.
+- **Ctrl+J** opens the same bar anywhere, and it's in the right-click menu and on the AI tab.
+- The **Assistant** now changes only your selection when you have one (it says so, with a button to use
+  the whole text instead), and the selection stays highlighted while you type to it.
+
+### Templates are easier to find
+- A **Templates** button in the top bar opens the full gallery.
+- The Templates tab now shows a scrolling strip with samples from every category, labelled, plus
+  the total count. The Home tab's Templates button opens the gallery directly.
+- An empty card offers **Pick a template** and **Write it with AI**.
+
+### Fixes
+- Ordinary characters such as `|`, `+`, `<`, `=` and `~` were flagged as symbols that might not show in the game.
+- AI answers no longer sometimes include several drafts or notes.
+- Shorten on a selection now actually shortens it when the whole text is already under the limit.
+
 ## 1.2.0 - 2026-10-08
 
 ### Word-style editing

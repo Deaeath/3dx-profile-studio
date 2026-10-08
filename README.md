@@ -56,7 +56,7 @@ template is checked to fit the game's limits, and gift templates only use symbol
 
 ## AI writer
 
-<p align="center"><img src="docs/ai-writer.png" width="720" alt="The AI writer showing a finished profile and its character count"></p>
+<p align="center"><img src="docs/ask-ai.png" width="720" alt="Text selected on the card with the Ask AI bar open below it"></p>
 
 On the **AI** tab:
 
@@ -66,8 +66,13 @@ On the **AI** tab:
 
 Every result appears in a preview with its character count first. **Use this** puts it in, and **Ctrl+Z** takes it back.
 
+- **Ask AI on a selection** (Ctrl+J): select text and an Ask AI button appears. Say what you want, such as
+  "make it rhyme", or pick Improve, Shorter, Longer, Funnier and more. Only the selection changes.
+- **Write here with AI**: on an empty line, describe what should go there and the AI writes it in the
+  same style as the text around it.
 - **Assistant** (Ctrl+K or the button on the page): just say what you want, such as "make my name a pink
-  gradient" or "add a section about my hobbies", and it edits the card. Ctrl+Z undoes it.
+  gradient" or "add a section about my hobbies", and it edits the card. With text selected, it changes
+  only the selection. Ctrl+Z undoes it.
 - **Right-click** any text for AI actions: friendlier, funnier, flirtier, classier, add symbols, recolour,
   shorten, fix spelling or translate, for the selection or everything.
 - **Smart checks**: one click to fit an over-long text, swap symbols that don't show in gifts, brighten text
