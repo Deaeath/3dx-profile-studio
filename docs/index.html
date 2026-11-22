@@ -2260,12 +2260,12 @@ function toast(msg) {
 // "artifact": runs inside Claude (the viewer's own Claude account, no key).
 // "release": the standalone page; free built-in AI (when AI_PROXY is set), or a key from any vendor below.
 const BUILD = "release", VERSION = "1.2.1";
-// The Studio's own AI server (worker/). It holds the Anthropic key, so players need none.
+// The Studio's own AI server (worker/). It runs on Cloudflare's own models, so players need no key.
 const AI_PROXY = "https://3dx-profile-studio-ai.pathmoor.workers.dev";
 const SDK_URL = "https://cdn.jsdelivr.net/npm/@anthropic-ai/sdk@0.131.0/+esm";
 const REPO_URL = "https://github.com/Deaeath/3dx-profile-studio";
 const PROVIDERS = [
-  ...(AI_PROXY ? [{ id: "free", name: "Free AI (Claude) · no key needed", short: "Free AI", kind: "proxy", keyOptional: true }] : []),
+  ...(AI_PROXY ? [{ id: "free", name: "Free AI · no key needed", short: "Free AI", kind: "proxy", keyOptional: true }] : []),
   { id: "anthropic", name: "Anthropic · Claude", short: "Anthropic", kind: "anthropic", keyUrl: "https://console.anthropic.com/settings/keys", hint: "sk-ant-..." },
   { id: "openai", name: "OpenAI · ChatGPT", short: "OpenAI", kind: "openai", base: "https://api.openai.com/v1", keyUrl: "https://platform.openai.com/api-keys", hint: "sk-..." },
   { id: "gemini", name: "Google · Gemini", short: "Google", kind: "gemini", keyUrl: "https://aistudio.google.com/apikey", hint: "AIza..." },
@@ -2282,7 +2282,7 @@ const aiCfg = Object.assign({ provider: AI_PROXY ? "free" : "anthropic", models:
 const sessionKeys = {};
 const provider = () => PROVIDERS.find((p) => p.id === aiCfg.provider) || PROVIDERS[0];
 const keyFor = (id) => sessionKeys[id] ?? aiCfg.keys[id] ?? "";
-const modelFor = (id) => id === "free" ? "Claude" : aiCfg.models[id] || (id === "anthropic" ? "claude-opus-5-5" : "");
+const modelFor = (id) => id === "free" ? "no key" : aiCfg.models[id] || (id === "anthropic" ? "claude-opus-5-5" : "");
 // Players who picked a provider but never added its key get the free AI instead of "Add a key"
 if (AI_PROXY && !provider().keyOptional && !keyFor(provider().id)) aiCfg.provider = "free";
 function saveAiCfg() {
@@ -2464,7 +2464,7 @@ async function callProxy(system, prompt, onText, signal) {
     if (e.name === "AbortError") throw new AIError("cancelled", "Stopped.");
     throw new AIError("network", `The connection to ${vendor} dropped. Try again.`);
   }
-  if (stop === "refusal" && !text.trim()) throw new AIError("refused", "Claude declined this one. Try different wording.");
+  if (stop === "refusal" && !text.trim()) throw new AIError("refused", "The free AI declined this one. Try different wording.");
   if (!stop) throw new AIError("network", `The connection to ${vendor} dropped. Try again.`);
   return { text, truncated: stop === "max_tokens" };
 }
@@ -2508,8 +2508,8 @@ function drawAiSettings() {
   const p = provider();
   if (p.kind === "proxy") {
     body.innerHTML = `<label class="field"><span>AI provider</span><select class="select" id="ais-provider">${PROVIDERS.map((x) => `<option value="${x.id}"${x.id === p.id ? " selected" : ""}>${escapeHtml(x.name)}</option>`).join("")}</select></label>
-      <p class="ai-note" style="font-size:14px;color:var(--text)">The free AI runs on <b>Claude</b> and is provided by 3DX Profile Studio. No key or account needed, just start writing.</p>
-      <p class="ai-note">Your text goes through the Studio's AI server to Anthropic to get an answer. Nothing is stored. There's a fair-use limit; if you hit it often, pick another provider above and add your own key.</p>`;
+      <p class="ai-note" style="font-size:14px;color:var(--text)">The free AI is built in and provided by 3DX Profile Studio. No key or account needed, just start writing.</p>
+      <p class="ai-note">Your text goes through the Studio's AI server on Cloudflare to get an answer. Nothing is stored. There's a daily fair-use limit; if you hit it often, pick another provider above and add your own key.</p>`;
     $("#ais-test").hidden = false;
     $("#ais-provider").onchange = () => { aiCfg.provider = $("#ais-provider").value; saveAiCfg(); drawAiSettings(); updateAiStatus(); };
     return;

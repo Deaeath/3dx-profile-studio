@@ -78,9 +78,10 @@ Every result appears in a preview with its character count first. **Use this** p
 - **Smart checks**: one click to fit an over-long text, swap symbols that don't show in gifts, brighten text
   that's too dark to read, or proofread.
 
-**It works right away, with no key or account.** The built-in **Free AI** runs on Claude and is
-provided by 3DX Profile Studio. Your text goes through the Studio's small AI server to Anthropic and
-nothing is stored. There's a fair-use limit (10 requests a minute per person).
+**It works right away, with no key or account.** The built-in **Free AI** is provided by 3DX Profile
+Studio and runs on Cloudflare's own AI models. Your text goes through the Studio's small AI server and
+nothing is stored. There's a fair-use limit: 10 requests a minute per person, and a daily allowance
+for the whole site that resets at midnight UTC.
 
 Prefer another AI, or using it a lot? Bring a key from any of these providers instead. Open
 **AI settings**, pick the provider, paste the key and press **Load models**:
@@ -110,22 +111,21 @@ node tests/test.js           # tests for the code generator, parser, gradients a
 
 ### Free AI server (`worker/`)
 
-The Free AI is a Cloudflare Worker that keeps the Anthropic key as an encrypted secret, so the key is
-never in this repository or in the page. It only answers requests from the published page and the
-downloaded file, limits each visitor to 10 requests a minute (exact counting with a Durable Object),
-can cap requests per day (`DAILY_LIMIT`), and streams Claude's answer back.
+The Free AI is a Cloudflare Worker that runs on Workers AI (DeepSeek V4.1 Flash), so there is no AI key
+to keep. It only answers requests from the published page and the downloaded file, limits each visitor
+to 10 requests a minute (exact counting with a Durable Object), keeps the whole site inside Workers AI's
+free daily allowance (`NEURON_DAILY`), can also cap requests per day (`DAILY_LIMIT`), and streams the
+answer back.
 
 ```
 cd worker
 npm install
 npx wrangler login
-npx wrangler secret put ANTHROPIC_API_KEY      # name is ANTHROPIC_API_KEY; paste the key as the value
 npx wrangler deploy
 ```
 
 `AI_PROXY_URL` holds the Worker's address; `build.py` puts it into the release page. Delete that file
-to build a page without the Free AI. Model, effort and limits are set in `worker/wrangler.toml`.
-Set a monthly spend limit for the key's workspace in the Anthropic Console as a backstop.
+to build a page without the Free AI. The model and limits are set in `worker/wrangler.toml`.
 
 ## Legal
 

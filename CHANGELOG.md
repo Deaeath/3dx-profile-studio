@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased - 2026-11-22
+
+### The Free AI is back
+- The built-in Free AI runs on Cloudflare's own AI models now, so it needs no key and has no bill to run
+  out. There's a daily allowance for the whole site that resets at midnight UTC; the Studio says so if
+  it's used up. Every copy of the Studio uses it, downloaded ones included.
+
 ## 1.2.1 - 2026-10-08
 
 ### AI on your selection

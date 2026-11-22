@@ -1,19 +1,21 @@
 // Free built-in AI for 3DX Profile Studio (Cloudflare Worker).
 //
-// The page POSTs { system, prompt } to /v1/write. This Worker adds the Anthropic key (a Cloudflare
-// secret, never sent to browsers), applies limits, and streams the reply back as server-sent events:
+// The page POSTs { system, prompt } to /v1/write. This Worker runs it on Workers AI (Cloudflare's own
+// models: no key, no AI vendor account), applies limits, and streams the reply back as server-sent events:
 //   data: {"t":"<text so far>"}            text as it arrives (whole text, like the page expects)
-//   data: {"done":true,"stop":"end_turn"}  finished (stop = Anthropic stop_reason)
+//   data: {"done":true,"stop":"end_turn"}  finished (stop: end_turn, max_tokens or refusal)
 //   data: {"error":{"code":"rate","message":"..."}}
-// Nothing is stored or logged (only a timestamp per visitor IP for the rate limit, kept one minute).
+// A daily neuron cap keeps it inside Workers AI's free daily allowance (10,000 neurons, reset at 00:00 UTC),
+// so it never bills past it. Nothing is stored or logged: a timestamp per visitor IP for the rate limit
+// (kept one minute) and the day's neuron total.
 
 import { DurableObject } from "cloudflare:workers";
-import Anthropic from "@anthropic-ai/sdk";
 
 const MAX_SYSTEM_CHARS = 30000;
 const MAX_PROMPT_CHARS = 30000;
+const NEURON_USD = 0.011 / 1000;   // Workers AI: $0.011 per 1,000 neurons
 
-// One Limiter instance per key ("ip:1.2.3.4", "day:2026-10-07"); each counts its own hits exactly.
+// One Limiter instance per key ("ip:1.2.3.4", "neurons:2026-11-22"); each counts its own hits exactly.
 export class Limiter extends DurableObject {
   async take(limit, windowMs) {
     const now = Date.now();
@@ -24,19 +26,53 @@ export class Limiter extends DurableObject {
     await this.ctx.storage.setAlarm(now + windowMs);   // forget this visitor once the window has passed
     return true;
   }
+  // The day's neuron total
+  async used() {
+    return (await this.ctx.storage.get("used")) || 0;
+  }
+  async spend(n) {
+    const used = ((await this.ctx.storage.get("used")) || 0) + n;
+    await this.ctx.storage.put("used", used);
+    if (!(await this.ctx.storage.getAlarm())) await this.ctx.storage.setAlarm(Date.now() + 2 * 86_400_000);
+    return used;
+  }
   async alarm() {
     await this.ctx.storage.deleteAll();
   }
 }
 
+const stub = (env, key) => env.LIMITS.get(env.LIMITS.idFromName(key));
+
 async function take(env, key, limit, windowMs) {
   if (!env.LIMITS) return true;
   try {
-    return await env.LIMITS.get(env.LIMITS.idFromName(key)).take(limit, windowMs);
+    return await stub(env, key).take(limit, windowMs);
   } catch (e) {
     console.log("limiter error:", String(e));
-    return true;   // a limiter outage shouldn't take the AI down; the Anthropic spend limit is the backstop
+    return true;   // a limiter outage shouldn't take the AI down
   }
+}
+
+const today = () => new Date().toISOString().slice(0, 10);   // UTC, like the free allowance
+
+async function neuronsUsed(env) {
+  try { return env.LIMITS ? await stub(env, `neurons:${today()}`).used() : 0; }
+  catch (e) { console.log("budget error:", String(e)); return 0; }
+}
+
+async function spendNeurons(env, n) {
+  try { if (env.LIMITS && n > 0) await stub(env, `neurons:${today()}`).spend(n); }
+  catch (e) { console.log("budget error:", String(e)); }
+}
+
+// Neurons for one answer: Workers AI's own count when it gives one, else from the tokens and the model's price,
+// else from the length of the text (about 3.5 characters a token)
+function neuronsFor(usage, env, inChars, outChars) {
+  if (usage && Number(usage.neurons) > 0) return Number(usage.neurons);
+  const tin = Number(usage?.prompt_tokens) || inChars / 3.5;
+  const tout = Number(usage?.completion_tokens) || outChars / 3.5;
+  const usd = (tin * (Number(env.PRICE_IN) || 0.3) + tout * (Number(env.PRICE_OUT) || 1.2)) / 1e6;
+  return usd / NEURON_USD;
 }
 
 function corsHeaders(origin, env) {
@@ -52,16 +88,34 @@ function json(status, body, cors) {
 const fail = (status, code, message, cors) => json(status, { error: { code, message } }, cors);
 
 const BUSY = "The free AI is busy right now. Wait a minute and try again, or add your own key in AI settings.";
+const SPENT = "The free AI has used up today's allowance. It's back at midnight UTC, or add your own key in AI settings.";
 
 // Plain messages for players; never pass account details through
 function describe(e) {
-  if (e instanceof Anthropic.APIUserAbortError) return { code: "cancelled", message: "Stopped." };
-  if (e instanceof Anthropic.RateLimitError) return { code: "rate", message: BUSY };
-  if (e instanceof Anthropic.BadRequestError) return { code: "api", message: "The AI couldn't use that request. Try different wording." };
-  if (e instanceof Anthropic.APIConnectionError) return { code: "network", message: "Couldn't reach the AI. Try again in a moment." };
-  if (e instanceof Anthropic.APIError && (e.status === 529 || e.status >= 500)) return { code: "rate", message: BUSY };
+  const m = String(e?.message || e);
+  console.log("workers ai error", m.slice(0, 300));   // never the player's text (wrangler tail shows it)
+  if (/capacity|rate|too many|3040|429/i.test(m)) return { code: "rate", message: BUSY };
+  if (/network|connection|fetch failed/i.test(m)) return { code: "network", message: "Couldn't reach the AI. Try again in a moment." };
+  if (/invalid input|too long|context|8001|5021/i.test(m)) return { code: "api", message: "The AI couldn't use that request. Select less, or try different wording." };
   return { code: "unavailable", message: "The free AI isn't working right now. Try again later, or add your own key in AI settings." };
 }
+
+// Workers AI streams server-sent events: OpenAI-style chunks for most models, { response } for older ones
+function sseLines() {
+  let buf = "";
+  return (chunk) => {
+    buf += chunk;
+    const out = [];
+    let i;
+    while ((i = buf.indexOf("\n")) >= 0) {
+      const line = buf.slice(0, i).replace(/\r$/, "");
+      buf = buf.slice(i + 1);
+      if (line.startsWith("data:")) { const d = line.slice(5).trim(); if (d && d !== "[DONE]") out.push(d); }
+    }
+    return out;
+  };
+}
+const STOPS = { stop: "end_turn", length: "max_tokens", content_filter: "refusal" };
 
 // Feedback from the page becomes a GitHub issue (public), filed with a token that can only write issues
 const KINDS = { bug: "Bug", idea: "Idea", other: "Feedback" };
@@ -83,7 +137,7 @@ async function feedback(request, env, cors) {
 
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
   if (!(await take(env, `fb:${ip}`, 3, 3_600_000))) return fail(429, "rate", "Thanks! You've sent a few already. Try again in an hour.", cors);
-  if (!(await take(env, `fbday:${new Date().toISOString().slice(0, 10)}`, 50, 86_400_000))) {
+  if (!(await take(env, `fbday:${today()}`, 50, 86_400_000))) {
     return fail(429, "rate", "We've had lots of feedback today. Please try again tomorrow.", cors);
   }
 
@@ -127,7 +181,9 @@ export default {
       });
     }
     if (request.method === "GET" && url.pathname === "/") {
-      return json(200, { ok: true, service: "3dx-profile-studio-ai", model: env.MODEL, ready: !!env.ANTHROPIC_API_KEY,
+      const cap = Number(env.NEURON_DAILY) || 0;
+      return json(200, { ok: true, service: "3dx-profile-studio-ai", model: env.MODEL, ready: !!env.AI,
+                         today: cap ? { used: Math.round(await neuronsUsed(env)), cap } : undefined,
                          feedback: !!env.GITHUB_TOKEN }, { "Access-Control-Allow-Origin": "*" });
     }
     if (request.method === "POST" && url.pathname === "/v1/feedback") {
@@ -136,15 +192,15 @@ export default {
     }
     if (request.method !== "POST" || url.pathname !== "/v1/write") return fail(404, "api", "Not found.", cors);
     if (!cors) return fail(403, "unavailable", "This free AI only works inside 3DX Profile Studio.", null);
-    if (!env.ANTHROPIC_API_KEY) return fail(503, "unavailable", "The free AI isn't set up yet.", cors);
+    if (!env.AI) return fail(503, "unavailable", "The free AI isn't set up yet.", cors);
 
-    // Exact limits (Durable Objects): per visitor per minute, and optionally for the whole site per day
+    // Exact limits (Durable Objects): per visitor per minute, requests per day, and the free neuron allowance
     const ip = request.headers.get("CF-Connecting-IP") || "unknown";
     if (!(await take(env, `ip:${ip}`, Number(env.PER_MINUTE) || 10, 60_000))) return fail(429, "rate", BUSY, cors);
     const daily = Number(env.DAILY_LIMIT) || 0;
-    if (daily && !(await take(env, `day:${new Date().toISOString().slice(0, 10)}`, daily, 86_400_000))) {
-      return fail(429, "rate", "The free AI has used up today's allowance. Try again tomorrow, or add your own key in AI settings.", cors);
-    }
+    if (daily && !(await take(env, `day:${today()}`, daily, 86_400_000))) return fail(429, "rate", SPENT, cors);
+    const cap = Number(env.NEURON_DAILY) || 0;
+    if (cap && (await neuronsUsed(env)) >= cap) return fail(429, "rate", SPENT, cors);
 
     let body;
     try { body = await request.json(); } catch { return fail(400, "api", "Bad request.", cors); }
@@ -155,14 +211,10 @@ export default {
       return fail(413, "api", "That's too much text for the free AI. Select less, or add your own key in AI settings.", cors);
     }
 
-    const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
-    const model = env.MODEL || "claude-opus-5-5";
-    const params = { model, max_tokens: Number(env.MAX_TOKENS) || 16000, system,
-                     messages: [{ role: "user", content: prompt }] };
-    if (env.EFFORT) params.output_config = { effort: env.EFFORT };
-    // On a safety decline, re-run on Anthropic's recommended model instead of failing
-    const fallback = /^claude-(opus-5-5|opus-5|sonnet-5-5|fable-5-1)$/.test(model);
-    const opts = { signal: request.signal };   // the player pressing Stop cancels the request
+    const params = { messages: [{ role: "system", content: system }, { role: "user", content: prompt }],
+                     max_completion_tokens: Number(env.MAX_TOKENS) || 4000, stream: true,
+                     stream_options: { include_usage: true } };
+    if (env.REASONING) params.reasoning_effort = env.REASONING;
 
     const { readable, writable } = new TransformStream();
     const writer = writable.getWriter();
@@ -170,22 +222,30 @@ export default {
     const send = (obj) => writer.write(enc.encode(`data: ${JSON.stringify(obj)}\n\n`));
 
     const pump = (async () => {
+      let text = "", usage = null, stop = "", reader = null;
       try {
-        const stream = fallback
-          ? client.beta.messages.stream({ ...params, betas: ["server-side-fallback-2026-07-01"], fallbacks: "default" }, opts)
-          : client.messages.stream(params, opts);
-        let text = "";
-        for await (const ev of stream) {
-          if (ev.type === "content_block_delta" && ev.delta.type === "text_delta") {
-            text += ev.delta.text;
-            await send({ t: text });
+        const stream = await env.AI.run(env.MODEL, params);
+        reader = stream.getReader();
+        const split = sseLines(), dec = new TextDecoder();
+        for (;;) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          for (const d of split(dec.decode(value, { stream: true }))) {
+            let j;
+            try { j = JSON.parse(d); } catch { continue; }
+            if (j.usage) usage = j.usage;
+            const c = j.choices?.[0];
+            const piece = c?.delta?.content ?? (typeof j.response === "string" ? j.response : "");
+            if (c?.finish_reason) stop = STOPS[c.finish_reason] || "end_turn";
+            if (piece) { text += piece; await send({ t: text }); }
           }
         }
-        const msg = await stream.finalMessage();
-        await send({ done: true, stop: msg.stop_reason });
+        await send({ done: true, stop: stop || "end_turn" });
       } catch (e) {
+        try { await reader?.cancel(); } catch { /* already closed */ }
         try { await send({ error: describe(e) }); } catch { /* player already left */ }
       } finally {
+        if (usage || text) await spendNeurons(env, neuronsFor(usage, env, system.length + prompt.length, text.length));
         try { await writer.close(); } catch { /* already closed */ }
       }
     })();
